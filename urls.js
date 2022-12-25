@@ -14,5 +14,8 @@ var urls= {
     'Logo-e-laastras-ng.png' : 'https://am3pap006files.storage.live.com/y4mL9ZAVky93EpyUHxCX9fiGV-VfDkWq94n20hqpkgsICCRvBYfIog38218Gb_Sz4IXMSUqfNgd8pgsPd-L_iUCzcQ1lsN1inI5UQWJOeKrkGs2jM4S1k9cND1YKt8HC1nQXYEJC9ewzAnyOQMe2nOHvjQVp5QthpamE9RyqefNS6Wf32xAcelTpz6SDSWWVf-p?width=653&height=338&cropmode=none',
     'Laas-e-banner-ng-en.png' : 'https://am3pap006files.storage.live.com/y4mt-HsK5wkZWY8kAfuYdZiE4azPj9lwCkwBhB89v3-7ZoWJkY3Aw5F7l9H8mfEIr4PVP2lwzILDdKZNbCklfwgk4VlT0OssIO1gs3FQ9X1uSz-Zji2KRnc3O7FggX_qRWM1EZuOVc8YKw9BIW7i1XYwNpbYH3Z9dmEhBqvJpZgoHlw1uWU1OUkW0Zb4hjEYcIh?width=6063&height=834&cropmode=none',
     'Laas-e-banner-ng-fr.png' : 'https://am3pap006files.storage.live.com/y4mjpte_PES7f9AqitT0xIE8vizJ5ec5ZXcqb5NayPUJXlU1ZJElkzcToSWCslulo1ZlarH-QFY5P9YvNiinBfqrdtMQZC4gzXAWjyyw6dXrNrpS-P-QGNevXQwhnAs458j3zYmbVtQA9J1pqKPGI4gaRCTGJu3AClRHGfWFavUURDMuud0hxXNLEFMEx1CcGpE?width=6063&height=834&cropmode=none',
-    'laastras-sales-and-marketing-job-offer.html' : 'https://onedrive.live.com/embed?cid=2E6EAD2D38E36D5A&resid=2e6ead2d38e36d5a%2134954&authkey=AJQ-KC_aVrnw3bw'
+    'laastras-sales-and-marketing-job-offer.html' : 'https://onedrive.live.com/embed?cid=2E6EAD2D38E36D5A&resid=2e6ead2d38e36d5a%2134954&authkey=AJQ-KC_aVrnw3bw',
+    'bootstrap.min.css' : 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+    'bootstrap.min.js' : 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
+
 };
