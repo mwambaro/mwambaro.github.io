@@ -3,6 +3,8 @@ var urls= {
     'Special-formatter-department-or-ministry-fr.jpg' : '',
     'Special-UN-integration-commission-en.jpg' : '',
     'Special-UN-integration-commission-fr.jpg' : '',
+    'LaaS-SDLC-en.png': '',
+    'LaaS-SDLC-fr.png': '',
     'Laastras-hofi-agas-ioot.jpg' : '',
     'Laastras-un-c14-dgram.jpg' : '',
     'Laastras-LaasOS-teaser.mp4' : '',
