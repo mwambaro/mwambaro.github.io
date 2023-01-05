@@ -1320,6 +1320,7 @@
                                         <li><strong>Phone number:</strong> +257 76 177 186 </li>
                                         <li><strong>E-mail:</strong> <a href="mailto:onkezabahizi@gmail.com" style="text-decoration: none"> onkezabahizi@gmail.com </a> </li>
                                         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167/" style="text-decoration: none"> LinkedIn Profile </a> </li>
+                                        <li><strong>Background:</strong> <a href="cv.html?locale=en_US" style="text-decoration: none"> Track Record </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -1335,6 +1336,7 @@
                                         <li><strong>Numéro de téléphone:</strong> +257 76 177 186 </li>
                                         <li><strong>E-mail:</strong> <a href="mailto:onkezabahizi@gmail.com" style="text-decoration: none"> onkezabahizi@gmail.com </a> </li>
                                         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167/" style="text-decoration: none"> Profil LinkedIn </a> </li>
+                                        <li><strong>Histoire:</strong> <a href="cv.html?locale=fr_FR" style="text-decoration: none"> Record </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -4516,6 +4518,14 @@
                     e.preventDefault();
                     apply_modal.show();  
                 });
+
+                if(window.location.hash != null && window.location.hash != '')
+                {
+                    let id = window.location.hash.replace('#', '');
+                    let top = $(`#${id}`).offset().top;
+                    console.log('ID from hash: ' + id + `; TOP: ${top}`);
+                    $(window).scrollTop(top);
+                }
             });
         </script>
     </body>
