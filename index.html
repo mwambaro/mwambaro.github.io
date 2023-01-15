@@ -3142,11 +3142,11 @@
     <body class="container-fluid">
         <!-- STRIP -->
         <div class="container-fluid" style="margin: 0px">
-            <div id="navigation-bar-strip" style="color: white; background-color: black; margin: 0px; padding: 5px" class="text-center">
-                TOP
+            <div id="navigation-bar-strip" style="color: white; background-color: black; margin: 0px; padding: 5px; font-weight: bold; height: 40px; display: flex; align-items: center; justify-content: center">
+                <span id="navigation-bar-strip-span">TOP</span>
             </div>
             <script>
-                var strip_height = '20px';
+                var strip_height = '40px';
                 $(document).ready((e) => {
                     function set_strip_bar()
                     {
@@ -3158,14 +3158,23 @@
                             zIndex: '99',
                             position: 'fixed',
                             top: '0px',
-                            left: '0px'
+                            left: '0px',
+                            width: `${$(window).width()}px`
                         });
+                        /*
                         $('#navigation-bar-strip').width($(window).width());
-                        $('#navigation-bar-strip').height(strip_height);
+                        //$('#navigation-bar-strip').height(strip_height);
+
+                        let offset = $('#navigation-bar-strip-span').offset();
+                        offset.left = ($('#navigation-bar-strip').width() - $('#navigation-bar-strip-span').width())/2;
+                        console
+                        //offset.top = ($('#navigation-bar-strip').height() - $('#navigation-bar-strip-span').height())/2;
+                        $('#navigation-bar-strip-span').offset(offset);
+                        */
 
                     } // set_strip_bar
 
-                    $('#navigation-bar-strip').html(locales.topping_label[locale]);
+                    $('#navigation-bar-strip-span').html(locales.topping_label[locale]);
 
                     set_strip_bar();
 
@@ -3195,10 +3204,33 @@
         </script>
         <!-- BANNER -->
         <div class="container-fluid" id="banner-div">
-            <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row justify-content-center" id="banner-div">
                 <img src="assets/Laas-e-banner-ng-en.png"
                     class="img-fluid banner-image"
                     id="banner-image" />
+                <script>
+                    $(document).ready((e) => {
+                        function arrange_banner_div()
+                        {
+                            $('#banner-div').css({
+                                width: `${$(window).width()}px`,
+                                left: '0px'
+                            });
+
+                            // LA FERME
+                            let offset = $('#banner-div').offset();
+                            offset.left = '0';
+                            $('#banner-div').offset(offset);
+
+                        } // arrange_banner_div
+
+                        arrange_banner_div();
+
+                        window.addEventListener('resize', (e) => {
+                            arrange_banner_div();
+                        });
+                    });
+                </script>
             </div>
             <div id="pitch-message-modal" class="modal fade" data-keyboard="false" tabIndex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -3303,6 +3335,20 @@
             <script>
                 $(document).ready((e) => 
                 {
+                    function arrange_navbar_div()
+                    {
+                        $('#sales-navigation-bar').css({
+                            width: `${$(window).width()}px`,
+                            left: '0px'
+                        });
+
+                        // LA FERME
+                        let offset = $('#sales-navigation-bar').offset();
+                        offset.left = '0';
+                        $('#sales-navigation-bar').offset(offset);
+                            
+                    } // arrange_navbar_div
+
                     $('a[data-name="sales"]').html(locales.sales_label[locale]);
                     $('a[data-name="brands"]').html(locales.brands_label[locale]);
                     $('a[data-name="legalization"]').html(locales.legalization_label[locale]);
@@ -3402,6 +3448,11 @@
                         //$(`${id}`).show();
                         let top = $(`${id}`).offset().top;
                         $(window).scrollTop(top);
+                    });
+
+                    arrange_navbar_div();
+                    window.addEventListener('resize', (e) => {
+                        arrange_navbar_div();
                     });
                 });
             </script>
