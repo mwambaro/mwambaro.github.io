@@ -255,6 +255,39 @@
                                     à digérer en technologie.
                                 `
                             }
+                        },
+                        language_translation_expertise: {
+                            en_US: {
+                                field: `Translation amongst Three Languages: French, English, and Kirundi`,
+                                details: `
+                                    English is our main business, research, and publication language. We have
+                                    gained experience translating from English into French and vice-versa.
+                                    Well, most of us have growed up in French-speaking countries with a 
+                                    strong focus on English as a research and personal development language. Plus,
+                                    <a href="../index.html?locale=en_US#mission-div" style="text-decoration: none">
+                                        Laastras 
+                                    </a>
+                                    Founder and Director is from Burundi and speaks Kirundi as a mother 
+                                    tongue. So, we are comfortable translating documents amongst the three languages:
+                                    French, English, and Kirundi
+                                `
+                            },
+                            fr_FR: {
+                                field: `Traduction parmi Trois Langues: Français, Anglais, et Kirundi`,
+                                details: `
+                                    L'Anglais est notre langue majeure d'affaires, de recherche, et de publication.
+                                    Nous avons acquis de l'expérience en traduction de l'Anglais au Français et vice-versa.
+                                    En fait, la plupart de nous avons grandi dans des pays francophones mais avec un 
+                                    accent sur l'Anglais comme une langue de recherche et de développement personnel.
+                                    Qui plus est, le Fondateur et le Directeur de 
+                                    <a href="../index.html?locale=fr_FR#mission-div" style="text-decoration: none">
+                                        Laastras 
+                                    </a>
+                                    est natif du Burundi et parle le Kirundi comme langue maternelle. Alors, nous 
+                                    trouvons plaisir en la traduction de documents parmi les trois langues:
+                                    Français, Anglais, et Kirundi
+                                `
+                            }
                         }
                     }
                 };
@@ -307,6 +340,10 @@
                             id="tech-evangelization"
                             class="expertise-field"> 
                         </li>
+                        <li style="padding: 5px; color: blue"
+                            id="language-translation"
+                            class="expertise-field"> 
+                        </li>
                     </ul>
                     <script>
                         $(document).ready((e) => {
@@ -356,6 +393,15 @@
                                     `;
                                     $('#expertise-details-body').append(html);
                                 }
+                                else if(id === 'language-translation')
+                                {
+                                    let html = `
+                                        <div id="expertise-details-body-content">
+                                            ${locales.expertise.language_translation_expertise[locale].details}
+                                        </div>
+                                    `;
+                                    $('#expertise-details-body').append(html);
+                                }
 
                                 details_modal.show();
 
@@ -375,6 +421,9 @@
                             );
                             $('#tech-evangelization').html(
                                 locales.expertise.tech_evangelization_expertise[locale].field
+                            );
+                            $('#language-translation').html(
+                                locales.expertise.language_translation_expertise[locale].field
                             );
 
                             $('.close').on('click', (e) => {

@@ -23,7 +23,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap.min.css" id="bootstrap_css">
 
         <!-- Styles -->
         <style>
@@ -40,8 +40,8 @@
         </style>
         
         <!-- https://www.w3schools.com/tags/att_script_integrity.asp -->
-        <script src="assets/jquery-3.6.3.min.js"></script>
-        <script src="assets/bootstrap.bundle.min.js"></script>
+        <script src="assets/jquery-3.6.3.min.js" id="jquery"></script>
+        <script src="assets/bootstrap.bundle.min.js" id="bootstrap_js"></script>
         <script>
             function get_env()
             {
@@ -58,27 +58,43 @@
 
             function set_urls()
             {
-
                 var env = get_env();
                 var urls = {
                     bootstrap_css: {
-                        development: 'bootstrap.min.css',
-                        production: ''
+                        development: 'assets/bootstrap.min.css',
+                        production: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+                        integrity: 'sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC'
                     },
                     bootstrap_js: {
-                        development: 'bootstrap.min.js',
-                        production: ''
+                        development: 'assets/bootstrap.bundle.min.js',
+                        production: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
+                        integrity: 'sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM'
                     },
                     jquery: {
-                        development: 'jquery-3.6.0.min.js',
-                        production: ''
+                        development: 'assets/jquery-3.6.3.min.js',
+                        production: 'https://code.jquery.com/jquery-3.6.3.min.js',
+                        integrity: 'sha384-Ft/vb48LwsAEtgltj7o+6vtS2esTU9PCpDqcXs4OCVQFZu5BqprHtUCZ4kjK+bpE'
                     }
                 }
 
                 document.getElementById('bootstrap_css').attributes.getNamedItem('href').value = urls.bootstrap_css[env];
                 document.getElementById('bootstrap_js').attributes.getNamedItem('src').value = urls.bootstrap_js[env];
                 document.getElementById('jquery').attributes.getNamedItem('src').value = urls.jquery[env];
-            }
+
+                if(env === 'production') // set integrity and crossorigin attributes
+                {
+                    document.getElementById('bootstrap_css').attributes.getNamedItem('integrity').value = urls.bootstrap_css.integrity;
+                    document.getElementById('bootstrap_js').attributes.getNamedItem('integrity').value = urls.bootstrap_js.integrity;
+                    document.getElementById('jquery').attributes.getNamedItem('integrity').value = urls.jquery.integrity;
+
+                    document.getElementById('bootstrap_css').attributes.getNamedItem('crossorigin').value = 'anonymous';
+                    document.getElementById('bootstrap_js').attributes.getNamedItem('crossorigin').value = 'anonymous';
+                    document.getElementById('jquery').attributes.getNamedItem('crossorigin').value = 'anonymous';
+                }
+
+                console.log('ENV: ' + env);
+
+            } // set_urls
         </script>
         <script>
             function is_mobile()
@@ -412,7 +428,7 @@
                         fr_FR: 'Voici le contenu de l\'offre d\'emploi des <strong>Ventes & Marketing</strong> Laastras. Nous avons besoin d\'un <strong> Partenaire en Ventes</strong> et une dame <strong> Assistante du Chef de Projet </strong>'
                     },
                     back_to_top: {
-                        en_US: 'OUTLN',
+                        en_US: 'OLN',
                         fr_FR: 'SMR'
                     },
                     contract_note: {
@@ -1323,6 +1339,7 @@
                                         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167/" style="text-decoration: none"> LinkedIn Profile </a> </li>
                                         <li><strong>Background:</strong> <a href="assets/cv.html?locale=en_US" style="text-decoration: none"> Track Record </a> </li>
                                         <li><strong>Motivation:</strong><a href="assets/work-anthem.html?locale=en_US" style="text-decoration: none"> Work Anthem </a> </li>
+                                        <li><strong>Challenge:</strong><a href="assets/the-lawless-one.html?locale=en_US" style="text-decoration: none"> The Lawless One </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -1340,6 +1357,7 @@
                                         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167/" style="text-decoration: none"> Profil LinkedIn </a> </li>
                                         <li><strong>Record:</strong> <a href="assets/cv.html?locale=fr_FR" style="text-decoration: none"> Parcours </a> </li>
                                         <li><strong>Motivation:</strong><a href="assets/work-anthem.html?locale=fr_FR" style="text-decoration: none"> Hymne de Travail </a> </li>
+                                        <li><strong>Défi:</strong><a href="assets/the-lawless-one.html?locale=fr_FR" style="text-decoration: none"> Le Hors-la-loi </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -1953,7 +1971,7 @@
                     },
                     contact_label: {
                         en_US: 'Contact',
-                        fr_FR: 'Contacte'
+                        fr_FR: 'Contact'
                     },
                     spefodem_offer: {
                         en_US: {
@@ -2224,7 +2242,7 @@
                                         <a href="mailto:onkezabahizi@gmail.com" style="text-decoration: none">
                                             Obed-Edom Nkezabahizi
                                         </a>, 
-                                        Laastras designer and master-mind, has faced the following competition issues:
+                                        Laastras designer and master-mind, have faced the following competition issues:
                                     </div>
                                 </div>
                                 <ul style="margin-top: 10px">
@@ -2810,9 +2828,9 @@
                                     </a>
                                     that will, in the long run, fulfil the Morshux vision. For details on the Morshux 
                                     philosophy, please, support the project by buying 
-                                    <a href="https://leanpub.com/World-Federal-Government-Constitution--Leadership-as-a-Service" style="text-decoration: none"> 
+                                    <a href="https://1drv.ms/b/s!Alpt4zgtrW4ugpEkE7T8tptws-r8sw?e=C0it09" style="text-decoration: none"> 
                                     the book </a> behind Laastras project,
-                                    written by Laastras Founder and CEO, 
+                                    written by Laastras Founder and Director, 
                                     <a href="mailto:onkezabahizi@gmail.com" style="text-decoration: none"> 
                                     Obed-Edom Nkezabahizi </a>.
                                 </div>
@@ -2873,10 +2891,10 @@
                                     </a>
                                     qui, à long terme, nous feront atteindre l'objectif Marsexh. Pour plus d'information sur la philosophie 
                                     Marsexh, veuillez supporter le projet en achetant
-                                    <a href="https://leanpub.com/World-Federal-Government-Constitution--Leadership-as-a-Service" style="text-decoration: none"> 
+                                    <a href="https://1drv.ms/b/s!Alpt4zgtrW4ugpEkE7T8tptws-r8sw?e=C0it09" style="text-decoration: none"> 
                                     le livre </a> derrière le projet Laastras, dont l'auteur est
                                     <a href="mailto:onkezabahizi@gmail.com" style="text-decoration: none"> 
-                                    Nkezabahizi Obed-Edom </a>, Fondateur et CEO de Laastras.
+                                    Nkezabahizi Obed-Edom </a>, Fondateur et Directeur de Laastras.
                                 </div>
                             `
                         }
@@ -4572,6 +4590,18 @@
             </div>
         </div>
         <script>
+            function go_to_element_using_hash_value()
+            {
+                if(window.location.hash != null && window.location.hash != '')
+                {
+                    let id = window.location.hash.replace('#', '');
+                    let top = $(`#${id}`).offset().top;
+                    //console.log('ID from hash: ' + id + `; TOP: ${top}`);
+                    $(window).scrollTop(top);
+                }
+
+            } // go_to_element_using_hash_value
+
             $(document).ready((e) => {
                 $('.vyogo').css({padding: '10px'});
                 $('.col-sm-12').css({
@@ -4604,13 +4634,15 @@
                     apply_modal.show();  
                 });
 
-                if(window.location.hash != null && window.location.hash != '')
-                {
-                    let id = window.location.hash.replace('#', '');
-                    let top = $(`#${id}`).offset().top;
-                    console.log('ID from hash: ' + id + `; TOP: ${top}`);
-                    $(window).scrollTop(top);
-                }
+                $('.video-item-main').on('loadeddata', (e) => {
+                    go_to_element_using_hash_value();
+                });
+                $(window).on('hashchange', (e) => {
+                    //console.log('HASHCHANGE INVOKED');
+                    go_to_element_using_hash_value();
+                });
+
+                set_urls();
             });
         </script>
     </body>
