@@ -77,19 +77,19 @@
                     }
                 }
 
-                document.getElementById('bootstrap_css').attributes.getNamedItem('href').value = urls.bootstrap_css[env];
-                document.getElementById('bootstrap_js').attributes.getNamedItem('src').value = urls.bootstrap_js[env];
-                document.getElementById('jquery').attributes.getNamedItem('src').value = urls.jquery[env];
+                document.getElementById('bootstrap_css').setAttribute('href', urls.bootstrap_css[env]);
+                document.getElementById('bootstrap_js').setAttribute('src', urls.bootstrap_js[env]);
+                document.getElementById('jquery').setAttribute('src', urls.jquery[env]);
 
                 if(env === 'production') // set integrity and crossorigin attributes
                 {
-                    document.getElementById('bootstrap_css').attributes.getNamedItem('integrity').value = urls.bootstrap_css.integrity;
-                    document.getElementById('bootstrap_js').attributes.getNamedItem('integrity').value = urls.bootstrap_js.integrity;
-                    document.getElementById('jquery').attributes.getNamedItem('integrity').value = urls.jquery.integrity;
+                    document.getElementById('bootstrap_css').setAttribute('integrity', urls.bootstrap_css.integrity);
+                    document.getElementById('bootstrap_js').setAttribute('integrity', urls.bootstrap_js.integrity);
+                    document.getElementById('jquery').setAttribute('integrity', urls.jquery.integrity);
 
-                    document.getElementById('bootstrap_css').attributes.getNamedItem('crossorigin').value = 'anonymous';
-                    document.getElementById('bootstrap_js').attributes.getNamedItem('crossorigin').value = 'anonymous';
-                    document.getElementById('jquery').attributes.getNamedItem('crossorigin').value = 'anonymous';
+                    document.getElementById('bootstrap_css').setAttribute('crossorigin', 'anonymous');
+                    document.getElementById('bootstrap_js').setAttribute('crossorigin', 'anonymous');
+                    document.getElementById('jquery').setAttribute('crossorigin', 'anonymous');
                 }
 
                 console.log('ENV: ' + env);
