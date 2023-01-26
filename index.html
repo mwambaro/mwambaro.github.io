@@ -23,7 +23,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/bootstrap.min.css" id="bootstrap_css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" id="bootstrap_css">
 
         <!-- Styles -->
         <style>
@@ -40,8 +40,8 @@
         </style>
         
         <!-- https://www.w3schools.com/tags/att_script_integrity.asp -->
-        <script src="assets/jquery-3.6.3.min.js" id="jquery"></script>
-        <script src="assets/bootstrap.bundle.min.js" id="bootstrap_js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha384-Ft/vb48LwsAEtgltj7o+6vtS2esTU9PCpDqcXs4OCVQFZu5BqprHtUCZ4kjK+bpE" crossorigin="anonymous" id="jquery"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" id="bootstrap_js"></script>
         <script>
             function get_env()
             {
@@ -77,12 +77,9 @@
                     }
                 }
 
-                document.getElementById('bootstrap_css').setAttribute('href', urls.bootstrap_css[env]);
-                document.getElementById('bootstrap_js').setAttribute('src', urls.bootstrap_js[env]);
-                document.getElementById('jquery').setAttribute('src', urls.jquery[env]);
-
                 if(env === 'production') // set integrity and crossorigin attributes
                 {
+                    /*
                     document.getElementById('bootstrap_css').setAttribute('integrity', urls.bootstrap_css.integrity);
                     document.getElementById('bootstrap_js').setAttribute('integrity', urls.bootstrap_js.integrity);
                     document.getElementById('jquery').setAttribute('integrity', urls.jquery.integrity);
@@ -90,9 +87,31 @@
                     document.getElementById('bootstrap_css').setAttribute('crossorigin', 'anonymous');
                     document.getElementById('bootstrap_js').setAttribute('crossorigin', 'anonymous');
                     document.getElementById('jquery').setAttribute('crossorigin', 'anonymous');
+                    */
+                }
+                else if(env === 'development') // remove integrity and crossorigin attributes
+                {
+                    document.getElementById('bootstrap_css').removeAttribute('integrity');
+                    document.getElementById('bootstrap_js').removeAttribute('integrity');
+                    document.getElementById('jquery').removeAttribute('integrity');
+
+                    document.getElementById('bootstrap_css').removeAttribute('crossorigin');
+                    document.getElementById('bootstrap_js').removeAttribute('crossorigin');
+                    document.getElementById('jquery').removeAttribute('crossorigin');
+                }
+                else 
+                {
+                    console.log('Unsupported environment: ' + env);
+                    return env;
                 }
 
+                document.getElementById('bootstrap_css').setAttribute('href', urls.bootstrap_css[env]);
+                document.getElementById('bootstrap_js').setAttribute('src', urls.bootstrap_js[env]);
+                document.getElementById('jquery').setAttribute('src', urls.jquery[env]);
+
                 console.log('ENV: ' + env);
+
+                return env;
 
             } // set_urls
         </script>
@@ -149,6 +168,30 @@
                     page_title: {
                         en_US: 'Laastras Sales & Marketing job offer',
                         fr_FR: 'Offre d\'emploi des Ventes & Marketing Laastras'
+                    },
+                    og_title: {
+                        en_US: 'Sales & Marketing Offer - Laastras',
+                        fr_FR: 'Offre Ventes & Marketing - Laastras'
+                    },
+                    og_image: {
+                        en_US: 'https://am3pap006files.storage.live.com/y4ma5MeKvgKtQak3pLJ0UpRY3sVcpbNbUloqdmRf8535tZGBQsY3IHTD4HYKJXCidTdCd6eS8x5wuljG7JwfW0Boi8hgu-qSP59U5Hu89MdKQWSRkhh6utCbhTaOJqOTYkn3PnrED6_5MPdiz-GQ0lgBApH1sF9Jr6VHtYlHa9tbHhT8LU9OtmH6R9iBWCCZotV?width=1514&height=2556&cropmode=none',
+                        fr_FR: 'https://am3pap006files.storage.live.com/y4ma5MeKvgKtQak3pLJ0UpRY3sVcpbNbUloqdmRf8535tZGBQsY3IHTD4HYKJXCidTdCd6eS8x5wuljG7JwfW0Boi8hgu-qSP59U5Hu89MdKQWSRkhh6utCbhTaOJqOTYkn3PnrED6_5MPdiz-GQ0lgBApH1sF9Jr6VHtYlHa9tbHhT8LU9OtmH6R9iBWCCZotV?width=1514&height=2556&cropmode=none'
+                    },
+                    og_description: {
+                        en_US: 'Nutrition.Equality.Financial Security.Capitalism Order',
+                        fr_FR: 'Nutrition.Egalité.Sécurité Financière.Ordre dans le Capitalisme'
+                    },
+                    og_url: {
+                        en_US: 'https://mwambaro.github.io?locale=en_US',
+                        fr_FR: 'https://mwambaro.github.io?locale=fr_FR'
+                    },
+                    og_locale: {
+                        en_US: 'en_US',
+                        fr_FR: 'fr_FR'
+                    },
+                    site_description: {
+                        en_US: 'Since each person will ultimately own a cell phone, named “HoFi (Home Finances)”, Laastras organization harnesses the power behind software technologies to guarantee your share on all resources that support human existence in your country, first, and then, in the world. Our country and the world become an enterprise in which all of us citizens have equal shares. Our major brands are: “LaasEgrocery” (nutrition), “LaasEcard” (a cell phone named HoFi, i.e., Home Finances), “LaasElogistics”, and “LaasEalliances”',
+                        fr_FR: "Puisque chaque personne aura au final un cellulaire, appellé “HoFi (Home Finances)”, l'organisation Laastras exploite la puissance des technologies logicielles pour guarantir votre part sur toutes les ressources qui supportent l'existence humaine dans votre pays, d'abord, et puis, dans le monde. Notre pays et le monde deviennent une entreprise dans laquelle nous tous citoyens avons des parts (actions) égales. Nos marques principales sont: “LaasEgrocery” (nutrition), “LaasEcard” (cellulaire appellé HoFi, pour “Home Finances”), “LaasElogistics”, et “LaasEalliances”"
                     },
                     set_language_label: {
                         en_US: 'Change language',
@@ -1340,6 +1383,7 @@
                                         <li><strong>Background:</strong> <a href="assets/cv.html?locale=en_US" style="text-decoration: none"> Track Record </a> </li>
                                         <li><strong>Motivation:</strong><a href="assets/work-anthem.html?locale=en_US" style="text-decoration: none"> Work Anthem </a> </li>
                                         <li><strong>Challenge:</strong><a href="assets/the-lawless-one.html?locale=en_US" style="text-decoration: none"> The Lawless One </a> </li>
+                                        <li><strong>Contribution:</strong><a href="assets/translation-contribution.html?locale=en_US" style="text-decoration: none"> Support Laastras Project </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -1358,6 +1402,7 @@
                                         <li><strong>Record:</strong> <a href="assets/cv.html?locale=fr_FR" style="text-decoration: none"> Parcours </a> </li>
                                         <li><strong>Motivation:</strong><a href="assets/work-anthem.html?locale=fr_FR" style="text-decoration: none"> Hymne de Travail </a> </li>
                                         <li><strong>Défi:</strong><a href="assets/the-lawless-one.html?locale=fr_FR" style="text-decoration: none"> Le Hors-la-loi </a> </li>
+                                        <li><strong>Contribution:</strong><a href="assets/translation-contribution.html?locale=fr_FR" style="text-decoration: none"> Supporter le Projet Laastras </a> </li>
                                     </ul>
                                 </div>
                             `
@@ -2946,7 +2991,7 @@
                                                 We strike AORI deals with all local enterprises willing to sail with us.
                                             </div>
                                         </li>
-                                        <li style="margin-top: 10px"> 
+                                        <li style="margin-top: 10px" id="calendar-and-milestone"> 
                                             <p><strong> A calendar and milestones: </strong></p>
                                             <div>
                                                 By January 26, 2027, we must have launched LaasEgrocery with the help of
@@ -3061,7 +3106,7 @@
                                                 les entreprises locales qui voudraient faire voile avec nous.
                                             </div>
                                         </li>
-                                        <li style="margin-top: 10px"> 
+                                        <li style="margin-top: 10px" id="calendar-and-milestone"> 
                                             <p><strong> Calendrier et étapes à franchir: </strong></p>
                                             <div>
                                                 Au plus tard, le 26 Janvier 2027, nous devrons avoir lancé LaasEgrocery avec l'aide
@@ -3146,14 +3191,22 @@
                     }
                 };
 
-                $('title').html(locales.page_title[locale]);
                 var outline_top_id = 'outline-top';
                 var menu_visible = false;
-                if(locale === 'fr_FR')
-                {
-                    $('meta[property="og:image"]').attr('content', 'https://am3pap006files.storage.live.com/y4mkfPY9RvGZ-mmR9vsD02gQtMis8EClX6a3vHYxklnHGj5fpjQMI00I291dBM7qtEmOXQPyO1Nc5sVaOW0jXuCgreThveRKXdRVMmq32gTHz_cG9-xQ1InFhjqdb_E5CHXD42MoA0R1WiyePY2PiD2x_DoOR27qeeVAovwWjTsYacamin3A7efkZL8KUH3X0oI?width=1514&height=2556&cropmode=none');
-                }
+            
             }
+
+            $(document).ready((e) => {
+                $('title').html(locales.page_title[locale]);
+
+                // Set open graph attributes
+                $('meta[property="og:title"]').attr('content', locales.og_title[locale]);
+                $('meta[property="og:image"]').attr('content', locales.og_image[locale]);
+                $('meta[property="og:url"]').attr('content', locales.og_url[locale]);
+                $('meta[property="og:description"]').attr('content', locales.og_description[locale]);
+                $('meta[property="og:locale"]').attr('content', locales.og_locale[locale]);
+                $('meta[name="description"]').attr('content', locales.site_description[locale]);
+            });
 
         </script>
     </head>
@@ -4109,7 +4162,7 @@
 
                                     let c_width = $(`#laas-e-card-body`).width();
                                     let s_width = $('.service-marketing-image').width();
-                                    let width = s_width > 900 ? (c_width/2) : s_width;
+                                    let width = c_width > 1000 ? ((c_width/4)*3) : s_width;
                                     console.log('c_width: ' + c_width + '; s_width: ' + s_width + '; width: ' + width);
                                     $('.service-marketing-image').width(width);
 
