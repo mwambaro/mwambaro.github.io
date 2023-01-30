@@ -114,6 +114,7 @@
                 return env;
 
             } // set_urls
+
         </script>
         <script>
             function is_mobile()
@@ -156,6 +157,12 @@
                 return loc;
 
             } // get_locale
+
+            function think_about_strip_height(top) // Verify that strip-bar height matches the one used here: 40
+            {
+                return (top > 40 ? (top - 40) : 0);
+
+            } // think_about_strip_height
 
             if(true)
             {
@@ -3254,6 +3261,7 @@
                     });
                     $('#navigation-bar-strip').on('click', (e) => {
                         let top = $('#padding-div').offset().top;
+                        top = think_about_strip_height(top);
                         $(window).scrollTop(top);
                     });
                     window.addEventListener('resize', (e) => {
@@ -3341,6 +3349,7 @@
                         e.preventDefault();
                         let id = $(e.target).attr('href');
                         let top = $(`${id}`).offset().top;
+                        top = think_about_strip_height(top);
                         $(window).scrollTop(top);
                         pitch_message_modal.hide();
                     });
@@ -3518,6 +3527,7 @@
                         previous_nav = id;
                         //$(`${id}`).show();
                         let top = $(`${id}`).offset().top;
+                        top = think_about_strip_height(top);
                         $(window).scrollTop(top);
                     });
 
@@ -3622,6 +3632,7 @@
                                 function goToTop(e) 
                                 {
                                     let top = $(`#${outline_top_id}`).offset().top;
+                                    top = think_about_strip_height(top);
                                     document.body.scrollTop = top; // For Safari
                                     document.documentElement.scrollTop = top; // For Chrome, Firefox, IE and Opera
 
@@ -3682,6 +3693,7 @@
                                 $('.outline-element').on('click', (e) => {
                                     let element_id = $(e.target).attr('data-id');
                                     let top = $(`#${element_id}`).offset().top;
+                                    top = think_about_strip_height(top);
                                     $(window).scrollTop(top);
                                 });
                                 $('.outline-element').on('mouseover', (e) => {
@@ -4650,6 +4662,7 @@
                     let id = window.location.hash.replace('#', '');
                     let top = $(`#${id}`).offset().top;
                     //console.log('ID from hash: ' + id + `; TOP: ${top}`);
+                    top = think_about_strip_height(top);
                     $(window).scrollTop(top);
                 }
 
