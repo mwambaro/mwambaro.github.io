@@ -305,6 +305,36 @@
                     all_affected_countries: {
                         en_US: 'All countries in the world except for United States of America (USA), Uganda, and Burundi',
                         fr_FR: 'Tous les pays aun monde excepté <strong>Etats Unis d\'Amérique</strong>, <strong>Ouganda</strong>, et <strong>Burundi</strong>'
+                    },
+                    disqualification_video: {
+                        en_US: `
+                            <div>
+                                <hr/>
+                                <div class="d-flex flex-row justify-content-center video-item-div">
+                                    <video class="embed-responsive video-item-main" controls=true>
+                                        <source src="disqualification.mp4" 
+                                            type="video/mp4"
+                                            class="embed-responsive-item video-item" />
+                                                Disqualification may look like this in the end
+                                    </video>
+                                </div>
+                                <div class="text-center"> <strong>Disqualification might look like this in the end </strong> </div>
+                            </div>
+                        `,
+                        fr_FR: `
+                            <div>
+                                <hr/>
+                                <div class="d-flex flex-row justify-content-center video-item-div">
+                                    <video class="embed-responsive video-item-main" controls=true>
+                                        <source src="disqualification.mp4" 
+                                            type="video/mp4"
+                                            class="embed-responsive-item video-item" />
+                                                La disqualification peut ressembler ainsi au final
+                                    </video>
+                                </div>
+                                <div class="text-center"> <strong>La disqualification peut ressembler ainsi au final (Anglais) </strong> </div>
+                            </div>
+                        `
                     }
                 }
             }
@@ -331,6 +361,20 @@
         </div>
         <script>
             $(document).ready((e) => {
+                function scale_video_item()
+                {
+                    let width = $('.video-item-div').width();
+                    if(width > 600)
+                    {
+                        width = 600;
+                    }
+                    //console.log('video width: ' + width);
+
+                    $('.video-item-main').width(width);
+                    $('.video-item').width(width);
+
+                } // scale_video_item
+
                 let html = `
                     <h4 style="padding-top: 20px; padding-bottom: 20px">${locales.title[locale]}</h4>
                     ${locales.kick_off_rules[locale].green}
@@ -342,9 +386,18 @@
                     ${locales.deadlines_board[locale]}
                     <hr/>
                     ${locales.kick_off_rules[locale].red}
+                    ${locales.disqualification_video[locale]}
                 `;
                 $('#contents').append(html);
                 $('.countries').append(locales.three_affected_countries[locale]);
+
+                $('.video-item-main').on('loadeddata', (e) => {
+                    console.log(`Video url: ${$('source').first().attr('src')}`);
+                    scale_video_item();
+                });
+                $(window).on('resize', (e) => {
+                    scale_video_item();
+                });
             })
         </script>
         <script>
