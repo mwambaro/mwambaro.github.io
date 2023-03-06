@@ -114,6 +114,8 @@
                 return env;
 
             } // set_urls
+
+            set_urls();
         </script>
         <script>
             function is_mobile()
@@ -208,6 +210,10 @@
                             </a> 
                             dans les domaines d'expertise suivants
                         `
+                    },
+                    expertise_section_title: {
+                        en_US: 'Fields of Expertise',
+                        fr_FR: 'Domaines d\'Expertise'
                     },
                     expertise: {
                         software_engineering_expertise: {
@@ -435,7 +441,7 @@
                     },
                     cv: {
                             en_US: `
-                                <div style="margin: 10px; color: #1b6b07; font-size: 25px; font-weigt: bold">
+                                <div style="margin: 10px; color: #1b6b07; font-size: 25px; font-weight: bold">
                                     Detailed Track Record
                                 </div>
                                 <div style="margin: 10px" id="detailed-cv-data">
@@ -737,7 +743,7 @@
                                 </div>
                             `,
                             fr_FR: `
-                                <div style="margin: 10px; color: #1b6b07; font-size: 25px; font-weigt: bold">
+                                <div style="margin: 10px; color: #1b6b07; font-size: 25px; font-weight: bold">
                                     Parcours Détaillé
                                 </div>
                                 <div style="margin: 10px" id="detailed-cv-data">
@@ -1088,6 +1094,13 @@
             <div class="col-md-10">
                 <!-- INTRO -->
                 <div class="shadow-sm p-1 mb-2 bg-body rounded">
+                    <div class="d-flex flex-row justify-content-center">
+                        <img src="obed-edom-nkezabahizi-profile.jpg" class="img-fluid" style="height: 155px; width: 155px; border-radius: 50%; display: inline-block; padding: 10px"/>
+                    </div>
+                </div>
+                <div class="shadow-sm p-1 mb-2 bg-body rounded">
+                    <div id="expertise-section-title" style="margin: 10px; color: #1b6b07; font-size: 25px; font-weight: bold">
+                    </div>
                     <p style="margin: 10px" id="expertise-capture">
                     </p>
                     <ul style="margin: 10px">
@@ -1200,6 +1213,7 @@
 
                             } // expertiseFieldClicked
                             
+                            $('#expertise-section-title').html(locales.expertise_section_title[locale]);
                             $('#expertise-capture').append(
                                 `${locales.expertise_capture[locale]}:`
                             );
@@ -1244,7 +1258,6 @@
             </div>
         <script>
             $(document).ready((e) => {
-                set_urls();
                 $('#cv-data').append(locales.cv[locale]);
             })
         </script>
