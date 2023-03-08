@@ -356,7 +356,7 @@
                                     <p>
                                         <strong>Pilotage automatique</strong>: Celle-ci est la phase qui suit 
                                         directement votre nomination comme premier membre du 
-                                        <strong>Conseil de Projet</strong>, c'est-à-dire “<strong>Project Sponsor</strong>” . 
+                                        <strong>Conseil de Projet</strong>, c'est-à-dire <strong>Sponsor du Projet</strong> . 
                                         Bienvenu à bord. Vous avez été le/la 
                                         premier(ère) à prendre une/plusieurs des responsabilités suivantes: 
                                         Traducteur(trice), Partenaire en Ventes, Dame Assistante du Chef de Projet,
@@ -376,7 +376,7 @@
                                             Idem pour tous les documents officiels qui requièrent ma signature.
                                         </li>
                                         <li>
-                                            Accomplir toutes les responsabilités nécessaires qui ne requièrent pas ma 
+                                            Accomplir toutes les responsabilitcs nécessaires qui ne requièrent pas ma 
                                             signature sans vous inquiéter. Souvenez-vous seulement que je suis Directeur.
                                         </li>
                                         <li>
@@ -386,7 +386,7 @@
                                             </a>, 
                                             y ajoutant 
                                             <a href="../index.html?locale=fr_FR#brands-div" style="text-decoration: none">
-                                                les processus d'affaires 
+                                                les procédés d'affaires 
                                             </a>
                                             nécessaires pour la chaine de valeur et/ou la chaine d'approvisionnement.
                                             Veuillez être aussi indépendant(e) que possible. Vous me contacterez seulement 
@@ -711,81 +711,55 @@
 
                 } // gen_promotion_dates
 
-                function translate_date(date, tr_structure=null, lcale=null) // Experimental
+                function tr_date_function(date, tr_locale)
                 {
-                    let tr_date = date;
-                    let lc = lcale === null ? locale : lcale;
-                    let struct = tr_structure === null ? 
-                                    locales.promotion_dates : 
-                                    tr_structure;
-                                    
-                    for(prop in locales.promotion_dates)
+                    let promotion_dates = [  {  en_US: 'Sat Mar 04 2023 23:59:59',  fr_FR: 'Samedi 04 Mars 2023 23:59:59'  },  {  en_US: 'Mon Apr 03 2023 23:59:59',  fr_FR: 'Lundi 03 Avril 2023 23:59:59'  },  {  en_US: 'Wed May 03 2023 23:59:59',  fr_FR: 'Mercredi 03 Mai 2023 23:59:59'  },  {  en_US: 'Fri Jun 02 2023 23:59:59',  fr_FR: 'Vendredi 02 Juin 2023 23:59:59'  },  {  en_US: 'Sun Jul 02 2023 23:59:59',  fr_FR: 'Dimanche 02 Juillet 2023 23:59:59'  },  {  en_US: 'Tue Aug 01 2023 23:59:59',  fr_FR: 'Mardi 01 Août 2023 23:59:59'  },  {  en_US: 'Thu Aug 31 2023 23:59:59',  fr_FR: 'Jeudi 31 Août 2023 23:59:59'  },  {  en_US: 'Sat Sep 30 2023 23:59:59',  fr_FR: 'Samedi 30 Septembre 2023 23:59:59'  },  {  en_US: 'Mon Oct 30 2023 23:59:59',  fr_FR: 'Lundi 30 Octobre 2023 23:59:59'  },  {  en_US: 'Wed Nov 29 2023 23:59:59',  fr_FR: 'Mercredi 29 Novembre 2023 23:59:59'  },  {  en_US: 'Fri Dec 29 2023 23:59:59',  fr_FR: 'Vendredi 29 Décembre 2023 23:59:59'  },  {  en_US: 'Sun Jan 28 2024 23:59:59',  fr_FR: 'Dimanche 28 Janvier 2024 23:59:59'  },  {  en_US: 'Tue Feb 27 2024 23:59:59',  fr_FR: 'Mardi 27 Février 2024 23:59:59'  },  {  en_US: 'Thu Mar 28 2024 23:59:59',  fr_FR: 'Jeudi 28 Mars 2024 23:59:59'  }  ]
+                    let tr_date = null; 
+                    for(p1 in promotion_dates)
                     {
-                        let match = /(${(struct[prop])[locale]})/i.exec(date);
-                        if(match)
+                        let tr_object = promotion_dates[p1]; 
+                        for(p2 in tr_object)
                         {
-                            tr_date = match[1];
-                            
-                        }
-                        else if(locale != lc)
-                        {
-                            tr_date = (struct[prop])[lc];
-                        }
+                            let rgxp = new RegExp(date); 
+                            if(rgxp.test(tr_object[p2]))
+                            {
+                                tr_date = tr_object[tr_locale]; 
+                                console.log(`${p2}: ${tr_object[p2]} <=> ${tr_locale}: ${tr_date}`)
+                            }; 
+                        }; 
+                    }; 
+                    if(tr_date === null)
+                    { 
+                        console.log('We could not translate the date [' + date + '] into [' + tr_locale + ']'); 
                     }
-
+                    
                     return tr_date;
 
-                } // translate_date
+                } // tr_date_function
 
-                function test_translate_date()
-                {
-                    let v = true;
-                    for(prop in locales.hfg_ddata) 
-                    {
-                        let d = new Date(locales.hfg_ddata[prop].en_US);
-                        console.log('D: ' + d);
-                        let tr_d = translate_date(d, locales.hfg_ddata, 'fr_FR'); 
-                        console.log('TR_D: ' + tr_d);
-                        
-                        if(locales.hfg_ddata[prop].fr_FR != tr_d)
-                        {
-                            //console.log(`[FALSE]: ${tr_d} != ${locales.hfg_ddata[prop]}`);
-                            v = false;
-                        }
-                        else 
-                        {
-                            //console.log(`[TRUE]: ${tr_d} === ${locales.hfg_ddata[prop].gnhj}`);
-                        }
-                    }
-
-                    return v;
-
-                } // test_translate_date
-
-                function kick_off_wait_time_promotion() // Experimental
+                function kick_off_wait_time_promotion(span=(30*24*60*60*1000)) // Experimental
                 {
                     let start_date = new Date('February 02, 2023 23:59:59');
-                    let span = (30*24*60*60*1000);
                     let interval = span - (((new Date()).getTime() - start_date.getTime())%span);
                     setInterval(
                         () => {
                             let date = $('#time-out').html().trim();
-                            console.log('Logging next promotion time ... ' + date);
+                            // console.log('Logging next promotion time ... ' + date);
                             
-                            let cs_date = translate_date(date, 'en_US');
+                            let cs_date = tr_date_function(date, 'en_US');
 
-                            console.log('cs_date: ' + cs_date);
+                            // console.log('cs_date: ' + cs_date);
 
                             let c_date = new Date(cs_date);
 
-                            console.log('c_date: ' + c_date);
+                            // console.log('c_date: ' + c_date);
                             
-                            let current_date = translate_date(c_date);
-                            let next_date = translate_date(new Date((c_date.getTime() + span)));
+                            let current_date = tr_date_function(c_date, locale);
+                            let next_date = tr_date_function(new Date((c_date.getTime() + span)), locale);
 
                             console.log('Next date: ' + next_date);
                             console.log('Current date: ' + current_date);
-
+                            /** **
                             $('#time-out').html(next_date);
 
                             let html = `
@@ -802,6 +776,7 @@
                             let offset = $('.time-out-2').offset();
                             offset.left = $('#time-out').offset().left;
                             $('.time-out-2').offset(offset);
+                            /** */
                         },
                         interval
                     );
@@ -843,7 +818,7 @@
 
                 //gen_promotion_dates();
                 //test_translate_date();
-                //kick_off_wait_time_promotion();
+                //kick_off_wait_time_promotion(5000);
 
                 $('.video-item-main').on('loadeddata', (e) => {
                     console.log(`Video url: ${$('source').first().attr('src')}`);
