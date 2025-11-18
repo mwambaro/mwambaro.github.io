@@ -1,261 +1,369 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Laastras stands for leadership as a service trade system. It reforms the trade system to make it fair, inclusive, and equality-focused." />
-    <meta property="og:title" content="Laastras Sales & Marketing" />
-    <meta property="og:url" content="https://mwambaro.github.io" />
-    <meta property="og:description" content="Nutrition.Equality.Financial Security.Capitalism Order" />
-    <meta property="og:image" content="https://am3pap006files.storage.live.com/y4ma5MeKvgKtQak3pLJ0UpRY3sVcpbNbUloqdmRf8535tZGBQsY3IHTD4HYKJXCidTdCd6eS8x5wuljG7JwfW0Boi8hgu-qSP59U5Hu89MdKQWSRkhh6utCbhTaOJqOTYkn3PnrED6_5MPdiz-GQ0lgBApH1sF9Jr6VHtYlHa9tbHhT8LU9OtmH6R9iBWCCZotV?width=1514&height=2556&cropmode=none" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.svg" />
-    <title>Laastras - Leadership as a service trade system</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style>
-      body {
-        font-family: 'Nunito', sans-serif;
-        scroll-behavior: smooth;
-        background: linear-gradient(to bottom, #fdfdfd, #f0f0f0);
-      }
-      .section {
-        padding: 60px 20px;
-      }
-      .bg-dark-section {
-        background-color: #222;
-        color: white;
-      }
-      .video-item-div,
-      .image-item-div {
-        margin: 2rem 0;
-      }
-      .video-item-main,
-      .image-item {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      }
-      .navbar-brand {
-        font-weight: bold;
-        font-size: 1.5rem;
-      }
-      .read-more-content {
-        display: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out, opacity 0.5s ease-in-out;
-        opacity: 0;
-      }
-      .read-more-content.open {
-        display: block;
-        max-height: 1500px;
-        opacity: 1;
-      }
-      .read-more-link {
-        display: inline-block;
-        cursor: pointer;
-        text-decoration: underline;
-        color: inherit;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
-      <div class="container">
-        <a class="navbar-brand" href="#">Laastras</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Brands</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#share-clientele">ShareClientele</a></li>
-                <li><a class="dropdown-item" href="#chaperon">Chaperon</a></li>
-                <li><a class="dropdown-item" href="#rima">Rima</a></li>
-                <li><a class="dropdown-item" href="#ecard">eCard</a></li>
-              </ul>
-            </li>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Laastras — Leadership as a Service Trade System</title>
+  <meta name="description" content="Laastras reforms trade for fairness, equality and financial security. GetClientele · eCard Wireless · Chaperon · Aori" />
+  <meta property="og:title" content="Laastras - Leadership as a Service" />
+  <meta property="og:url" content="https://mwambaro.github.io" />
+  <meta property="og:description" content="Homocracy, DPI and the Trade Postulate" />
+  <meta property="og:image" content="https://1drv.ms/i/c/2e6ead2d38e36d5a/IQRzEsiSkv1vSKze2TRrmp_iAWuTm8TcED-ly3ucisFZF7Q?width=3148&height=2118" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{--indigo:#4f46e5}
+    body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#fbfbff,#f3f4ff);}
+    .glass{background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
+    .media-card{width:100%;height:100%;object-fit:cover;border-radius:0.75rem}
+    .media-max{max-height:60vh}
+    @media(min-width:1024px){.media-max{max-height:50vh}} 
+    .read-more-content{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease;opacity:0}
+    .read-more-content.open{opacity:1;max-height:1200px}
+    .hero-media{border-radius:1rem;box-shadow:0 10px 40px rgba(15,23,42,.08)}
+  
+#fullscreenOverlay{
+ position:fixed;top:0;left:0;width:100%;height:100%;
+ background:rgba(0,0,0,0.85);display:none;align-items:center;
+ justify-content:center;z-index:9999;padding:20px;
+}
+#fullscreenOverlay img{
+ max-width:90%;max-height:90%;border-radius:1rem;box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+#closeFullscreen{
+ position:absolute;top:20px;right:20px;background:#fff;
+ padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;
+}
+
+</style>
+</head>
+<body class="text-slate-800 leading-relaxed">
+<div id="fullscreenOverlay">
+  <div id="closeFullscreen">Close ✕</div>
+  <img id="fullscreenImage" src="" alt="Fullscreen" />
+</div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/75 backdrop-blur-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-3">
+          <img src="assets/logo.png" alt="Laastras" class="w-12 h-12 rounded-md shadow-sm object-cover" />
+          <div class="leading-tight">
+            <div class="font-extrabold text-lg">Laastras</div>
+            <div class="text-xs text-slate-500 -mt-0.5">Leadership as a Service · Homocracy</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#mission" class="hover:text-[var(--indigo)]">Mission</a>
+          <a href="#brands" class="hover:text-[var(--indigo)]">Brands</a>
+          <a href="#how" class="hover:text-[var(--indigo)]">How it works</a>
+          <a href="#contact" class="inline-flex items-center px-3 py-2 rounded-md bg-[var(--indigo)] text-white shadow">Contact</a>
+        </nav>
+
+        <div class="md:hidden">
+          <button id="burger" aria-label="open menu" class="p-2 rounded-md hover:bg-slate-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t bg-white/95">
+      <div class="px-4 py-4 space-y-2">
+        <a class="block py-2" href="#mission">Mission</a>
+        <a class="block py-2" href="#brands">Brands</a>
+        <a class="block py-2" href="#how">How it works</a>
+        <a class="block py-2 text-[var(--indigo)]" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- HERO -->
+    <section class="grid lg:grid-cols-2 gap-10 items-center py-16">
+      <div data-aos="fade-right" class="space-y-6">
+        <h1 class="text-4xl sm:text-5xl font-extrabold">Laastras — Building Homocracy with Digital Public Infrastructure</h1>
+        <p class="text-lg text-slate-600">We redesign governance so every human is a shareholder, every resource is shared, and leadership is delivered as a service via DPI and trustworthy data governance.</p>
+
+        <div class="flex gap-3">
+          <a href="#brands" class="inline-flex items-center gap-2 px-5 py-3 bg-[var(--indigo)] text-white rounded-lg shadow hover:bg-indigo-700">Explore brands</a>
+          <a href="#how" class="inline-flex items-center gap-2 px-4 py-3 border rounded-lg">How it works</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-4 bg-white rounded-lg shadow-sm glass">
+            <p class="text-xs text-slate-500">Founder</p>
+            <p class="font-semibold">Obed-Edom Nkezabahizi</p>
+          </div>
+          <div class="p-4 bg-white rounded-lg shadow-sm glass">
+            <p class="text-xs text-slate-500">Email</p>
+            <p class="font-semibold">onkezabahizi@gmail.com</p>
+          </div>
+          <div class="p-4 bg-white rounded-lg shadow-sm glass">
+            <p class="text-xs text-slate-500">Portfolio</p>
+            <p class="font-semibold">mwambaro.github.io</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-aos="fade-left" class="relative">
+        <div class="hero-media bg-gradient-to-tr from-white to-indigo-50 p-2 rounded-2xl">
+          <img src="assets/homocracy-through-dpi.jpg" alt="Homocracy through DPI" class="media-card clickable" />
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" class="py-12">
+      <div class="mx-auto max-w-4xl text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-bold">Mission</h2>
+        <p class="mt-4 text-slate-600">Laastras reforms trade through Services Exchange and Virtual Currency, enabling fairness, financial security, and inclusivity. We operationalize Homocracy: an immutable constitution, shared planetary resources, and Leadership as a Service.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
+            <h4 class="font-semibold">Sovereignty</h4>
+            <p class="text-sm text-slate-600 mt-2">Each person receives a guaranteed Self-Contained Personal Space (SCoPS).</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
+            <h4 class="font-semibold">Trade-First</h4>
+            <p class="text-sm text-slate-600 mt-2">Interactions outside SCoPS are voluntary trade—no coercion, only exchange.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
+            <h4 class="font-semibold">Digital Backbone</h4>
+            <p class="text-sm text-slate-600 mt-2">DPI and DG provide transparency, accountability and real-time delivery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDS PART 1 -->
+    <section id="brands" class="py-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center" data-aos="zoom-in">
+          <h3 class="text-3xl font-bold">The Laastras Brands</h3>
+          <p class="mt-3 text-slate-600">GetClientele, eCard Wireless, Chaperon and Aori together operationalize Homocracy on the ground.</p>
+        </div>
+
+        <div class="mt-8 grid gap-8 grid-cols-1 lg:grid-cols-2">
+
+          <!-- GetClientele -->
+          <article data-aos="fade-up" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+            <div class="lg:w-1/2 p-4 flex items-center justify-center">
+              <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
+                <img src="assets/GetClientele.jpg" alt="GetClientele" class="media-card clickable" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 p-4 flex flex-col justify-between">
+              <div>
+                <h4 class="text-2xl font-bold">GetClientele</h4>
+                <p class="text-slate-600 mt-3">Maps Available Goods & Services (AGAS) and directs shoppers to vendors, improving vendor visibility and fair customer distribution across marketplaces.</p>
+                <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                  <li>• AGAS cloud for vendors</li>
+                  <li>• Real-time analytics and routing</li>
+                  <li>• Boosts local vendor income</li>
+                </ul>
+              </div>
+              <div class="mt-6 flex items-center gap-3">
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Learn more</a>
+                <a class="px-4 py-2 border rounded" href="#">Request demo</a>
+              </div>
+            </div>
+          </article>
+                    <!-- eCard Wireless -->
+          <article data-aos="fade-up" data-aos-delay="80" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden">
+            <div class="lg:w-1/2 p-4 flex items-center justify-center">
+              <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
+                <img src="assets/Laastras-hofi-agas-ioot.jpg" alt="eCard Wireless" class="media-card clickable" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 p-4 flex flex-col justify-between">
+              <div>
+                <h4 class="text-2xl font-bold">eCard Wireless</h4>
+                <p class="text-slate-600 mt-3">Provides high-speed public internet and a multi-purpose identity card that unifies ID, medical records, and official documents—backed by secure DPI integrations.</p>
+                <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                  <li>• Universal digital identity</li>
+                  <li>• High-speed WiFi & telco partnerships</li>
+                  <li>• Immutable, secure records</li>
+                </ul>
+              </div>
+              <div class="mt-6 flex items-center gap-3">
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">See integration</a>
+                <a class="px-4 py-2 border rounded" href="#">Partner with us</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chaperon -->
+          <article data-aos="fade-up" data-aos-delay="160" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+            <div class="lg:w-1/2 p-4 flex items-center justify-center">
+              <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
+                <img src="assets/Chaperon.jpg" alt="Chaperon" class="media-card clickable" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 p-4 flex flex-col justify-between">
+              <div>
+                <h4 class="text-2xl font-bold">Chaperon</h4>
+                <p class="text-slate-600 mt-3">A social support platform that provides housing, training, meals, and job placement—participants reimburse via a percentage of salary, creating a sustainable loop.</p>
+                <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                  <li>• Job training & placements</li>
+                  <li>• Temporary housing & meals</li>
+                  <li>• Income-sharing repayment model</li>
+                </ul>
+              </div>
+              <div class="mt-6 flex items-center gap-3">
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Join Chaperon</a>
+                <a class="px-4 py-2 border rounded" href="#">Support</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Aori -->
+          <article data-aos="fade-up" data-aos-delay="240" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden">
+            <div class="lg:w-1/2 p-4 flex items-center justify-center">
+              <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
+                <img src="assets/Aori.jpg" alt="Aori - Acquire or Integrate" class="media-card clickable" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 p-4 flex flex-col justify-between">
+              <div>
+                <h4 class="text-2xl font-bold">Aori (Acquire or Integrate)</h4>
+                <p class="text-slate-600 mt-3">Aori brings together lands, corporate services and public infrastructure into a shared conglomerate under Morshux, making every person a stakeholder in planetary resources.</p>
+                <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                  <li>• Resource integration & governance</li>
+                  <li>• Corporate and citizen partnership</li>
+                  <li>• Equitable shareholding model</li>
+                </ul>
+              </div>
+              <div class="mt-6 flex items-center gap-3">
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Learn about Aori</a>
+                <a class="px-4 py-2 border rounded" href="#">Contribute resources</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-12 bg-gradient-to-b from-white to-indigo-50">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <h3 class="text-3xl font-bold">How Laastras Operates</h3>
+        <p class="mt-4 text-slate-600">We transform raw planetary resources (Shadres) into SCoPS entitlements via the SCoSH-CTP chain. DPI enables transparency and DG ensures trust—while Services Exchange and Virtual Currency power voluntary trade.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h5 class="font-semibold">RRMI</h5>
+            <p class="text-sm text-slate-600 mt-2">Raw Resources Management Institution: inventories and protects planetary resources.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h5 class="font-semibold">TRMI</h5>
+            <p class="text-sm text-slate-600 mt-2">Transformation & Production: Converts Shadres into consumables under Morshux oversight.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h5 class="font-semibold">IFaSS</h5>
+            <p class="text-sm text-slate-600 mt-2">International Fair Social System: Ensures delivery of consumables to every individual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="py-12">
+      <div class="max-w-3xl mx-auto text-center" data-aos="zoom-in">
+        <h3 class="text-2xl font-bold">Get Involved</h3>
+        <p class="mt-4 text-slate-600">Governments, NGOs, investors and technologists—join our pilot programs. Help us build a fairer global trade system.</p>
+        <div class="mt-6 flex justify-center gap-4">
+          <a href="#contact" class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow">Contact us</a>
+          <a href="#" class="px-6 py-3 border rounded">Download whitepaper</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="py-12">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="space-y-4">
+          <img src="assets/logo.png" alt="Laastras" class="w-24" />
+          <p class="text-slate-600">Laastras — Leadership as a Service. Building Homocracy with Digital Public Infrastructure.</p>
+        </div>
+
+        <div>
+          <h5 class="font-semibold">Contact</h5>
+          <ul class="mt-3 text-sm text-slate-600 space-y-2">
+            <li>Email: <a class="text-[var(--indigo)]" href="mailto:onkezabahizi@gmail.com">onkezabahizi@gmail.com</a></li>
+            <li>Portfolio: <a class="text-[var(--indigo)]" href="https://mwambaro.github.io" target="_blank">mwambaro.github.io</a></li>
+            <li>LinkedIn: <a class="text-[var(--indigo)]" href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167" target="_blank">Obed-Edom N.</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
 
-    <section class="section text-center bg-dark-section animate__animated animate__fadeIn">
-      <h1 class="display-5 fw-bold">Make Trade Inclusive, Fair, Equality-Focused</h1>
-      <p class="lead">“Everything is trade. Trade is the outermost container of human relations...”</p>
-      <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-      <div class="read-more-content">
-        <p>Laastras promotes trade as the ultimate tool to achieve justice, inclusion, and financial dignity in society. To fix conflicts, wars, business issues, governance, and interpersonal 
-            relationships, we must reform trade to impact equality, fairness, and inclusivity.</p>
-      </div>
-    </section>
-
-    <section class="section bg-warning text-white animate__animated animate__fadeInUp">
-      <div class="container">
-        <h2 class="display-6 mb-4">Brands</h2>
-      </div>
-    </section>
-
-    <section class="section bg-info text-white animate__animated animate__fadeInLeft" id="share-clientele">
-      <div class="container">
-        <h3 class="mb-3 text-decoration-underline">ShareClientele</h3>
-        <p>ShareClientele, a mobile App for vendors in malls and marketplaces... <a href="https://files.fm/f/4z6zhtpfa5" class="text-white">view pitch deck</a>.</p>
-        <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-        <div class="read-more-content">
-          <p>ShareClientele, a mobile App for vendors in malls and marketplaces, is not another
-                    e-commerce online shopping platform. It looks for the 92% of shoppers doing 
-                    <a href="https://ripen.com/blog/ecommerce_survey" style="color: white; text-decoration: underline;">
-                        in-store transactions
-                    </a>, 
-                    hitting malls and marketplaces. The market size is $30billion per year.</p>
-        </div>
-        <video class="video-item-main" controls>
-          <source src="assets/shareclientele-pitch-deck-speech.webm" type="video/webm" />
-        </video>
-        <div class="text-center mt-2"><strong>ShareClientele pitch deck speech</strong></div>
-      </div>
-    </section>
-
-    <section class="section bg-success text-white animate__animated animate__fadeInRight" id="chaperon">
-      <div class="container">
-        <h3 class="mb-3 text-decoration-underline">Chaperon</h3>
-        <p>Unemployment still wreaks havoc in many countries... Our motto is CHAPUJOS — “Chaperon the Unemployed and Job Seekers.”</p>
-        <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-        <div class="read-more-content">
-          <p>Even in developed countries 
-                    finding employment is no easy job. NFTs offer CV banking services as well as matching 
-                    you to jobs that get available. Here is a catch: they do not offer the training and 
-                    expertise required to find a suitable job and keep it, nor do they cover all the 
-                    expenses involved. This is where Chaperon comes 
-                    into play.
-                    We accompany the unemployed and job seekers as they sail on these wavy waters of 
-                    finding and keeping jobs. We offer accommodation, training, education, and cover 
-                    all the expenses, all the way to finding a job which will, in return, help the 
-                    candidates progressively reimburse us on a monthly basis.</p>
+        <div>
+          <h5 class="font-semibold">Subscribe</h5>
+          <p class="text-sm text-slate-600 mt-2">Get updates about pilots, whitepapers and partnership opportunities.</p>
+          <form class="mt-4 flex gap-2" action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST">
+            <input class="flex-1 px-3 py-2 border rounded" type="email" name="email" placeholder="you@example.com" required>
+            <button class="px-4 py-2 bg-[var(--indigo)] text-white rounded">Subscribe</button>
+          </form>
         </div>
       </div>
-    </section>
 
-    <section class="section bg-warning text-white animate__animated animate__fadeInLeft" id="rima">
-      <div class="container">
-        <h3 class="mb-3 text-decoration-underline">Rima</h3>
-        <p>Rima is a farming company aiming to combat hunger and malnutrition...</p>
-        <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-        <div class="read-more-content">
-          <p>According to 
-                    <a href="https://concern.net/news/world-hunger-facts-figures" style="color: white; text-decoration: underline;">
-                        Concern Worldwide
-                    </a>, 
-                    2.8 billion people around the world cannot afford a healthy diet ― 35% of the global 
-                    population. In an attempt to combat hunger, malnutrition, and poverty, we are creating 
-                    a company named “Rima”, Burundian word for “plow”. Rima purchases farming lands and hire 
-                    farmers to work on them. We want to build as many farms as possible so that food can 
-                    be available for all. We also want to seed the alliance for agro-businesses, which is 
-                    an alliance that will include all agriculture companies around the world so that 
-                    we can join efforts to fight against hunger and malnutrition.</p>
-        </div>
-        <img src="assets/federico-respini-field.jpg" alt="Field" class="image-item" />
-        <div class="text-center mt-2"><strong>Field (By Federico Respini)</strong></div>
+      <div class="max-w-7xl mx-auto mt-10 text-center text-xs text-slate-500">
+        © Laastras · Homocracy · Built by Obed-Edom Nkezabahizi
       </div>
-    </section>
+    </footer>
 
-    <section class="section bg-primary text-white animate__animated animate__fadeInRight" id="ecard">
-      <div class="container">
-        <h3 class="mb-3 text-decoration-underline">eCard</h3>
-        <p>eCard is a telecom company developing tools for a virtual currency ecosystem...</p>
-        <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-        <div class="read-more-content">
-          <p>Homocracy is a trade system that makes sure every Major Human Individual (MHI) has their 
-                    share on all resources that support human existence, in the country, first, then on earth. 
-                    To achieve this goal, we must harness the full power of a cell phone, a personal computer, 
-                    servers, and cloud computing. The economy that goes from a sensor-like device, 
-                    like a cell phone, all the way into the cloud is called “creator economy”. We will 
-                    associate an MHI to a cell phone, named “HoFi (Home Finances)”, so as to migrate all 
-                    the trade system into the cloud. Hence, we can turn a cell phone into currency, id card, passport, driver's licence, 
-                    and more, paving the way for World Federal Government. All of the other cooperatives 
-                    will become a reality, creating a single trade system cloud, per nation, 
-                    then a single global cloud. eCard is a telecom company that aims to develop a card 
-                    that works as the HoFi cellphone which, coupled with HoFi, will be used by all citizens 
-                    and government officials, including the police.</p>
-        </div>
-        <img src="assets/Laastras-hofi-agas-ioot.jpg" alt="Laastras HoFi" class="image-item" />
-        <div class="text-center mt-2"><strong>Laastras HoFi Cloud System</strong></div>
-        <p class="mt-4"><img src="assets/bts-antenna.jpg" alt="BTS Antenna" class="image-item" /><div class="text-center mt-2"><strong>BTS Antenna</strong></div></p>
-      </div>
-    </section>
+  </main>
 
-    <section class="section bg-dark-section animate__animated animate__zoomIn" id="mission">
-      <div class="container">
-        <h2 class="display-6 mb-4">Mission & Vision</h2>
-        <p>Laastras reforms trade through Services Exchange and Virtual Currency. It supports fairness, financial security, and inclusivity for all.</p>
-        <span class="read-more-link" onclick="toggleReadMore(this)">Read more</span>
-        <div class="read-more-content">
-          <p>We have done trade for ages. The trade model has failed to give us financial security 
-                    coupled with self-sufficiency. Let alone conflicts that result from attempts to secure 
-                    and retain control of our businesses. We went a step further: philanthropy. We believed 
-                    it could end poverty and give us all equal opportunities. It won't work either. Until 
-                    Laastras trade model is adopted we cannot surround ourselves with financial security, 
-                    self-sufficiency, equal opportunities, satisfying employment for all, and conflict-free 
-                    businesses. How so? Laastras reforms trade by way of two impacts:
-                   <ul><li>Replace remuneration-based work with Services Exchange. One job related to 
-                    “management of resources that support human existence” (Morshux) unlocks 
-                        remuneration through all the other services in Morshux, yielding financial 
-                        security and self-sufficiency. Gone are business conflicts, too.
-                    </li><li>Replace material currency with Virtual Currency . With Morshux self-sufficiency, 
-                        one is better positioned to release their full potential through creativity 
-                        over Morshux owned assets. We then export those assets through trade that uses 
-                        Virtual Currency, which is more flexible, easy to transact with, 
-                        secure enough, and fits well in E-commerce and Logistics, pillars of any trade.</li></ul>
-                    Laastras is built on the principle of ‘Internet of our Things (IooT)’ and delivers 
-                    services that will, in the long run, fulfil the Morshux vision. For details on 
-                    the Morshux philosophy, please, support the project by seeing 
-                    <a href="https://files.fm/f/r6j7ht8thg" style="color: white; text-decoration: underline;">
-                        the book 
-                    </a>
-                    behind Laastras project, written by Laastras Founder & CEO, 
-                    <a href="mailto: onkezabahizi@gmail.com" style="color: white; text-decoration: underline;">
-                        Obed-Edom Nkezabahizi 
-                    </a>.</p>
-        </div>
-      </div>
-    </section>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+    document.getElementById('burger').addEventListener('click', function(){
+      const m = document.getElementById('mobileMenu'); m.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.read-more-link').forEach(btn => btn.addEventListener('click', e => {
+      const next = e.target.nextElementSibling; if(!next) return; next.classList.toggle('open'); e.target.textContent = next.classList.contains('open') ? 'Read less' : 'Read more';
+    }));
+    function fitMedia(){
+      document.querySelectorAll('video.media-card, img.media-card').forEach(el => {
+        el.style.maxHeight = Math.min(window.innerHeight * 0.6, 720) + 'px';
+        el.style.width = '100%';
+      });
+    }
+    window.addEventListener('load', fitMedia); window.addEventListener('resize', fitMedia);
+  
+const overlay = document.getElementById("fullscreenOverlay");
+const fullImg = document.getElementById("fullscreenImage");
+const closeBtn = document.getElementById("closeFullscreen");
 
-    <section class="section">
-      <div class="container">
-        <strong>Laastras</strong> has been accepted into the EquityPilot program of <a href="https://www.fastercapital.com">FasterCapital</a> and is seeking a capital of <strong>$500,000</strong>
-      </div>
-    </section>
+document.querySelectorAll(".clickable").forEach(img=>{
+  img.addEventListener("click", ()=>{
+    fullImg.src = img.src;
+    overlay.style.display = "flex";
+  });
+});
 
-    <section class="section bg-secondary text-white animate__animated animate__fadeInUp" id="contact">
-      <div class="container text-center">
-        <h2 class="mb-4">Contact</h2>
-        <p>Email: <a href="mailto:onkezabahizi@gmail.com" class="text-white">onkezabahizi@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/obed-edom-nkezabahizi-5695b8167/" class="text-white">Obed-Edom Nkezabahizi</a></p>
-        <p>Phone: +257 76 17 71 86</p>
-      </div>
-    </section>
+closeBtn.addEventListener("click", ()=> overlay.style.display="none");
+overlay.addEventListener("click", e=>{
+  if(e.target===overlay) overlay.style.display="none";
+});
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      function toggleReadMore(link) {
-        const content = link.nextElementSibling;
-        if (content.classList.contains('open')) {
-          content.classList.remove('open');
-          link.textContent = 'Read more';
-        } else {
-          content.classList.add('open');
-          link.textContent = 'Read less';
-        }
-      }
-    </script>
-  </body>
+document.addEventListener('DOMContentLoaded', () => {
+  const clickableImages = document.querySelectorAll('.clickable');
+  clickableImages.forEach(img => {
+    img.style.cursor = 'pointer';
+  });
+});
+
+</script>
+</body>
 </html>
+
