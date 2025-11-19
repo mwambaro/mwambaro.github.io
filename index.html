@@ -26,26 +26,37 @@
     .read-more-content{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease;opacity:0}
     .read-more-content.open{opacity:1;max-height:1200px}
     .hero-media{border-radius:1rem;box-shadow:0 10px 40px rgba(15,23,42,.08)}
-  
-#fullscreenOverlay{
- position:fixed;top:0;left:0;width:100%;height:100%;
- background:rgba(0,0,0,0.85);display:none;align-items:center;
- justify-content:center;z-index:9999;padding:20px;
-}
-#fullscreenOverlay img{
- max-width:90%;max-height:90%;border-radius:1rem;box-shadow:0 0 25px rgba(0,0,0,0.5);
-}
-#closeFullscreen{
- position:absolute;top:20px;right:20px;background:#fff;
- padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;
-}
 
-</style>
+    /* Fullscreen overlay styles */
+    #fullscreenOverlay{
+     position:fixed;top:0;left:0;width:100%;height:100%;
+     background:rgba(0,0,0,0.85);display:none;align-items:center;
+     justify-content:center;z-index:9999;padding:20px;
+    }
+    #fullscreenOverlay img{
+     max-width:90%;max-height:90%;border-radius:1rem;box-shadow:0 0 25px rgba(0,0,0,0.5);
+    }
+    #closeFullscreen{
+     position:absolute;top:20px;right:20px;background:#fff;
+     padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;
+    }
+
+    /* Content box inside overlay for forms */
+    #overlayContent{
+      max-width:900px;width:100%;max-height:90%;overflow:auto;border-radius:1rem;
+      box-shadow:0 25px 60px rgba(0,0,0,0.6);
+    }
+  </style>
 </head>
 <body class="text-slate-800 leading-relaxed">
-<div id="fullscreenOverlay">
-  <div id="closeFullscreen">Close ✕</div>
-  <img id="fullscreenImage" src="" alt="Fullscreen" />
+<div id="fullscreenOverlay" class="flex">
+  <div id="closeFullscreen" class="text-sm">Close ✕</div>
+
+  <!-- Image element -->
+  <img id="fullscreenImage" src="" alt="Fullscreen" class="hidden"/>
+
+  <!-- Content container (forms, html content) -->
+  <div id="overlayContent" class="hidden bg-white p-6 sm:p-10"></div>
 </div>
 
   <!-- NAV -->
@@ -346,30 +357,143 @@
       });
     }
     window.addEventListener('load', fitMedia); window.addEventListener('resize', fitMedia);
-  
+
 const overlay = document.getElementById("fullscreenOverlay");
 const fullImg = document.getElementById("fullscreenImage");
 const closeBtn = document.getElementById("closeFullscreen");
+const overlayContent = document.getElementById("overlayContent");
 
+/* Utility: show overlay with image */
+function showOverlayWithImage(src, alt=''){
+  fullImg.src = src;
+  fullImg.alt = alt;
+  fullImg.classList.remove('hidden');
+  overlayContent.classList.add('hidden');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+/* Utility: show overlay with HTML content (forms, extra markup) */
+function showOverlayWithContent(html){
+  overlayContent.innerHTML = html;
+  overlayContent.classList.remove('hidden');
+  fullImg.classList.add('hidden');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // re-attach form submit prevention to show a thank-you state inline if desired (FormSubmit will redirect by default)
+  const forms = overlayContent.querySelectorAll('form');
+  forms.forEach(f=>{
+    f.addEventListener('submit', (ev)=>{
+      // Let the browser submit to FormSubmit; optionally we could show inline feedback.
+      // Do not preventDefault so FormSubmit receives the POST.
+      // but show a subtle "Submitting..." state:
+      const btn = f.querySelector('button[type="submit"], button');
+      if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); btn.textContent = 'Submitting…'; }
+    });
+  });
+}
+
+/* Close handlers */
+closeBtn.addEventListener("click", ()=> {
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+});
+overlay.addEventListener("click", e=>{ 
+  if(e.target===overlay){
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+
+/* Make images clickable and open overlay */
 document.querySelectorAll(".clickable").forEach(img=>{
-  img.addEventListener("click", ()=>{
-    fullImg.src = img.src;
-    overlay.style.display = "flex";
+  img.style.cursor='pointer';
+  img.addEventListener("click", ()=> showOverlayWithImage(img.src, img.alt||''));
+});
+
+/* Form templates - Tailwind-styled and responsive
+   Forms 1-10 according to your spec.
+*/
+function formHTML({subject='', visibleSubject=false, includeMessage=false, title='Get in touch'}) {
+  // subject: string for hidden subject value
+  // visibleSubject: if true, render a visible subject input
+  // includeMessage: render textarea
+  return `
+    <div class="max-w-xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl font-bold">${title}</h3>
+        <button id="overlayCloseTop" class="text-sm text-slate-600 hover:text-black">Close</button>
+      </div>
+
+      <form action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST" class="space-y-4 bg-white">
+        ${ visibleSubject ? `<input name="subject" placeholder="Subject" required class="w-full p-3 border rounded shadow-sm" />` : `<input type="hidden" name="subject" value="${escapeHtml(subject)}" />` }
+        <input name="full_name" placeholder="Full name" required class="w-full p-3 border rounded shadow-sm" />
+        <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded shadow-sm" />
+        <input name="phone_number" placeholder="Phone number (WhatsApp)" required class="w-full p-3 border rounded shadow-sm" />
+        ${ includeMessage ? `<textarea name="message" rows="4" placeholder="Message" required class="w-full p-3 border rounded shadow-sm"></textarea>` : '' }
+        <div class="flex gap-2">
+          <button type="submit" class="flex-1 px-4 py-3 bg-[var(--indigo)] text-white rounded font-semibold">Send</button>
+          <button type="button" id="cancelBtn" class="px-4 py-3 border rounded">Cancel</button>
+        </div>
+      </form>
+      <p class="text-xs text-slate-500 mt-3">We will never share your personal data. By submitting, you agree to be contacted regarding your request.</p>
+    </div>
+  `;
+}
+
+/* Simple escape helper to avoid injecting quotes into hidden inputs */
+function escapeHtml(str){
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* Map link IDs to form configurations */
+const formsConfig = {
+  "learn-more": { subject: "Learn more about GetClientele", visibleSubject:false, includeMessage:false, title: "Learn more — GetClientele" },
+  "request-demo": { subject: "Request demo about GetClientele", visibleSubject:false, includeMessage:false, title: "Request a demo — GetClientele" },
+  "see-integration": { subject: "See how DPI integrations support eCard Wireless", visibleSubject:false, includeMessage:false, title: "DPI integration — eCard Wireless" },
+  "partner-with-us": { subject: "Partner with us to launch eCard Wireless infrastructure", visibleSubject:false, includeMessage:false, title: "Partner with us — eCard Wireless" },
+  "join-chaperon": { subject: "Join Chaperon as an Unemployed or Job Seeker", visibleSubject:false, includeMessage:false, title: "Join Chaperon" },
+  "support": { subject: "Support Chaperon through donations or other means", visibleSubject:false, includeMessage:false, title: "Support Chaperon" },
+  "learn-about-aori": { subject: "Learn more about Aori (Acquire or Integrate)", visibleSubject:false, includeMessage:false, title: "Learn about Aori" },
+  "contribute-resources": { subject: "Contribute resources to Aori Conglomerate", visibleSubject:false, includeMessage:false, title: "Contribute to Aori" },
+  "request-whitepaper": { subject: "Request whitepaper about Laastras mission", visibleSubject:false, includeMessage:false, title: "Request Whitepaper" },
+  /* contact-us requires visible subject and message textarea per spec */
+  "contact-us": { subject: "", visibleSubject:true, includeMessage:true, title: "Contact Laastras" }
+};
+
+/* Attach click handlers to each link if present */
+Object.keys(formsConfig).forEach(id => {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    const cfg = formsConfig[id];
+    const html = formHTML({ subject: cfg.subject, visibleSubject: cfg.visibleSubject, includeMessage: cfg.includeMessage, title: cfg.title });
+    showOverlayWithContent(html);
+
+    // attach close handlers inside overlay content (they are recreated each time)
+    setTimeout(()=> {
+      const closeTop = document.getElementById('overlayCloseTop');
+      const cancelBtn = document.getElementById('cancelBtn');
+      if(closeTop) closeTop.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
+      if(cancelBtn) cancelBtn.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
+    }, 50);
   });
 });
 
-closeBtn.addEventListener("click", ()=> overlay.style.display="none");
-overlay.addEventListener("click", e=>{
-  if(e.target===overlay) overlay.style.display="none";
+/* Ensure existing clickable images show cursor pointer (in case DOM content loads later) */
+document.addEventListener('DOMContentLoaded', ()=> {
+  document.querySelectorAll('.clickable').forEach(img => img.style.cursor = 'pointer');
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const clickableImages = document.querySelectorAll('.clickable');
-  clickableImages.forEach(img => {
-    img.style.cursor = 'pointer';
-  });
+/* Accessibility tweak: close overlay on ESC */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && overlay.style.display === 'flex'){
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 });
-
-</script>
+  </script>
 </body>
 </html>
