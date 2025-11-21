@@ -429,7 +429,7 @@ function formHTML({subject='', visibleSubject=false, includeMessage=false, title
         ${ visibleSubject ? `<input name="subject" placeholder="Subject" required class="w-full p-3 border rounded shadow-sm" />` : `<input type="hidden" name="subject" value="${escapeHtml(subject)}" />` }
         <input name="full_name" placeholder="Full name" required class="w-full p-3 border rounded shadow-sm" />
         <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded shadow-sm" />
-        <input name="phone_number" placeholder="Phone number including country code (WhatsApp preferred)" required class="w-full p-3 border rounded shadow-sm" />
+        <input name="phone_number" placeholder="Full phone number (WhatsApp preferred)" required class="w-full p-3 border rounded shadow-sm" />
         ${ includeMessage ? `<textarea name="message" rows="4" placeholder="Message" required class="w-full p-3 border rounded shadow-sm"></textarea>` : '' }
         <div class="flex gap-2">
           <button type="submit" class="flex-1 px-4 py-3 bg-[var(--indigo)] text-white rounded font-semibold">Send</button>
