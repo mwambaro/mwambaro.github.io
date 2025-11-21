@@ -429,7 +429,7 @@ function formHTML({subject='', visibleSubject=false, includeMessage=false, title
         ${ visibleSubject ? `<input name="subject" placeholder="Subject" required class="w-full p-3 border rounded shadow-sm" />` : `<input type="hidden" name="subject" value="${escapeHtml(subject)}" />` }
         <input name="full_name" placeholder="Full name" required class="w-full p-3 border rounded shadow-sm" />
         <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded shadow-sm" />
-        <input name="phone_number" placeholder="Phone number (WhatsApp)" required class="w-full p-3 border rounded shadow-sm" />
+        <input name="phone_number" placeholder="Phone number including country code (WhatsApp preferred)" required class="w-full p-3 border rounded shadow-sm" />
         ${ includeMessage ? `<textarea name="message" rows="4" placeholder="Message" required class="w-full p-3 border rounded shadow-sm"></textarea>` : '' }
         <div class="flex gap-2">
           <button type="submit" class="flex-1 px-4 py-3 bg-[var(--indigo)] text-white rounded font-semibold">Send</button>
@@ -495,5 +495,37 @@ document.addEventListener('keydown', (e)=>{
   }
 });
   </script>
-</body>
+<script>
+// Strong validation on submit
+document.addEventListener('submit', function(e){
+  const form = e.target;
+  if(!form.matches('form')) return;
+  let valid=true;
+  const fields = form.querySelectorAll('input, textarea');
+  fields.forEach(f=>{
+    let fv=true;
+    if(f.name==="full_name"){ fv=f.value.trim().length>0; }
+    else if(f.name==="email"){ fv=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value); }
+    else if(f.name==="phone_number"){ fv=/^\+[0-9]{8,15}$/.test(f.value); }
+    else if(f.name==="message"){ fv=f.value.trim().length>0 && f.value.length<=3000; }
+    if(!fv){ f.classList.add('border-red-500'); valid=false; }
+    else { f.classList.remove('border-red-500'); }
+  });
+  if (!valid) {
+    e.preventDefault();
+    
+    // Re-enable any submit button that was disabled earlier
+    const btn = form.querySelector('button[type="submit"], button');
+    if (btn) {
+      btn.disabled = false;
+      btn.classList.remove('opacity-60');
+      btn.textContent = 'Send';  // restore original label
+    }
+
+    alert('Please correct the highlighted fields.');
+    return; // prevent further processing
+  }
+
+});
+</script></body>
 </html>
