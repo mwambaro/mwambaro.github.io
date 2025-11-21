@@ -496,36 +496,117 @@ document.addEventListener('keydown', (e)=>{
 });
   </script>
 <script>
-// Strong validation on submit
-document.addEventListener('submit', function(e){
-  const form = e.target;
-  if(!form.matches('form')) return;
-  let valid=true;
-  const fields = form.querySelectorAll('input, textarea');
-  fields.forEach(f=>{
-    let fv=true;
-    if(f.name==="full_name"){ fv=f.value.trim().length>0; }
-    else if(f.name==="email"){ fv=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value); }
-    else if(f.name==="phone_number"){ fv=/^\+[0-9]{8,15}$/.test(f.value); }
-    else if(f.name==="message"){ fv=f.value.trim().length>0 && f.value.length<=3000; }
-    if(!fv){ f.classList.add('border-red-500'); valid=false; }
-    else { f.classList.remove('border-red-500'); }
-  });
-  if (!valid) {
-    e.preventDefault();
-    
-    // Re-enable any submit button that was disabled earlier
-    const btn = form.querySelector('button[type="submit"], button');
-    if (btn) {
-      btn.disabled = false;
-      btn.classList.remove('opacity-60');
-      btn.textContent = 'Send';  // restore original label
+  // Helper: show inline error message under a field
+  function setError(field, message) {
+    // Remove existing message
+    let msg = field.parentNode.querySelector('.error-msg');
+    if (!msg) {
+      msg = document.createElement('div');
+      msg.className = 'error-msg text-red-600 text-sm mt-1';
+      field.parentNode.appendChild(msg);
     }
-
-    alert('Please correct the highlighted fields.');
-    return; // prevent further processing
+    msg.textContent = message;
+    field.classList.add('border-red-500');
   }
 
-});
+  // Helper: clear inline error message
+  function clearError(field) {
+    let msg = field.parentNode.querySelector('.error-msg');
+    if (msg) msg.remove();
+    field.classList.remove('border-red-500');
+  }
+
+  // Live inline validation
+  document.addEventListener('input', function (e) {
+    const f = e.target;
+
+    if (!f.form) return;
+
+    // Full name
+    if (f.name === "full_name") {
+      if (f.value.trim().length === 0) {
+        setError(f, "Full name is required.");
+      } else {
+        clearError(f);
+      }
+    }
+
+    // Email
+    if (f.name === "email") {
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
+      if (!ok) {
+        setError(f, "Enter a valid email address.");
+      } else {
+        clearError(f);
+      }
+    }
+
+    // Phone
+    if (f.name === "phone_number") {
+      const ok = /^\+[0-9]{8,15}$/.test(f.value);
+      if (!ok) {
+        setError(f, "Phone must start with + and contain 8–15 digits.");
+      } else {
+        clearError(f);
+      }
+    }
+
+    // Message
+    if (f.name === "message") {
+      if (f.value.trim().length === 0) {
+        setError(f, "Message is required.");
+      } else if (f.value.length > 3000) {
+        setError(f, "Message cannot exceed 3000 characters.");
+      } else {
+        clearError(f);
+      }
+    }
+  });
+
+  // Strengthen submit validation (reject if errors exist)
+  document.addEventListener("submit", function (e) {
+    const form = e.target;
+    const fields = form.querySelectorAll("input, textarea");
+    let valid = true;
+
+    fields.forEach(f => {
+      if (f.name === "full_name" && f.value.trim().length === 0) {
+        setError(f, "Full name is required.");
+        valid = false;
+      }
+      if (f.name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)) {
+        setError(f, "Enter a valid email address.");
+        valid = false;
+      }
+      if (f.name === "phone_number" && !/^\+[0-9]{8,15}$/.test(f.value)) {
+        setError(f, "Phone must start with + and contain 8–15 digits.");
+        valid = false;
+      }
+      if (f.name === "message") {
+        if (f.value.trim().length === 0) {
+          setError(f, "Message is required.");
+          valid = false;
+        } else if (f.value.length > 3000) {
+          setError(f, "Message cannot exceed 3000 characters.");
+          valid = false;
+        }
+      }
+    });
+
+    if (!valid) {
+      e.preventDefault();
+
+      // Restore submit button (fixes your earlier bug)
+      const btn = form.querySelector('button[type="submit"], button');
+      if (btn) {
+        btn.disabled = false;
+        btn.classList.remove('opacity-60');
+        btn.textContent = 'Send';
+      }
+
+      return;
+    }
+  });
+
 </script></body>
 </html>
