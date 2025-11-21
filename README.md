@@ -65,5 +65,13 @@ The current fullscreen overlay shows images only. I now want the same overlay to
     3. Input field named "email" in which the user inputs his/her email.
     4. Input field named "phone_number" in which the user inputs his/her phone number (WhatsApp).
 
+Given the code that contains forms, add validations. Give the resulting full code without omitting anything
+as a .html file for download. You must validate:
+- Full name as required, not blank
+- Email as required, not blank, and ensure the email format
+- Phone number as required, not blank, and according to the number leading with country code as in +25776177186
+- Textarea message as required, not blank, and with a maximum of 3000 characters.
+I want further enhancements, like inline error messages, highlighting invalid fields.
+
 # Author 
 Obed-Edom Nkezabahizi: `onkezabahizi@gmail.com`

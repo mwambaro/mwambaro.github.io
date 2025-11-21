@@ -8,7 +8,6 @@
   <meta property="og:title" content="Laastras - Leadership as a Service" />
   <meta property="og:url" content="https://mwambaro.github.io" />
   <meta property="og:description" content="Homocracy, DPI and the Trade Postulate" />
-  <meta property="og:image" content="https://1drv.ms/i/c/2e6ead2d38e36d5a/IQRzEsiSkv1vSKze2TRrmp_iAWuTm8TcED-ly3ucisFZF7Q?width=3148&height=2118" />
   <link rel="shortcut icon" href="assets/favicon.svg" />
 
   <!-- Tailwind CDN -->
@@ -21,43 +20,17 @@
     body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#fbfbff,#f3f4ff);}
     .glass{background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
     .media-card{width:100%;height:100%;object-fit:cover;border-radius:0.75rem}
+    /* Ensure media never exceed viewport */
     .media-max{max-height:60vh}
     @media(min-width:1024px){.media-max{max-height:50vh}} 
+    /* Read more animation */
     .read-more-content{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease;opacity:0}
     .read-more-content.open{opacity:1;max-height:1200px}
+    /* small utility */
     .hero-media{border-radius:1rem;box-shadow:0 10px 40px rgba(15,23,42,.08)}
-
-    /* Fullscreen overlay styles */
-    #fullscreenOverlay{
-     position:fixed;top:0;left:0;width:100%;height:100%;
-     background:rgba(0,0,0,0.85);display:none;align-items:center;
-     justify-content:center;z-index:9999;padding:20px;
-    }
-    #fullscreenOverlay img{
-     max-width:90%;max-height:90%;border-radius:1rem;box-shadow:0 0 25px rgba(0,0,0,0.5);
-    }
-    #closeFullscreen{
-     position:absolute;top:20px;right:20px;background:#fff;
-     padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;
-    }
-
-    /* Content box inside overlay for forms */
-    #overlayContent{
-      max-width:900px;width:100%;max-height:90%;overflow:auto;border-radius:1rem;
-      box-shadow:0 25px 60px rgba(0,0,0,0.6);
-    }
   </style>
 </head>
 <body class="text-slate-800 leading-relaxed">
-<div id="fullscreenOverlay" class="flex">
-  <div id="closeFullscreen" class="text-sm">Close ✕</div>
-
-  <!-- Image element -->
-  <img id="fullscreenImage" src="" alt="Fullscreen" class="hidden"/>
-
-  <!-- Content container (forms, html content) -->
-  <div id="overlayContent" class="hidden bg-white p-6 sm:p-10"></div>
-</div>
 
   <!-- NAV -->
   <header class="sticky top-0 z-40 bg-white/75 backdrop-blur-sm border-b">
@@ -127,7 +100,10 @@
 
       <div data-aos="fade-left" class="relative">
         <div class="hero-media bg-gradient-to-tr from-white to-indigo-50 p-2 rounded-2xl">
-          <img src="assets/homocracy-through-dpi.jpg" alt="Homocracy through DPI" class="media-card clickable" />
+          <video muted autoplay loop playsinline class="media-card media-max rounded-xl w-full h-72 lg:h-96">
+            <source src="assets/intro.mp4" type="video/mp4">
+            <img src="assets/hero.jpg" alt="Laastras hero" class="media-card" />
+          </video>
         </div>
       </div>
     </section>
@@ -155,7 +131,7 @@
       </div>
     </section>
 
-    <!-- BRANDS PART 1 -->
+    <!-- BRANDS -->
     <section id="brands" class="py-12">
       <div class="max-w-6xl mx-auto">
         <div class="text-center" data-aos="zoom-in">
@@ -169,7 +145,7 @@
           <article data-aos="fade-up" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
             <div class="lg:w-1/2 p-4 flex items-center justify-center">
               <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-                <img src="assets/GetClientele.jpg" alt="GetClientele" class="media-card clickable" />
+                <img src="assets/getclientele.jpg" alt="GetClientele" class="media-card" />
               </div>
             </div>
             <div class="lg:w-1/2 p-4 flex flex-col justify-between">
@@ -183,16 +159,20 @@
                 </ul>
               </div>
               <div class="mt-6 flex items-center gap-3">
-                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="learn-more">Learn more</a>
-                <a class="px-4 py-2 border rounded" href="#" id="request-demo">Request demo</a>
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Learn more</a>
+                <a class="px-4 py-2 border rounded" href="#">Request demo</a>
               </div>
             </div>
           </article>
-                    <!-- eCard Wireless -->
+
+          <!-- eCard Wireless -->
           <article data-aos="fade-up" data-aos-delay="80" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden">
             <div class="lg:w-1/2 p-4 flex items-center justify-center">
               <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-                <img src="assets/Laastras-hofi-agas-ioot.jpg" alt="eCard Wireless" class="media-card clickable" />
+                <video muted loop playsinline class="media-card">
+                  <source src="assets/ecard.mp4" type="video/mp4">
+                  <img src="assets/ecard.jpg" alt="eCard Wireless" class="media-card" />
+                </video>
               </div>
             </div>
             <div class="lg:w-1/2 p-4 flex flex-col justify-between">
@@ -206,8 +186,8 @@
                 </ul>
               </div>
               <div class="mt-6 flex items-center gap-3">
-                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="see-integration">See integration</a>
-                <a class="px-4 py-2 border rounded" href="#" id="partner-with-us">Partner with us</a>
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">See integration</a>
+                <a class="px-4 py-2 border rounded" href="#">Partner with us</a>
               </div>
             </div>
           </article>
@@ -216,7 +196,7 @@
           <article data-aos="fade-up" data-aos-delay="160" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
             <div class="lg:w-1/2 p-4 flex items-center justify-center">
               <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-                <img src="assets/Chaperon.jpg" alt="Chaperon" class="media-card clickable" />
+                <img src="assets/chaperon.jpg" alt="Chaperon" class="media-card" />
               </div>
             </div>
             <div class="lg:w-1/2 p-4 flex flex-col justify-between">
@@ -230,8 +210,8 @@
                 </ul>
               </div>
               <div class="mt-6 flex items-center gap-3">
-                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="join-chaperon">Join Chaperon</a>
-                <a class="px-4 py-2 border rounded" href="#" id="support">Support</a>
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Join Chaperon</a>
+                <a class="px-4 py-2 border rounded" href="#">Support</a>
               </div>
             </div>
           </article>
@@ -240,7 +220,7 @@
           <article data-aos="fade-up" data-aos-delay="240" class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden">
             <div class="lg:w-1/2 p-4 flex items-center justify-center">
               <div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-                <img src="assets/Aori.jpg" alt="Aori - Acquire or Integrate" class="media-card clickable" />
+                <img src="assets/aori.jpg" alt="Aori - Acquire or Integrate" class="media-card" />
               </div>
             </div>
             <div class="lg:w-1/2 p-4 flex flex-col justify-between">
@@ -254,8 +234,8 @@
                 </ul>
               </div>
               <div class="mt-6 flex items-center gap-3">
-                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="learn-about-aori">Learn about Aori</a>
-                <a class="px-4 py-2 border rounded" href="#" id="contribute-resources">Contribute resources</a>
+                <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#">Learn about Aori</a>
+                <a class="px-4 py-2 border rounded" href="#">Contribute resources</a>
               </div>
             </div>
           </article>
@@ -293,16 +273,9 @@
         <h3 class="text-2xl font-bold">Get Involved</h3>
         <p class="mt-4 text-slate-600">Governments, NGOs, investors and technologists—join our pilot programs. Help us build a fairer global trade system.</p>
         <div class="mt-6 flex justify-center gap-4">
-          <a href="#contact" class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow" id="contact-us">Contact us</a>
-          <a href="#" class="px-6 py-3 border rounded" id="request-whitepaper">Request whitepaper</a>
+          <a href="#contact" class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow">Contact us</a>
+          <a href="#" class="px-6 py-3 border rounded">Download whitepaper</a>
         </div>
-      </div>
-    </section>
-
-    <!-- FasterCapital incubation -->
-    <section class="py-12">
-      <div class="max-w-3xl mx-auto text-center" data-aos="zoom-in">
-        Laastras has been accepted into the EquityPilot program of <a href="https://www.fastercapital.com" style="color: blue; text-decoration: underline;">FasterCapital</a> and is seeking a capital of $500,000
       </div>
     </section>
 
@@ -326,8 +299,8 @@
         <div>
           <h5 class="font-semibold">Subscribe</h5>
           <p class="text-sm text-slate-600 mt-2">Get updates about pilots, whitepapers and partnership opportunities.</p>
-          <form class="mt-4 flex gap-2" action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST">
-            <input class="flex-1 px-3 py-2 border rounded" type="email" name="email" placeholder="you@example.com" required>
+          <form class="mt-4 flex gap-2" onsubmit="event.preventDefault(); alert('Thanks — subscription simulated in prototype.');">
+            <input class="flex-1 px-3 py-2 border rounded" type="email" placeholder="you@example.com" required>
             <button class="px-4 py-2 bg-[var(--indigo)] text-white rounded">Subscribe</button>
           </form>
         </div>
@@ -344,12 +317,18 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
+
+    // mobile menu
     document.getElementById('burger').addEventListener('click', function(){
       const m = document.getElementById('mobileMenu'); m.classList.toggle('hidden');
     });
+
+    // read more toggles (delegated)
     document.querySelectorAll('.read-more-link').forEach(btn => btn.addEventListener('click', e => {
       const next = e.target.nextElementSibling; if(!next) return; next.classList.toggle('open'); e.target.textContent = next.classList.contains('open') ? 'Read less' : 'Read more';
     }));
+
+    // Fit media so it never exceeds viewport
     function fitMedia(){
       document.querySelectorAll('video.media-card, img.media-card').forEach(el => {
         el.style.maxHeight = Math.min(window.innerHeight * 0.6, 720) + 'px';
@@ -357,143 +336,6 @@
       });
     }
     window.addEventListener('load', fitMedia); window.addEventListener('resize', fitMedia);
-
-const overlay = document.getElementById("fullscreenOverlay");
-const fullImg = document.getElementById("fullscreenImage");
-const closeBtn = document.getElementById("closeFullscreen");
-const overlayContent = document.getElementById("overlayContent");
-
-/* Utility: show overlay with image */
-function showOverlayWithImage(src, alt=''){
-  fullImg.src = src;
-  fullImg.alt = alt;
-  fullImg.classList.remove('hidden');
-  overlayContent.classList.add('hidden');
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-/* Utility: show overlay with HTML content (forms, extra markup) */
-function showOverlayWithContent(html){
-  overlayContent.innerHTML = html;
-  overlayContent.classList.remove('hidden');
-  fullImg.classList.add('hidden');
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  // re-attach form submit prevention to show a thank-you state inline if desired (FormSubmit will redirect by default)
-  const forms = overlayContent.querySelectorAll('form');
-  forms.forEach(f=>{
-    f.addEventListener('submit', (ev)=>{
-      // Let the browser submit to FormSubmit; optionally we could show inline feedback.
-      // Do not preventDefault so FormSubmit receives the POST.
-      // but show a subtle "Submitting..." state:
-      const btn = f.querySelector('button[type="submit"], button');
-      if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); btn.textContent = 'Submitting…'; }
-    });
-  });
-}
-
-/* Close handlers */
-closeBtn.addEventListener("click", ()=> {
-  overlay.style.display = 'none';
-  document.body.style.overflow = '';
-});
-overlay.addEventListener("click", e=>{ 
-  if(e.target===overlay){
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-});
-
-/* Make images clickable and open overlay */
-document.querySelectorAll(".clickable").forEach(img=>{
-  img.style.cursor='pointer';
-  img.addEventListener("click", ()=> showOverlayWithImage(img.src, img.alt||''));
-});
-
-/* Form templates - Tailwind-styled and responsive
-   Forms 1-10 according to your spec.
-*/
-function formHTML({subject='', visibleSubject=false, includeMessage=false, title='Get in touch'}) {
-  // subject: string for hidden subject value
-  // visibleSubject: if true, render a visible subject input
-  // includeMessage: render textarea
-  return `
-    <div class="max-w-xl mx-auto">
-      <div class="flex items-center justify-between mb-6">
-        <h3 class="text-2xl font-bold">${title}</h3>
-        <button id="overlayCloseTop" class="text-sm text-slate-600 hover:text-black">Close</button>
-      </div>
-
-      <form action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST" class="space-y-4 bg-white">
-        ${ visibleSubject ? `<input name="subject" placeholder="Subject" required class="w-full p-3 border rounded shadow-sm" />` : `<input type="hidden" name="subject" value="${escapeHtml(subject)}" />` }
-        <input name="full_name" placeholder="Full name" required class="w-full p-3 border rounded shadow-sm" />
-        <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded shadow-sm" />
-        <input name="phone_number" placeholder="Phone number (WhatsApp)" required class="w-full p-3 border rounded shadow-sm" />
-        ${ includeMessage ? `<textarea name="message" rows="4" placeholder="Message" required class="w-full p-3 border rounded shadow-sm"></textarea>` : '' }
-        <div class="flex gap-2">
-          <button type="submit" class="flex-1 px-4 py-3 bg-[var(--indigo)] text-white rounded font-semibold">Send</button>
-          <button type="button" id="cancelBtn" class="px-4 py-3 border rounded">Cancel</button>
-        </div>
-      </form>
-      <p class="text-xs text-slate-500 mt-3">We will never share your personal data. By submitting, you agree to be contacted regarding your request.</p>
-    </div>
-  `;
-}
-
-/* Simple escape helper to avoid injecting quotes into hidden inputs */
-function escapeHtml(str){
-  if(!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-/* Map link IDs to form configurations */
-const formsConfig = {
-  "learn-more": { subject: "Learn more about GetClientele", visibleSubject:false, includeMessage:false, title: "Learn more — GetClientele" },
-  "request-demo": { subject: "Request demo about GetClientele", visibleSubject:false, includeMessage:false, title: "Request a demo — GetClientele" },
-  "see-integration": { subject: "See how DPI integrations support eCard Wireless", visibleSubject:false, includeMessage:false, title: "DPI integration — eCard Wireless" },
-  "partner-with-us": { subject: "Partner with us to launch eCard Wireless infrastructure", visibleSubject:false, includeMessage:false, title: "Partner with us — eCard Wireless" },
-  "join-chaperon": { subject: "Join Chaperon as an Unemployed or Job Seeker", visibleSubject:false, includeMessage:false, title: "Join Chaperon" },
-  "support": { subject: "Support Chaperon through donations or other means", visibleSubject:false, includeMessage:false, title: "Support Chaperon" },
-  "learn-about-aori": { subject: "Learn more about Aori (Acquire or Integrate)", visibleSubject:false, includeMessage:false, title: "Learn about Aori" },
-  "contribute-resources": { subject: "Contribute resources to Aori Conglomerate", visibleSubject:false, includeMessage:false, title: "Contribute to Aori" },
-  "request-whitepaper": { subject: "Request whitepaper about Laastras mission", visibleSubject:false, includeMessage:false, title: "Request Whitepaper" },
-  /* contact-us requires visible subject and message textarea per spec */
-  "contact-us": { subject: "", visibleSubject:true, includeMessage:true, title: "Contact Laastras" }
-};
-
-/* Attach click handlers to each link if present */
-Object.keys(formsConfig).forEach(id => {
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.addEventListener('click', e => {
-    e.preventDefault();
-    const cfg = formsConfig[id];
-    const html = formHTML({ subject: cfg.subject, visibleSubject: cfg.visibleSubject, includeMessage: cfg.includeMessage, title: cfg.title });
-    showOverlayWithContent(html);
-
-    // attach close handlers inside overlay content (they are recreated each time)
-    setTimeout(()=> {
-      const closeTop = document.getElementById('overlayCloseTop');
-      const cancelBtn = document.getElementById('cancelBtn');
-      if(closeTop) closeTop.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
-      if(cancelBtn) cancelBtn.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
-    }, 50);
-  });
-});
-
-/* Ensure existing clickable images show cursor pointer (in case DOM content loads later) */
-document.addEventListener('DOMContentLoaded', ()=> {
-  document.querySelectorAll('.clickable').forEach(img => img.style.cursor = 'pointer');
-});
-
-/* Accessibility tweak: close overlay on ESC */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape' && overlay.style.display === 'flex'){
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-});
   </script>
 </body>
 </html>
