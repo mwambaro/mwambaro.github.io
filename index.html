@@ -496,89 +496,85 @@ document.addEventListener('keydown', (e)=>{
 });
   </script>
 <script>
-  // Helper: show inline error message under a field
+  // Helper: show inline error message directly beneath the field
   function setError(field, message) {
-    // Remove existing message
-    let msg = field.parentNode.querySelector('.error-msg');
-    if (!msg) {
-      msg = document.createElement('div');
-      msg.className = 'error-msg text-red-600 text-sm mt-1';
-      field.parentNode.appendChild(msg);
-    }
+    clearError(field); // remove any existing message
+
+    const msg = document.createElement('div');
+    msg.className = 'error-msg text-red-600 text-sm mt-1';
     msg.textContent = message;
+
+    // Insert directly after the field, ensuring correct placement
+    field.insertAdjacentElement('afterend', msg);
+
     field.classList.add('border-red-500');
   }
 
-  // Helper: clear inline error message
+  // Helper: clear inline error message for a specific field
   function clearError(field) {
-    let msg = field.parentNode.querySelector('.error-msg');
-    if (msg) msg.remove();
+    const next = field.nextElementSibling;
+    if (next && next.classList.contains('error-msg')) {
+      next.remove();
+    }
     field.classList.remove('border-red-500');
   }
+
 
   // Live inline validation
   document.addEventListener('input', function (e) {
     const f = e.target;
-
     if (!f.form) return;
 
-    // Full name
-    if (f.name === "full_name") {
-      if (f.value.trim().length === 0) {
-        setError(f, "Full name is required.");
-      } else {
-        clearError(f);
-      }
-    }
+    switch (f.name) {
+      case "full_name":
+        if (f.value.trim().length === 0) setError(f, "Full name is required.");
+        else clearError(f);
+        break;
 
-    // Email
-    if (f.name === "email") {
-      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
-      if (!ok) {
-        setError(f, "Enter a valid email address.");
-      } else {
-        clearError(f);
-      }
-    }
+      case "email":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value))
+          setError(f, "Enter a valid email address.");
+        else clearError(f);
+        break;
 
-    // Phone
-    if (f.name === "phone_number") {
-      const ok = /^\+[0-9]{8,15}$/.test(f.value);
-      if (!ok) {
-        setError(f, "Phone must start with + and contain 8–15 digits.");
-      } else {
-        clearError(f);
-      }
-    }
+      case "phone_number":
+        if (!/^\+[0-9]{8,15}$/.test(f.value))
+          setError(f, "Phone must start with + and contain 8–15 digits.");
+        else clearError(f);
+        break;
 
-    // Message
-    if (f.name === "message") {
-      if (f.value.trim().length === 0) {
-        setError(f, "Message is required.");
-      } else if (f.value.length > 3000) {
-        setError(f, "Message cannot exceed 3000 characters.");
-      } else {
-        clearError(f);
-      }
+      case "message":
+        if (f.value.trim().length === 0)
+          setError(f, "Message is required.");
+        else if (f.value.length > 3000)
+          setError(f, "Message cannot exceed 3000 characters.");
+        else clearError(f);
+        break;
     }
   });
 
-  // Strengthen submit validation (reject if errors exist)
-  document.addEventListener("submit", function (e) {
+
+  // Submit-time validation
+  document.addEventListener('submit', function (e) {
     const form = e.target;
     const fields = form.querySelectorAll("input, textarea");
+
     let valid = true;
 
     fields.forEach(f => {
+      clearError(f); // clean previous messages
+
       if (f.name === "full_name" && f.value.trim().length === 0) {
         setError(f, "Full name is required.");
         valid = false;
       }
-      if (f.name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)) {
+      if (f.name === "email" &&
+          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)) {
         setError(f, "Enter a valid email address.");
         valid = false;
       }
-      if (f.name === "phone_number" && !/^\+[0-9]{8,15}$/.test(f.value)) {
+      if (f.name === "phone_number" &&
+          !/^\+[0-9]{8,15}$/.test(f.value)) {
         setError(f, "Phone must start with + and contain 8–15 digits.");
         valid = false;
       }
@@ -596,15 +592,13 @@ document.addEventListener('keydown', (e)=>{
     if (!valid) {
       e.preventDefault();
 
-      // Restore submit button (fixes your earlier bug)
+      // Re-enable submit button (fixes your earlier bug)
       const btn = form.querySelector('button[type="submit"], button');
       if (btn) {
         btn.disabled = false;
         btn.classList.remove('opacity-60');
         btn.textContent = 'Send';
       }
-
-      return;
     }
   });
 
