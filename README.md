@@ -73,5 +73,118 @@ as a .html file for download. You must validate:
 - Textarea message as required, not blank, and with a maximum of 3000 characters.
 I want further enhancements, like inline error messages, highlighting invalid fields.
 
+# ChatGPT postingJob:
+
+Given the job description below, build an entire HTML site that uses jobPosting 
+structured data (JSON-LD) so that Google can crawl it and display it as part of
+Google jobs. Be sure to put the entire job description in the <body> part of the 
+site as well. Use TailwindCSS to make it beautiful and appealing, using for example 
+shadow box, and AOS for animations. In the <body> tag, at the bottom, make a clear link
+that sends the user to the home page at `index.html`. 
+Give the full site as .html file for download.
+
+Information you will need for the structured data (JSON-LD) part:
+- datePosted: 2025-12-4
+- description: Get the full description from the description given below
+- hiringOrganization: {"@type": "Organization", "name": "Laastras", "sameAs": "https://mwambaro.github.io"}
+- jobLocation: [{
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gimbo",
+            "addressLocality": "Wakiso Sub-county",
+            "addressRegion": "Wakiso",
+            "postalCode": "00000",
+            "addressCountry": "Uganda"
+        }
+    },
+    {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "701 Aspen Peak Loop",
+            "addressLocality": "Henderson",
+            "addressRegion": "NV",
+            "postalCode": "89011",
+            "addressCountry": "US"
+        }
+    }]
+- applicantLocationRequirements: {"@type": "Country", "name": "USA"}
+- jobLocationType: TELECOMMUTE
+- title: Co-Founder
+- baseSalary: {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": {
+            "@type": "QuantitativeValue",
+            "value": 2000,
+            "unitText": "MONTH"
+        }
+    }
+- directApply: true
+- employmentType: ["FULL_TIME", "PART_TIME", "CONTRACTOR", "VOLUNTEER"]
+- educationRequirements: [
+        {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "high school" 
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "bachelor degree" 
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "postgraduate degree"
+        }
+    ]
+
+Here is the detailed job description:
+
+The Co-founder will help build and grow GetClientele, a client-routing app for marketplaces and malls. This role is hands-on, focused on product discovery, fieldwork, fundraising, and early operations.
+
+Key Responsibilities:
+- Visit marketplaces and malls daily to interview vendors and shoppers.
+- Collect feedback, document insights, and report findings to guide product features.
+- Support fundraising: prepare pitch materials, speak with investors, attend meetings, and follow up on leads.
+- Help test early prototypes with real users and refine the product based on feedback.
+- Build relationships with marketplace leaders, mall managers, and vendor groups.
+- Assist in basic operations: organizing documents, planning activities, and helping structure internal processes.
+- Participate in community engagement and awareness campaigns.
+
+A Typical Day:
+- Interview 10–20 vendors and shoppers.
+- Record insights using structured templates.
+- Review findings with the team and refine assumptions.
+- Join an investor call or update the pitch deck.
+- Meet a marketplace or mall official to explore partnerships.
+- Test a feature or prototype with users.
+
+Qualifications:
+- Willing to provide essential equipment as in-kind equity contribution: engineering-grade laptop, professional camera, and business smartphone.
+- Willing to defer salary until funding is secured.
+- Must be US-based and legally allowed to work in the United States.
+- Confident engaging with vendors, shoppers, and partners.
+- Organized and detail-oriented, with consistent documentation habits.
+- Clear, persuasive communicator for pitches and investor meetings.
+- Experience in startups, business development, field research, or community engagement.
+- Ability to collect, analyze, and summarize user insights.
+- Familiarity with digital products or user-centered design.
+- Interest in marketplaces, commerce, or socio-economic systems.
+- Comfortable participating in fundraising activities.
+- Reliable access to transportation for daily fieldwork.
+
+Important note: 
+Please, before applying, make sure you meet at least the first three qualifications
+as they are very fundamental to the job. If you do not fully understand the qualification, copy it 
+and paste it in some AI and ask the AI to help you understand it.
+
+Application: 
+Send your updated resume to `onkezabahizi@gmail.com`. The subject must be:
+`Application for Co-Founder Role at Laastras`. In the body of the email to which you will 
+attach the updated resume, tell us how you understand the first three qualifications and whether 
+you meet them. This is important to make sure you do not get confused later in the application
+process. In the body of the email, tell us as well why you are excited about working at Laastras
+as Co-Founder.
+
 # Author 
 Obed-Edom Nkezabahizi: `onkezabahizi@gmail.com`
