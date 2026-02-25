@@ -50,7 +50,53 @@
       max-width:900px;width:100%;max-height:90%;overflow:auto;border-radius:1rem;
       box-shadow:0 25px 60px rgba(0,0,0,0.6);
     }
-  </style>
+  
+    /* ===== Dark Mode Theme ===== */
+    .dark body{
+      background: #0f172a !important;
+      color: #f1f5f9 !important;
+    }
+    .dark header{
+      background: rgba(15,23,42,0.85) !important;
+      border-color: rgba(255,255,255,0.08) !important;
+    }
+    .dark footer{
+      background: #0f172a !important;
+    }
+    .dark .bg-white{
+      background-color: #1e293b !important;
+    }
+    .dark .glass{
+      background: rgba(30,41,59,0.6) !important;
+    }
+    .dark .text-slate-600,
+    .dark .text-slate-500,
+    .dark .text-slate-700{
+      color: #cbd5e1 !important;
+    }
+    .dark .border{
+      border-color: rgba(255,255,255,0.08) !important;
+    }
+    .dark input,
+    .dark textarea{
+      background-color: #0f172a !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(255,255,255,0.15) !important;
+    }
+    .dark #mobileMenu{
+      background: #0f172a !important;
+    }
+
+
+    /* ===== Improved Dark Contrast for HOW Section ===== */
+    .dark #how{
+      background: #111827 !important; /* slightly lighter than main body */
+    }
+    .dark #how .bg-white{
+      background-color: #0b1220 !important; /* darker than section for card emphasis */
+    }
+
+</style>
 </head>
 <body class="text-slate-800 leading-relaxed">
 <div class="flex" id="fullscreenOverlay">
@@ -76,6 +122,10 @@
 <a class="hover:text-[var(--indigo)]" href="#brands">Brands</a>
 <a class="hover:text-[var(--indigo)]" href="#how">How it works</a>
 <a href="#careers">Careers</a><a class="inline-flex items-center px-3 py-2 rounded-md bg-[var(--indigo)] text-white shadow" href="#contact">Contact</a>
+<button id="themeToggle" class="ml-2 px-3 py-2 rounded-md border text-sm">
+  🌙 Dark
+</button>
+
 </nav>
 <div class="md:hidden">
 <button aria-label="open menu" class="p-2 rounded-md hover:bg-slate-100" id="burger">
@@ -90,7 +140,14 @@
 <a class="block py-2" href="#brands">Brands</a>
 <a class="block py-2" href="#how">How it works</a>
 <a class="block py-2 text-[var(--indigo)]" href="#contact">Contact</a>
-<a class="block py-2" href="#careers">Careers</a></div>
+<a class="block py-2" href="#careers">Careers</a>
+<div class="pt-2">
+  <button id="themeToggleMobile" class="w-full px-3 py-2 rounded-md border text-sm">
+    🌙 Dark Mode
+  </button>
+</div>
+
+</div>
 </div>
 </header>
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -510,7 +567,41 @@ document.addEventListener('DOMContentLoaded', ()=> {
   document.querySelectorAll('.clickable').forEach(img => img.style.cursor = 'pointer');
 });
 
-/* Accessibility tweak: close overlay on ESC */
+
+    /* ===== Dark Mode Logic ===== */
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    const toggleBtnMobile = document.getElementById('themeToggleMobile');
+
+    function applyTheme(theme){
+      if(theme === 'dark'){
+        root.classList.add('dark');
+        if(toggleBtn) toggleBtn.textContent = '☀️ Light';
+        if(toggleBtnMobile) toggleBtnMobile.textContent = '☀️ Light Mode';
+      } else {
+        root.classList.remove('dark');
+        if(toggleBtn) toggleBtn.textContent = '🌙 Dark';
+        if(toggleBtnMobile) toggleBtnMobile.textContent = '🌙 Dark Mode';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){
+      applyTheme(savedTheme);
+    }
+
+    function toggleTheme(){
+      const isDark = root.classList.contains('dark');
+      const newTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', newTheme);
+      applyTheme(newTheme);
+    }
+
+    if(toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+    if(toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
+
+
+    /* Accessibility tweak: close overlay on ESC */
 document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape' && overlay.style.display === 'flex'){
     overlay.style.display = 'none';
