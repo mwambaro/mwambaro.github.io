@@ -361,7 +361,7 @@
 </div>
 <div class="mt-8">
 <a class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow hover:bg-indigo-700" href="cofounder_job.html">
-      Co-Founder (US) →
+      Co-Founder →
     </a>
 </div>
 </div>
@@ -573,7 +573,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const toggleBtn = document.getElementById('themeToggle');
     const toggleBtnMobile = document.getElementById('themeToggleMobile');
 
+    
+    /* Propagate theme to Co-Founder link via query parameter */
+    function updateCofounderLink(theme){
+      const link = document.querySelector('a[href="cofounder_job.html"]');
+      if(link){
+        link.href = "cofounder_job.html?theme=" + theme;
+      }
+    }
+
+
     function applyTheme(theme){
+      updateCofounderLink(theme);
       if(theme === 'dark'){
         root.classList.add('dark');
         if(toggleBtn) toggleBtn.textContent = '☀️ Light';
@@ -587,14 +598,26 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme){
+      updateCofounderLink(savedTheme);
       applyTheme(savedTheme);
     }
+
+    
+    /* Close mobile menu after theme toggle (small devices fix) */
+    function closeMobileMenuIfOpen(){
+      const menu = document.getElementById('mobileMenu');
+      if(menu && !menu.classList.contains('hidden')){
+        menu.classList.add('hidden');
+      }
+    }
+
 
     function toggleTheme(){
       const isDark = root.classList.contains('dark');
       const newTheme = isDark ? 'light' : 'dark';
       localStorage.setItem('theme', newTheme);
       applyTheme(newTheme);
+      closeMobileMenuIfOpen();
     }
 
     if(toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
