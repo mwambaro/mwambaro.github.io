@@ -225,10 +225,10 @@ In the body of the email to which you will attach the updated resume, tell us ho
 
       if (theme === 'dark') {
         root.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+        //localStorage.setItem('theme', 'dark');
       } else if (theme === 'light') {
         root.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+        //localStorage.setItem('theme', 'light');
       } else {
         // Fallback to localStorage if no query param
         const savedTheme = localStorage.getItem('theme');

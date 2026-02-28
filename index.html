@@ -584,6 +584,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
     function applyTheme(theme){
+      console.log("Theme to apply: " + theme);
       updateCofounderLink(theme);
       if(theme === 'dark'){
         root.classList.add('dark');
@@ -598,6 +599,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme){
+      console.log("Locally stored theme to apply: " + savedTheme);
       updateCofounderLink(savedTheme);
       applyTheme(savedTheme);
     }
