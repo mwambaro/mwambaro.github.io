@@ -572,11 +572,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const root = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
     const toggleBtnMobile = document.getElementById('themeToggleMobile');
+    // TODO: If you ever put more links in the site, tweak this to apply theme on all links
+    //       by querying, not just one, but all of them at once (`document.querySelectorAll`) 
+    //       and iterate over them applying the theme parameter.
+    const link = document.querySelector('a[href="cofounder_job.html"]');
 
     
     /* Propagate theme to Co-Founder link via query parameter */
     function updateCofounderLink(theme){
-      const link = document.querySelector('a[href="cofounder_job.html"]');
       if(link){
         link.href = "cofounder_job.html?theme=" + theme;
       }
@@ -624,6 +627,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     if(toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
     if(toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
+    // Failsafe. This code is not robust, furture-proof. updateCofounderLink above
+    // seems to fail to update the link in some cases, so we also add this direct listener 
+    // to ensure the theme is propagated on click. In the future, consider refactoring to 
+    // a more robust solution that doesn't rely on querying a single link by href.
+    if(link) link.addEventListener('click', () => {
+      const currentTheme = root.classList.contains('dark') ? 'dark' : 'light';
+      console.log("Cofounder link clicked. Current theme: " + currentTheme);
+      window.location = "cofounder_job.html?theme=" + currentTheme;
+    });
 
 
     /* Accessibility tweak: close overlay on ESC */
