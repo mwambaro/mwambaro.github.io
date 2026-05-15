@@ -1,760 +1,671 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Laastras — Leadership as a Service Trade System</title>
-<meta content="Laastras reforms trade for fairness, equality and financial security. It is a tech venture that applies the LaaS (Leadership as a Service) philosophy. GetClientele · eCard Wireless · Jobperon · Aori." name="description"/>
-<meta content="Laastras - Leadership as a Service" property="og:title"/>
-<meta content="https://mwambaro.github.io" property="og:url"/>
-<meta content="Homocracy, DPI and the Trade Postulate" property="og:description"/>
-<meta content="https://1drv.ms/i/c/2e6ead2d38e36d5a/IQRzEsiSkv1vSKze2TRrmp_iAWuTm8TcED-ly3ucisFZF7Q?width=3148&amp;height=2118" property="og:image"/>
-<link href="assets/favicon.svg" rel="shortcut icon"/>
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- AOS animations -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-<style>
-    :root{--indigo:#4f46e5}
-    body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#fbfbff,#f3f4ff);}
-    .glass{background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
-    .media-card{width:100%;height:100%;object-fit:cover;border-radius:0.75rem}
-    .media-max{max-height:60vh}
-    @media(min-width:1024px){.media-max{max-height:50vh}} 
-    .read-more-content{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease;opacity:0}
-    .read-more-content.open{opacity:1;max-height:1200px}
-    .hero-media{border-radius:1rem;box-shadow:0 10px 40px rgba(15,23,42,.08)}
-
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
-    /* Fullscreen overlay styles */
-    #fullscreenOverlay{
-     position:fixed;top:0;left:0;width:100%;height:100%;
-     background:rgba(0,0,0,0.85);display:none;align-items:center;
-     justify-content:center;z-index:9999;padding:20px;
-    }
-    #fullscreenOverlay img{
-     max-width:90%;max-height:90%;border-radius:1rem;box-shadow:0 0 25px rgba(0,0,0,0.5);
-    }
-    #closeFullscreen{
-     position:absolute;top:20px;right:20px;background:#fff;
-     padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;
-    }
-
-    /* Content box inside overlay for forms */
-    #overlayContent{
-      max-width:900px;width:100%;max-height:90%;overflow:auto;border-radius:1rem;
-      box-shadow:0 25px 60px rgba(0,0,0,0.6);
-    }
-  
-    /* ===== Dark Mode Theme ===== */
-    .dark body{
-      background: #0f172a !important;
-      color: #f1f5f9 !important;
-    }
-    .dark header{
-      background: rgba(15,23,42,0.85) !important;
-      border-color: rgba(255,255,255,0.08) !important;
-    }
-    .dark footer{
-      background: #0f172a !important;
-    }
-    .dark .bg-white{
-      background-color: #1e293b !important;
-    }
-    .dark .glass{
-      background: rgba(30,41,59,0.6) !important;
-    }
-    .dark .text-slate-600,
-    .dark .text-slate-500,
-    .dark .text-slate-700{
-      color: #cbd5e1 !important;
-    }
-    .dark .border{
-      border-color: rgba(255,255,255,0.08) !important;
-    }
-    .dark input,
-    .dark textarea{
-      background-color: #0f172a !important;
-      color: #f1f5f9 !important;
-      border-color: rgba(255,255,255,0.15) !important;
-    }
-    .dark #mobileMenu{
-      background: #0f172a !important;
-    }
-
-
-    /* ===== Improved Dark Contrast for HOW Section ===== */
-    .dark #how{
-      background: #111827 !important; /* slightly lighter than main body */
-    }
-    .dark #how .bg-white{
-      background-color: #0b1220 !important; /* darker than section for card emphasis */
-    }
-
-</style>
-</head>
-<body class="text-slate-800 leading-relaxed">
-<div class="flex" id="fullscreenOverlay">
-<div class="text-sm" id="closeFullscreen">Close ✕</div>
-<!-- Image element -->
-<img alt="Fullscreen" class="hidden" id="fullscreenImage" src=""/>
-<!-- Content container (forms, html content) -->
-<div class="hidden bg-white p-6 sm:p-10" id="overlayContent"></div>
-</div>
-<!-- NAV -->
-<header class="sticky top-0 z-40 bg-white/75 backdrop-blur-sm border-b">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<a class="flex items-center gap-3" href="#">
-<img alt="Laastras" class="w-12 h-12 rounded-md shadow-sm object-cover" src="assets/logo.png"/>
-<div class="leading-tight">
-<div class="font-extrabold text-lg">Laastras</div>
-<div class="text-xs text-slate-500 -mt-0.5">Leadership as a Service · Homocracy</div>
-</div>
-</a>
-<nav class="hidden md:flex items-center gap-6 text-sm">
-<a class="hover:text-[var(--indigo)]" href="#mission">Mission</a>
-<a class="hover:text-[var(--indigo)]" href="#brands">Brands</a>
-<a class="hover:text-[var(--indigo)]" href="#how">How it works</a>
-<a href="#careers">Careers</a><a class="inline-flex items-center px-3 py-2 rounded-md bg-[var(--indigo)] text-white shadow" href="#contact">Contact</a>
-<button id="themeToggle" class="ml-2 px-3 py-2 rounded-md border text-sm">
-  🌙 Dark
-</button>
-
-</nav>
-<div class="md:hidden">
-<button aria-label="open menu" class="p-2 rounded-md hover:bg-slate-100" id="burger">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-</div>
-<div class="hidden md:hidden border-t bg-white/95" id="mobileMenu">
-<div class="px-4 py-4 space-y-2">
-<a class="block py-2" href="#mission">Mission</a>
-<a class="block py-2" href="#brands">Brands</a>
-<a class="block py-2" href="#how">How it works</a>
-<a class="block py-2 text-[var(--indigo)]" href="#contact">Contact</a>
-<a class="block py-2" href="#careers">Careers</a>
-<div class="pt-2">
-  <button id="themeToggleMobile" class="w-full px-3 py-2 rounded-md border text-sm">
-    🌙 Dark Mode
-  </button>
-</div>
-
-</div>
-</div>
-</header>
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- HERO -->
-<section class="grid lg:grid-cols-2 gap-10 items-center py-16">
-<div class="space-y-6" data-aos="fade-right">
-<h1 class="text-4xl sm:text-5xl font-extrabold">Laastras — Building Homocracy with Digital Public Infrastructure</h1>
-<p class="text-lg text-slate-600">We redesign governance so every human is a shareholder, every resource is shared, and leadership is delivered as a service via DPI and trustworthy data governance.</p>
-<div class="flex gap-3">
-<a class="inline-flex items-center gap-2 px-5 py-3 bg-[var(--indigo)] text-white rounded-lg shadow hover:bg-indigo-700" href="#brands">Explore brands</a>
-<a class="inline-flex items-center gap-2 px-4 py-3 border rounded-lg" href="#how">How it works</a>
-</div>
-<div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-<div class="p-4 bg-white rounded-lg shadow-sm glass">
-<p class="text-xs text-slate-500">Founder</p>
-<p class="font-semibold">Obed-Edom Nkezabahizi</p>
-</div>
-<div class="p-4 bg-white rounded-lg shadow-sm glass">
-<p class="text-xs text-slate-500">Email</p>
-<p class="font-semibold"><a href="mailto:onkezabahizi@gmail.com">onkezabahizi@gmail.com</a></p>
-</div>
-<div class="p-4 bg-white rounded-lg shadow-sm glass">
-<p class="text-xs text-slate-500">Portfolio</p>
-<p class="font-semibold"><a href="https://mwambaro.github.io">mwambaro.github.io</a></p>
-</div>
-</div>
-</div>
-<div class="relative" data-aos="fade-left">
-<div class="hero-media bg-gradient-to-tr from-white to-indigo-50 p-2 rounded-2xl">
-<img alt="Homocracy through DPI" class="media-card clickable" src="assets/homocracy-through-dpi.jpg"/>
-</div>
-</div>
-</section>
-<!-- MISSION -->
-<section class="py-12" id="mission">
-<div class="mx-auto max-w-4xl text-center" data-aos="fade-up">
-<h2 class="text-3xl font-bold">Mission</h2>
-<p class="mt-4 text-slate-600">Laastras reforms trade through Services Exchange and Virtual Currency, enabling fairness, financial security, and inclusivity. We operationalize Homocracy: an immutable constitution, shared planetary resources, and Leadership as a Service.</p>
-<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-<div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
-<h4 class="font-semibold">Sovereignty</h4>
-<p class="text-sm text-slate-600 mt-2">Each person receives a guaranteed Self-Contained Personal Space (SCoPS).</p>
-</div>
-<div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
-<h4 class="font-semibold">Trade-First</h4>
-<p class="text-sm text-slate-600 mt-2">Interactions outside SCoPS are voluntary trade—no coercion, only exchange.</p>
-</div>
-<div class="p-6 bg-white rounded-lg shadow hover:shadow-lg">
-<h4 class="font-semibold">Digital Backbone</h4>
-<p class="text-sm text-slate-600 mt-2">DPI and DG provide transparency, accountability and real-time delivery.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- BRANDS PART 1 -->
-<section class="py-12" id="brands">
-<div class="max-w-6xl mx-auto">
-<div class="text-center" data-aos="zoom-in">
-    <h3 class="text-3xl font-bold">The Laastras Brands</h3>
-    <p class="mt-3 text-slate-600">
-        <span style="text-decoration-line: underline; text-decoration-style: double; text-decoration-color:blue;">
-            Jobperon
-        </span>, GetClientele, eCard Wireless, and Aori together operationalize Homocracy on the ground.
-    </p>
-</div>
-<div class="mt-8 grid gap-8 grid-cols-1 lg:grid-cols-2">
-<!-- Jobperon -->
-<article class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden" data-aos="fade-up" data-aos-delay="160">
-    <div class="lg:w-1/2 p-4 flex items-center justify-center">
-        <div class="w-full h-auto lg:h-full overflow-hidden rounded-xl shadow-inner flex flex-col items-center">
-            <img alt="Jobperon" class="media-card clickable" src="assets/Jobperon.png"/>
-            <br>
-            <img alt="Chaperon" class="media-card clickable" src="assets/Chaperon.png"/>
-        </div>
-    </div>
-    <div class="lg:w-1/2 p-4 flex flex-col justify-between">
-        <div>
-            <h4 class="text-2xl font-bold">Jobperon</h4>
-            <p class="text-slate-600 mt-3"><span style="text-decoration: underline;">Job Search Engine</span></p>
-            <p class="text-slate-600 mt-3">AI-powered job search engine built exclusively for jobs, designed to help people find the right opportunities faster through natural, conversational search. Instead of rigid filters and scattered job boards, Jobperon understands intent—connecting job seekers and employers with precision, inclusivity, and global reach. Our mission is simple: make job search smarter, fairer, and accessible to everyone, everywhere.
-            </p>
-            <p class="text-slate-600 mt-3"><span style="text-decoration: underline;">Chaperon Program</span></p>
-            <p class="text-slate-600 mt-3">Integrated into Jobperon as a social support platform that provides housing, training, meals, and job placement—participants reimburse via a percentage of salary, creating a sustainable loop.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                <li>Job training &amp; placements</li>
-                <li>Temporary housing &amp; meals</li>
-                <li>Income-sharing repayment model</li>
-            </ul>
-        </div>
-        <div class="mt-6 flex items-center gap-3">
-            <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="join-jobperon">Join Jobperon</a>
-            <a class="px-4 py-2 border rounded" href="#" id="support">Support</a>
-        </div>
-    </div>
-</article>
-<!-- GetClientele -->
-<article class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden" data-aos="fade-up">
-    <div class="lg:w-1/2 p-4 flex items-center justify-center">
-        <div class="w-full h-auto lg:h-full overflow-hidden rounded-xl shadow-inner flex flex-col items-center">
-            <img alt="GetClientele Navigation" class="media-card clickable" src="assets/GetClientele-navigation.png"/>
-            <br>
-            <img alt="GetClientele" class="media-card clickable" src="assets/GetClientele.jpg"/>
-        </div>
-    </div>
-    <div class="lg:w-1/2 p-4 flex flex-col justify-between">
-        <div>
-            <h4 class="text-2xl font-bold">GetClientele</h4>
-            <p class="text-slate-600 mt-3">AI-intensive App that maps Available Goods &amp; Services (AGAS) and directs shoppers to vendors, improving vendor visibility and fair customer distribution across marketplaces.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                <li>• AGAS cloud for vendors</li>
-                <li>• Real-time analytics and routing</li>
-                <li>• Boosts local vendor income</li>
-                <li>• 92% of transactions happen in-store—malls, marketplaces, city shops. So, GetClientele ensures goods & services <strong>delivered</strong> to vendors get real shopper visibility</li>
-                <li>• It paves the way for IFaSS (International Fair Social System), a core institution of LaaS (Homocracy) governance model</li>
-            </ul>
-            <p class="text-slate-600 mt-3">GetClientele supports hybrid indoor navigation on smartphones using BLE beacons, Wi‑Fi RTT, UWB, VLC lighting, AR/VPS vision, and magnetic sensing. These signals are fused with motion sensors to guide shoppers precisely inside malls, marketplaces, and city stores.
-            </p>
-        </div>
-        <div class="mt-6 flex items-center gap-3">
-            <a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="learn-more">Learn more</a>
-            <a class="px-4 py-2 border rounded" href="#" id="request-demo">Request demo</a>
-        </div>
-    </div>
-</article>
-<!-- eCard Wireless -->
-<article class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden" data-aos="fade-up" data-aos-delay="80">
-<div class="lg:w-1/2 p-4 flex items-center justify-center">
-<div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-<img alt="eCard Wireless" class="media-card clickable" src="assets/Laastras-hofi-agas-ioot.png"/>
-</div>
-</div>
-<div class="lg:w-1/2 p-4 flex flex-col justify-between">
-<div>
-<h4 class="text-2xl font-bold">eCard Wireless</h4>
-<p class="text-slate-600 mt-3">Provides high-speed public internet and a multi-purpose identity card that unifies ID, wallet, medical records, and official documents—backed by secure DPI integrations.</p>
-<ul class="mt-4 space-y-2 text-sm text-slate-700">
-<li>• Universal digital identity</li>
-<li>• High-speed WiFi &amp; telco partnerships</li>
-<li>• Immutable, secure records</li>
-</ul>
-</div>
-<div class="mt-6 flex items-center gap-3">
-<a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="see-integration">See integration</a>
-<a class="px-4 py-2 border rounded" href="#" id="partner-with-us">Partner with us</a>
-</div>
-</div>
-</article>
-<!-- Aori -->
-<article class="p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row-reverse overflow-hidden" data-aos="fade-up" data-aos-delay="240">
-<div class="lg:w-1/2 p-4 flex items-center justify-center">
-<div class="w-full h-56 lg:h-full overflow-hidden rounded-xl shadow-inner">
-<img alt="Aori - Acquire or Integrate" class="media-card clickable" src="assets/Aori.png"/>
-</div>
-</div>
-<div class="lg:w-1/2 p-4 flex flex-col justify-between">
-<div>
-<h4 class="text-2xl font-bold">Aori (Acquire or Integrate)</h4>
-<p class="text-slate-600 mt-3">Aori brings together lands, corporate services and public infrastructure into a shared conglomerate under Morshux, making every person a stakeholder in planetary resources.</p>
-<ul class="mt-4 space-y-2 text-sm text-slate-700">
-<li>• Resource integration &amp; governance</li>
-<li>• Corporate and citizen partnership</li>
-<li>• Equitable shareholding model</li>
-</ul>
-</div>
-<div class="mt-6 flex items-center gap-3">
-<a class="px-4 py-2 bg-[var(--indigo)] text-white rounded" href="#" id="learn-about-aori">Learn about Aori</a>
-<a class="px-4 py-2 border rounded" href="#" id="contribute-resources">Contribute resources</a>
-</div>
-</div>
-</article>
-</div>
-</div>
-</section>
-<!-- HOW IT WORKS -->
-<section class="py-12 bg-gradient-to-b from-white to-indigo-50" id="how">
-<div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-<h3 class="text-3xl font-bold">How Laastras Operates</h3>
-<p class="mt-4 text-slate-600">We transform raw planetary resources (Shares) into SCoPS entitlements via the SCoSH-CTP chain. DPI enables transparency and DG ensures trust—while Services Exchange and Virtual Currency power voluntary trade.</p>
-<div class="hero-media bg-gradient-to-tr from-white to-indigo-50 p-2 rounded-2xl">
-  <img alt="Laastras - Theory of Change" class="media-card clickable" src="assets/Laastras-Theory-of-Change.jpg"/>
-</div>
-<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="p-6 bg-white rounded-lg shadow">
-<h5 class="font-semibold">RRMI</h5>
-<p class="text-sm text-slate-600 mt-2">Raw Resources Management Institution: inventories and protects planetary resources.</p>
-</div>
-<div class="p-6 bg-white rounded-lg shadow">
-<h5 class="font-semibold">TRMI</h5>
-<p class="text-sm text-slate-600 mt-2">Transformation &amp; Production: Converts Shares into consumables under Morshux oversight.</p>
-</div>
-<div class="p-6 bg-white rounded-lg shadow">
-<h5 class="font-semibold">IFaSS</h5>
-<p class="text-sm text-slate-600 mt-2">International Fair Social System: Ensures delivery of consumables to every individual.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- CALL TO ACTION -->
-
-<section class="py-12" id="careers">
-<div class="max-w-3xl mx-auto text-center bg-white shadow-xl rounded-2xl p-8" data-aos="fade-up">
-<h3 class="text-3xl font-bold mb-4">Careers at Laastras</h3>
-<p class="text-slate-600 mb-6">Join us in building Homocracy and transforming global trade through Digital Public Infrastructure.</p>
-<div class="flex flex-col items-center space-y-4">
-<div class="flex items-center gap-3 text-lg">
-<span>🚀</span> <span>Innovative mission-driven culture</span>
-</div>
-<div class="flex items-center gap-3 text-lg">
-<span>🌍</span> <span>Global impact and inclusive vision</span>
-</div>
-<div class="flex items-center gap-3 text-lg">
-<span>💼</span> <span>Early leadership opportunities</span>
-</div>
-</div>
-<div class="mt-8">
-<a class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow hover:bg-indigo-700" href="cofounder_job.html">
-      Co-Founder →
-    </a>
-</div>
-</div>
-</section>
-<section class="py-12">
-<div class="max-w-3xl mx-auto text-center" data-aos="zoom-in">
-<h3 class="text-2xl font-bold">Get Involved</h3>
-<p class="mt-4 text-slate-600">Governments, NGOs, investors and technologists—join our pilot programs. Help us build a fairer global trade system.</p>
-<div class="mt-6 flex justify-center gap-4">
-<a class="px-6 py-3 bg-[var(--indigo)] text-white rounded shadow" href="#contact" id="contact-us">Contact us</a>
-<a class="px-6 py-3 border rounded" href="#" id="request-whitepaper">Request whitepaper</a>
-</div>
-</div>
-</section>
-<!-- FasterCapital incubation -->
-<section class="py-12">
-<div class="max-w-3xl mx-auto text-center" data-aos="zoom-in">
-        Laastras has been accepted into the EquityPilot program of <a href="https://www.fastercapital.com" style="color: blue; text-decoration: underline;">FasterCapital</a> and is seeking a capital of $500,000
-      </div>
-</section>
-<!-- FOOTER / CONTACT -->
-<footer class="py-12" id="contact">
-<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="space-y-4">
-<img alt="Laastras" class="w-24" src="assets/logo.png"/>
-<p class="text-slate-600">Laastras — Leadership as a Service. Building Homocracy with Digital Public Infrastructure.</p>
-</div>
-<div>
-<h5 class="font-semibold">Contact</h5>
-<ul class="mt-3 text-sm text-slate-600 space-y-2">
-<li>Email: <a class="text-[var(--indigo)]" href="mailto:onkezabahizi@gmail.com">onkezabahizi@gmail.com</a></li>
-<li>Portfolio: <a class="text-[var(--indigo)]" href="https://mwambaro.github.io" target="_blank">mwambaro.github.io</a></li>
-<li>LinkedIn: <a class="text-[var(--indigo)]" href="https://www.linkedin.com/company/laastras" target="_blank">Laastras</a></li>
-</ul>
-</div>
-<div>
-    <h5 class="font-semibold">Subscribe</h5>
-    <p class="text-sm text-slate-600 mt-2">Get updates about pilots, whitepapers and partnership opportunities.</p>
-    <form action="https://formsubmit.co/onkezabahizi@gmail.com" class="mt-4 flex flex-wrap gap-2" method="POST">
-        <input class="flex-1 px-3 py-2 border rounded" name="email" placeholder="you@example.com" required="" type="email"/>
-        <button class="w-full sm:w-auto mx-auto sm:mx-0 px-4 py-2 bg-[var(--indigo)] text-white rounded">Subscribe</button>
-    </form>
-</div>
-</div>
-<div class="max-w-7xl mx-auto mt-10 text-center text-xs text-slate-500">
-        © Laastras · Homocracy · Built by Obed-Edom Nkezabahizi
-      </div>
-</footer>
-</main>
-<!-- Scripts -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 700, once: true });
-    document.getElementById('burger').addEventListener('click', function(){
-      const m = document.getElementById('mobileMenu'); m.classList.toggle('hidden');
-    });
-    // Auto-close mobile menu when clicking any link inside it
-    document.querySelectorAll('#mobileMenu a').forEach(link => {
-      link.addEventListener('click', () => {
-        const menu = document.getElementById('mobileMenu');
-        if (!menu.classList.contains('hidden')) {
-          menu.classList.add('hidden');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Laastras builds an integrated platform ecosystem for one job, one e-card, and a dignified life." />
+  <title>Laastras | One job. One e-card. Dignified Life</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Inter", "ui-sans-serif", "system-ui"],
+            body: ["Inter", "ui-sans-serif", "system-ui"]
+          },
+          colors: {
+            ink: "#10151f",
+            steel: "#243447",
+            ember: "#f05a28",
+            teal: "#00a6a6",
+            sun: "#ffc857",
+            leaf: "#4caf50",
+            royal: "#3851d0"
+          },
+          boxShadow: {
+            hard: "10px 10px 0 rgba(16, 21, 31, 0.18)",
+            glow: "0 24px 80px rgba(56, 81, 208, 0.22)"
+          }
         }
-      });
-    });
-    document.querySelectorAll('.read-more-link').forEach(btn => btn.addEventListener('click', e => {
-      const next = e.target.nextElementSibling; if(!next) return; next.classList.toggle('open'); e.target.textContent = next.classList.contains('open') ? 'Read less' : 'Read more';
-    }));
-    function fitMedia(){
-      document.querySelectorAll('video.media-card, img.media-card').forEach(el => {
-        el.style.maxHeight = Math.min(window.innerHeight * 0.6, 720) + 'px';
-        el.style.width = '100%';
-      });
-    }
-    window.addEventListener('load', fitMedia); window.addEventListener('resize', fitMedia);
-
-const overlay = document.getElementById("fullscreenOverlay");
-const fullImg = document.getElementById("fullscreenImage");
-const closeBtn = document.getElementById("closeFullscreen");
-const overlayContent = document.getElementById("overlayContent");
-
-/* Utility: show overlay with image */
-function showOverlayWithImage(src, alt=''){
-  fullImg.src = src;
-  fullImg.alt = alt;
-  fullImg.classList.remove('hidden');
-  overlayContent.classList.add('hidden');
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-/* Utility: show overlay with HTML content (forms, extra markup) */
-function showOverlayWithContent(html){
-  overlayContent.innerHTML = html;
-  overlayContent.classList.remove('hidden');
-  fullImg.classList.add('hidden');
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  // re-attach form submit prevention to show a thank-you state inline if desired (FormSubmit will redirect by default)
-  const forms = overlayContent.querySelectorAll('form');
-  forms.forEach(f=>{
-    f.addEventListener('submit', (ev)=>{
-      // Let the browser submit to FormSubmit; optionally we could show inline feedback.
-      // Do not preventDefault so FormSubmit receives the POST.
-      // but show a subtle "Submitting..." state:
-      const btn = f.querySelector('button[type="submit"], button');
-      if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); btn.textContent = 'Submitting…'; }
-    });
-  });
-}
-
-/* Close handlers */
-closeBtn.addEventListener("click", ()=> {
-  overlay.style.display = 'none';
-  document.body.style.overflow = '';
-});
-overlay.addEventListener("click", e=>{ 
-  if(e.target===overlay){
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-});
-
-/* Make images clickable and open overlay */
-document.querySelectorAll(".clickable").forEach(img=>{
-  img.style.cursor='pointer';
-  img.addEventListener("click", ()=> showOverlayWithImage(img.src, img.alt||''));
-});
-
-/* Form templates - Tailwind-styled and responsive
-   Forms 1-10 according to your spec.
-*/
-function formHTML({subject='', visibleSubject=false, includeMessage=false, title='Get in touch'}) {
-  // subject: string for hidden subject value
-  // visibleSubject: if true, render a visible subject input
-  // includeMessage: render textarea
-  return `
-    <div class="max-w-xl mx-auto">
-      <div class="flex items-center justify-between mb-6">
-        <h3 class="text-2xl font-bold">${title}</h3>
-        <button id="overlayCloseTop" class="text-sm text-slate-600 hover:text-black">Close</button>
-      </div>
-
-      <form action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST" class="space-y-4 bg-white">
-        ${ visibleSubject ? `<input name="subject" placeholder="Subject" required class="w-full p-3 border rounded shadow-sm" />` : `<input type="hidden" name="subject" value="${escapeHtml(subject)}" />` }
-        <input name="full_name" placeholder="Full name" required class="w-full p-3 border rounded shadow-sm" />
-        <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded shadow-sm" />
-        <input name="phone_number" placeholder="Full phone number (WhatsApp preferred)" required class="w-full p-3 border rounded shadow-sm" />
-        ${ includeMessage ? `<textarea name="message" rows="4" placeholder="Message" required class="w-full p-3 border rounded shadow-sm"></textarea>` : '' }
-        <div class="flex gap-2">
-          <button type="submit" class="flex-1 px-4 py-3 bg-[var(--indigo)] text-white rounded font-semibold">Send</button>
-          <button type="button" id="cancelBtn" class="px-4 py-3 border rounded">Cancel</button>
-        </div>
-      </form>
-      <p class="text-xs text-slate-500 mt-3">We will never share your personal data. By submitting, you agree to be contacted regarding your request.</p>
-    </div>
-  `;
-}
-
-/* Simple escape helper to avoid injecting quotes into hidden inputs */
-function escapeHtml(str){
-  if(!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-/* Map link IDs to form configurations */
-const formsConfig = {
-  "learn-more": { subject: "Learn more about GetClientele", visibleSubject:false, includeMessage:false, title: "Learn more — GetClientele" },
-  "request-demo": { subject: "Request demo about GetClientele", visibleSubject:false, includeMessage:false, title: "Request a demo — GetClientele" },
-  "see-integration": { subject: "See how DPI integrations support eCard Wireless", visibleSubject:false, includeMessage:false, title: "DPI integration — eCard Wireless" },
-  "partner-with-us": { subject: "Partner with us to launch eCard Wireless infrastructure", visibleSubject:false, includeMessage:false, title: "Partner with us — eCard Wireless" },
-  "join-jobperon": { subject: "Join Jobperon as an Unemployed or Job Seeker", visibleSubject:false, includeMessage:false, title: "Join Jobperon" },
-  "support": { subject: "Support Jobperon through donations or other means", visibleSubject:false, includeMessage:false, title: "Support Jobperon" },
-  "learn-about-aori": { subject: "Learn more about Aori (Acquire or Integrate)", visibleSubject:false, includeMessage:false, title: "Learn about Aori" },
-  "contribute-resources": { subject: "Contribute resources to Aori Conglomerate", visibleSubject:false, includeMessage:false, title: "Contribute to Aori" },
-  "request-whitepaper": { subject: "Request whitepaper about Laastras mission", visibleSubject:false, includeMessage:false, title: "Request Whitepaper" },
-  /* contact-us requires visible subject and message textarea per spec */
-  "contact-us": { subject: "", visibleSubject:true, includeMessage:true, title: "Contact Laastras" }
-};
-
-/* Attach click handlers to each link if present */
-Object.keys(formsConfig).forEach(id => {
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.addEventListener('click', e => {
-    e.preventDefault();
-    const cfg = formsConfig[id];
-    const html = formHTML({ subject: cfg.subject, visibleSubject: cfg.visibleSubject, includeMessage: cfg.includeMessage, title: cfg.title });
-    showOverlayWithContent(html);
-
-    // attach close handlers inside overlay content (they are recreated each time)
-    setTimeout(()=> {
-      const closeTop = document.getElementById('overlayCloseTop');
-      const cancelBtn = document.getElementById('cancelBtn');
-      if(closeTop) closeTop.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
-      if(cancelBtn) cancelBtn.addEventListener('click', ()=> { overlay.style.display='none'; document.body.style.overflow=''; });
-    }, 50);
-  });
-});
-
-/* Ensure existing clickable images show cursor pointer (in case DOM content loads later) */
-document.addEventListener('DOMContentLoaded', ()=> {
-  document.querySelectorAll('.clickable').forEach(img => img.style.cursor = 'pointer');
-});
-
-
-    /* ===== Dark Mode Logic ===== */
-    const root = document.documentElement;
-    const toggleBtn = document.getElementById('themeToggle');
-    const toggleBtnMobile = document.getElementById('themeToggleMobile');
-    // TODO: If you ever put more links in the site, tweak this to apply theme on all links
-    //       by querying, not just one, but all of them at once (`document.querySelectorAll`) 
-    //       and iterate over them applying the theme parameter.
-    const link = document.querySelector('a[href="cofounder_job.html"]');
-
-    
-    /* Propagate theme to Co-Founder link via query parameter */
-    function updateCofounderLink(theme){
-      if(link){
-        link.href = "cofounder_job.html?theme=" + theme;
       }
-    }
-
-
-    function applyTheme(theme){
-      console.log("Theme to apply: " + theme);
-      updateCofounderLink(theme);
-      if(theme === 'dark'){
-        root.classList.add('dark');
-        if(toggleBtn) toggleBtn.textContent = '☀️ Light';
-        if(toggleBtnMobile) toggleBtnMobile.textContent = '☀️ Light Mode';
-      } else {
-        root.classList.remove('dark');
-        if(toggleBtn) toggleBtn.textContent = '🌙 Dark';
-        if(toggleBtnMobile) toggleBtnMobile.textContent = '🌙 Dark Mode';
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme){
-      console.log("Locally stored theme to apply: " + savedTheme);
-      updateCofounderLink(savedTheme);
-      applyTheme(savedTheme);
-    }
-
-    
-    /* Close mobile menu after theme toggle (small devices fix) */
-    function closeMobileMenuIfOpen(){
-      const menu = document.getElementById('mobileMenu');
-      if(menu && !menu.classList.contains('hidden')){
-        menu.classList.add('hidden');
-      }
-    }
-
-
-    function toggleTheme(){
-      const isDark = root.classList.contains('dark');
-      const newTheme = isDark ? 'light' : 'dark';
-      localStorage.setItem('theme', newTheme);
-      applyTheme(newTheme);
-      closeMobileMenuIfOpen();
-    }
-
-    if(toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
-    if(toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
-    // Failsafe. This code is not robust, furture-proof. updateCofounderLink above
-    // seems to fail to update the link in some cases, so we also add this direct listener 
-    // to ensure the theme is propagated on click. In the future, consider refactoring to 
-    // a more robust solution that doesn't rely on querying a single link by href.
-    if(link) link.addEventListener('click', () => {
-      const currentTheme = root.classList.contains('dark') ? 'dark' : 'light';
-      console.log("Cofounder link clicked. Current theme: " + currentTheme);
-      window.location = "cofounder_job.html?theme=" + currentTheme;
-    });
-
-
-    /* Accessibility tweak: close overlay on ESC */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape' && overlay.style.display === 'flex'){
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-});
+    };
   </script>
-<script>
-  // Helper: show inline error message directly beneath the field
-  function setError(field, message) {
-    clearError(field); // remove any existing message
-
-    const msg = document.createElement('div');
-    msg.className = 'error-msg text-red-600 text-sm mt-1';
-    msg.textContent = message;
-
-    // Insert directly after the field, ensuring correct placement
-    field.insertAdjacentElement('afterend', msg);
-
-    field.classList.add('border-red-500');
-  }
-
-  // Helper: clear inline error message for a specific field
-  function clearError(field) {
-    const next = field.nextElementSibling;
-    if (next && next.classList.contains('error-msg')) {
-      next.remove();
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #f7f8fb; color: #10151f; }
+    .no-radius, .no-radius * { border-radius: 0 !important; }
+    .checker {
+      background-image:
+        linear-gradient(90deg, rgba(16,21,31,.04) 1px, transparent 1px),
+        linear-gradient(rgba(16,21,31,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
-    field.classList.remove('border-red-500');
-  }
-
-
-  // Live inline validation
-  document.addEventListener('input', function (e) {
-    const f = e.target;
-    if (!f.form) return;
-
-    switch (f.name) {
-      case "full_name":
-        if (f.value.trim().length === 0) setError(f, "Full name is required.");
-        else clearError(f);
-        break;
-
-      case "email":
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value))
-          setError(f, "Enter a valid email address.");
-        else clearError(f);
-        break;
-
-      case "phone_number":
-        if (!/^\+[0-9]{8,15}$/.test(f.value))
-          setError(f, "Phone must start with + and contain 8–15 digits.");
-        else clearError(f);
-        break;
-
-      case "message":
-        if (f.value.trim().length === 0)
-          setError(f, "Message is required.");
-        else if (f.value.length > 3000)
-          setError(f, "Message cannot exceed 3000 characters.");
-        else clearError(f);
-        break;
+    .accent-slice {
+      clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
     }
-  });
+    .slide { display: none; }
+    .slide.active { display: grid; }
+    .pdf-open body { overflow: hidden; }
+    .nav-link.active { color: #f05a28; }
+    .pdf-page canvas { width: 100%; height: auto; box-shadow: 10px 10px 0 rgba(16, 21, 31, 0.12); background: white; }
+    .field-error { min-height: 1.25rem; }
+  </style>
+</head>
+<body class="no-radius font-body antialiased">
+  <header class="fixed inset-x-0 top-0 z-40 border-b-4 border-ink bg-white/95 shadow-lg backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3" aria-label="Laastras home">
+        <img src="assets/logo.png" alt="Laastras logo" class="h-11 w-auto" />
+      </a>
+      <button id="menuToggle" class="border-2 border-ink bg-sun px-3 py-2 text-sm font-black uppercase shadow-hard md:hidden" aria-expanded="false" aria-controls="mainNav">
+        Menu
+      </button>
+      <div id="mainNav" class="hidden absolute left-0 right-0 top-full border-b-4 border-ink bg-white p-4 shadow-xl md:static md:flex md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+        <div class="flex flex-col gap-3 text-sm font-black uppercase tracking-wide md:flex-row md:items-center md:gap-5">
+          <a class="nav-link hover:text-ember" href="#platforms" data-i18n="navPlatforms">Platforms</a>
+          <a class="nav-link hover:text-ember" href="#philosophy" data-i18n="navPhilosophy">Philosophy</a>
+          <a class="nav-link hover:text-ember" href="#institutions" data-i18n="navInstitutions">Institutions</a>
+          <a class="nav-link hover:text-ember" href="#community" data-i18n="navCommunity">Join Our Community</a>
+          <a class="nav-link hover:text-ember" href="#publications" data-i18n="navPublications">Our Publications</a>
+          <a class="nav-link border-2 border-ink bg-teal px-3 py-2 text-white shadow-hard hover:text-white" href="#subscribe" data-i18n="navSubscribe">Subscribe</a>
+          <div class="grid w-24 shrink-0 grid-cols-2 self-start border-2 border-ink bg-white shadow-hard md:self-auto" aria-label="Language switch">
+            <button type="button" class="lang-switch px-3 py-2 text-center font-black" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-switch border-l-2 border-ink px-3 py-2 text-center font-black" data-lang="fr" aria-pressed="false">FR</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
+  <main id="top" class="overflow-hidden pt-20">
+    <section class="checker relative min-h-[calc(100vh-5rem)] border-b-4 border-ink bg-white">
+      <div class="absolute right-0 top-0 h-32 w-1/2 bg-sun accent-slice sm:h-44"></div>
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.02fr_.98fr] lg:px-8 lg:py-20">
+        <div data-aos="fade-right">
+          <p class="mb-4 inline-block border-2 border-ink bg-ember px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-hard">Laastras</p>
+          <h1 class="max-w-4xl text-4xl font-black leading-tight text-ink sm:text-6xl lg:text-7xl">
+            <span data-i18n="heroTitle">One job. One e-card. Dignified Life</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-steel sm:text-xl" data-i18n="heroCopy">
+            Laastras fixes the current fragmented and uncertain economy in which one job and one e-card are not enough to get everything one needs to live with dignity.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#platforms" class="border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" data-i18n="explorePlatforms">Explore Platforms</a>
+            <a href="#community" class="border-2 border-ink bg-white px-6 py-3 font-black uppercase shadow-hard transition hover:-translate-y-1" data-i18n="joinCommunity">Join Community</a>
+          </div>
+        </div>
+        <div class="relative" data-aos="zoom-in" data-aos-delay="120">
+          <div class="absolute -left-4 -top-4 h-full w-full border-4 border-ink bg-teal"></div>
+          <img src="assets/description_intro.png" alt="Laastras ecosystem introduction" class="relative z-10 max-h-[70vh] w-full border-4 border-ink bg-white object-contain shadow-glow" />
+        </div>
+      </div>
+    </section>
 
-  // Submit-time validation
-  document.addEventListener('submit', function (e) {
-    const form = e.target;
-    const fields = form.querySelectorAll("input, textarea");
+    <section id="platforms" class="border-b-4 border-ink bg-ink py-20 text-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 grid gap-6">
+          <div class="text-center" data-aos="fade-up">
+            <p class="text-sm font-black uppercase tracking-[.25em] text-sun" data-i18n="sectionPlatforms">Platforms</p>
+            <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="platformsTitle">An ecosystem of five platforms</h2>
+          </div>
+          <div class="flex justify-center gap-3">
+            <button class="carousel-prev border-2 border-white bg-white px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Previous platform">Prev</button>
+            <button class="carousel-next border-2 border-white bg-sun px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Next platform">Next</button>
+          </div>
+        </div>
+        <div id="platformsCarousel" class="relative">
+          <article class="slide active grid-cols-1 gap-8 lg:grid-cols-[1.08fr_.92fr]" data-aos="fade-up">
+            <img src="assets/platforms_Jobperon.png" alt="Jobperon platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
+            <div class="border-4 border-white bg-white p-6 text-ink shadow-hard sm:p-8">
+              <span class="bg-ember px-3 py-1 text-sm font-black uppercase text-white">01</span>
+              <h3 class="mt-5 text-3xl font-black">Jobperon</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="jobperonText">An Artificial Intelligence-powered job search engine that makes job hunting natural. Describe the job you want and get curated results displayed.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[1.08fr_.92fr]">
+            <img src="assets/platforms_Chaperon.png" alt="Chaperon platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
+            <div class="border-4 border-white bg-teal p-6 text-white shadow-hard sm:p-8">
+              <span class="bg-ink px-3 py-1 text-sm font-black uppercase text-white">02</span>
+              <h3 class="mt-5 text-3xl font-black">Chaperon</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="chaperonText">A social support system that uses Artificial Intelligence for job placement and adds housing, meals, allowance fees, and training. It is a social form of loaning.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[1.08fr_.92fr]">
+            <img src="assets/platforms_GetClientele.png" alt="GetClientele platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
+            <div class="border-4 border-white bg-sun p-6 text-ink shadow-hard sm:p-8">
+              <span class="bg-royal px-3 py-1 text-sm font-black uppercase text-white">03</span>
+              <h3 class="mt-5 text-3xl font-black">GetClientele</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="getClienteleText">An Artificial Intelligence-intensive clientele distribution platform that uses navigation technologies.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[1.08fr_.92fr]">
+            <img src="assets/platforms_eCard_Wireless.png" alt="eCard Wireless platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
+            <div class="border-4 border-white bg-royal p-6 text-white shadow-hard sm:p-8">
+              <span class="bg-sun px-3 py-1 text-sm font-black uppercase text-ink">04</span>
+              <h3 class="mt-5 text-3xl font-black">eCard Wireless</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="ecardText">A cloud infrastructure that ensures connectivity and delivers a multi-purpose e-card serving as wallet, identity document, passport, driver’s license, and unified access to official and social documents.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[1.08fr_.92fr]">
+            <img src="assets/platforms_AORI.png" alt="AORI platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
+            <div class="border-4 border-white bg-leaf p-6 text-white shadow-hard sm:p-8">
+              <span class="bg-ink px-3 py-1 text-sm font-black uppercase text-white">05</span>
+              <h3 class="mt-5 text-3xl font-black">AORI</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="aoriText">AORI uses mergers and acquisitions to merge or acquire companies, individual properties, and governmental services so they form one unified conglomerate in which one job is enough to get everything one needs to live with dignity.</p>
+            </div>
+          </article>
+        </div>
+        <div class="mt-8 flex justify-center gap-2" id="platformDots" aria-label="Platform carousel pagination"></div>
+      </div>
+    </section>
 
-    let valid = true;
+    <section id="philosophy" class="border-b-4 border-ink bg-white py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:px-8">
+        <div data-aos="fade-right">
+          <img src="assets/philosophy_Laastras_Theory_of_Change.jpg" alt="Laastras theory of change" class="h-full max-h-[75vh] min-h-[420px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
+        </div>
+        <div data-aos="fade-left">
+          <p class="text-sm font-black uppercase tracking-[.25em] text-royal" data-i18n="sectionPhilosophy">Philosophy</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-5xl">Laastras, LaaS, Homocracy</h2>
+          <p class="mt-5 text-lg leading-8 text-steel" data-i18n="philosophyCopy">
+            Laastras stands for Leadership as a Service Trade System. It is an application of LaaS, Leadership as a Service, operationalized by Homocracy, Governance by Equals.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="border-4 border-ink bg-sun p-5 shadow-hard">
+              <h3 class="text-xl font-black" data-i18n="morshuxTitle">Morshux</h3>
+              <p class="mt-3 leading-7" data-i18n="morshuxText">Management of Resources that Support Human Existence: a social and economic platform where one role yields Porshux.</p>
+            </div>
+            <div class="border-4 border-ink bg-teal p-5 text-white shadow-hard">
+              <h3 class="text-xl font-black" data-i18n="porshuxTitle">Porshux</h3>
+              <p class="mt-3 leading-7" data-i18n="porshuxText">Portion of Resources that Support Human Existence: everything an individual needs to live with dignity.</p>
+            </div>
+            <div class="border-4 border-ink bg-ember p-5 text-white shadow-hard">
+              <h3 class="text-xl font-black" data-i18n="serxTitle">SerX</h3>
+              <p class="mt-3 leading-7" data-i18n="serxText">Services Exchange: instead of using currency, it uses service as the means of exchange.</p>
+            </div>
+            <div class="border-4 border-ink bg-royal p-5 text-white shadow-hard">
+              <h3 class="text-xl font-black" data-i18n="vircuTitle">VirCu</h3>
+              <p class="mt-3 leading-7" data-i18n="vircuText">Virtual Currency: a form of trade using Decentralized Finance to let individuals pursue creativity on their Porshux and gain extra comfort. It complements SerX.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    fields.forEach(f => {
-      clearError(f); // clean previous messages
+    <section id="institutions" class="border-b-4 border-ink bg-[#eaf2ff] py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 grid gap-6">
+          <div class="text-center" data-aos="fade-up">
+            <p class="text-sm font-black uppercase tracking-[.25em] text-ember" data-i18n="sectionInstitutions">Institutions</p>
+            <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="institutionsTitle">Four institutions mirrored by the ecosystem</h2>
+          </div>
+          <div class="flex justify-center gap-3">
+            <button class="carousel-prev border-2 border-ink bg-white px-4 py-3 font-black shadow-hard" data-carousel="institutions" aria-label="Previous institution">Prev</button>
+            <button class="carousel-next border-2 border-ink bg-ember px-4 py-3 font-black text-white shadow-hard" data-carousel="institutions" aria-label="Next institution">Next</button>
+          </div>
+        </div>
+        <div id="institutionsCarousel">
+          <article class="slide active grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]" data-aos="fade-up">
+            <img src="assets/institutions_HDN.jpg" alt="Human Demography and Nutrition" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
+            <div class="border-4 border-ink bg-white p-6 shadow-hard sm:p-8">
+              <h3 class="text-3xl font-black" data-i18n="hdnTitle">HDN – Human Demography and Nutrition</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="hdnText">Mirrored by Jobperon and Chaperon, it inventories all humans as well as all life-supporting resources.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
+            <img src="assets/institutions_CTP.jpg" alt="Chain of Transformation and Production" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
+            <div class="border-4 border-ink bg-sun p-6 shadow-hard sm:p-8">
+              <h3 class="text-3xl font-black" data-i18n="ctpTitle">CTP – Chain of Transformation and Production</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="ctpText">Parallel to AORI, Acquire and Integrate, it makes sure life-supporting resources are transformed and produced into consumables.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
+            <img src="assets/institutions_WTSC.jpg" alt="World Trade System Consortium" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
+            <div class="border-4 border-ink bg-royal p-6 text-white shadow-hard sm:p-8">
+              <h3 class="text-3xl font-black" data-i18n="wtscTitle">WTSC – World Trade System Consortium</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="wtscText">Rooted in eCard Wireless, it synchronizes all other institutions, provides legal protection, digitizes everything, and maintains the trade-centered Constitution.</p>
+            </div>
+          </article>
+          <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
+            <img src="assets/institutions_IFaSS.jpg" alt="International Fair Social System" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
+            <div class="border-4 border-ink bg-teal p-6 text-white shadow-hard sm:p-8">
+              <h3 class="text-3xl font-black" data-i18n="ifassTitle">IFaSS – International Fair Social System</h3>
+              <p class="mt-4 text-lg leading-8" data-i18n="ifassText">Emerging from GetClientele, it makes sure every individual gets all they need delivered to them.</p>
+            </div>
+          </article>
+        </div>
+        <div class="mt-8 flex justify-center gap-2" id="institutionDots" aria-label="Institution carousel pagination"></div>
+      </div>
+    </section>
 
-      if (f.name === "full_name" && f.value.trim().length === 0) {
-        setError(f, "Full name is required.");
-        valid = false;
+    <section id="community" class="border-b-4 border-ink bg-white py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
+        <div data-aos="fade-right">
+          <p class="text-sm font-black uppercase tracking-[.25em] text-teal" data-i18n="sectionCommunity">Join Our Community</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="communityTitle">Volunteers, investors, philanthropists, and public leaders belong here.</h2>
+          <p class="mt-5 text-lg leading-8 text-steel" data-i18n="communityCopy">Tell us how you want to help build a dignified-life economy around Laastras.</p>
+        </div>
+        <form class="validated-form border-4 border-ink bg-[#f4fbf7] p-6 shadow-hard sm:p-8" action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST" data-aos="fade-left" novalidate>
+          <input type="hidden" name="_subject" value="Laastras Community Request" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="font-bold"><span data-i18n="fullName">Full name</span>
+              <input required minlength="2" name="Full Name" data-label="Full name" class="mt-2 w-full border-2 border-ink bg-white px-4 py-3 outline-none focus:bg-sun/20" autocomplete="name" aria-describedby="fullNameError" />
+              <span id="fullNameError" class="field-error mt-1 block text-sm font-black text-ember" data-error-for="Full Name"></span>
+            </label>
+            <label class="font-bold"><span>Email</span>
+              <input required type="email" name="Email" data-label="Email" class="mt-2 w-full border-2 border-ink bg-white px-4 py-3 outline-none focus:bg-sun/20" autocomplete="email" aria-describedby="communityEmailError" />
+              <span id="communityEmailError" class="field-error mt-1 block text-sm font-black text-ember" data-error-for="Email"></span>
+            </label>
+            <label class="font-bold sm:col-span-2"><span data-i18n="whatsapp">WhatsApp (Full Phone Number)</span>
+              <input required name="WhatsApp" data-label="WhatsApp" pattern="^\+[1-9]\d{7,14}$" class="mt-2 w-full border-2 border-ink bg-white px-4 py-3 outline-none focus:bg-sun/20" inputmode="tel" autocomplete="tel" placeholder="+256700000000" aria-describedby="whatsappError" />
+              <span id="whatsappError" class="field-error mt-1 block text-sm font-black text-ember" data-error-for="WhatsApp"></span>
+            </label>
+            <label class="font-bold sm:col-span-2"><span data-i18n="message">Message</span>
+              <textarea required minlength="10" name="Message" data-label="Message" rows="5" class="mt-2 w-full border-2 border-ink bg-white px-4 py-3 outline-none focus:bg-sun/20" aria-describedby="messageError"></textarea>
+              <span id="messageError" class="field-error mt-1 block text-sm font-black text-ember" data-error-for="Message"></span>
+            </label>
+          </div>
+          <button class="mt-6 border-2 border-ink bg-ember px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" type="submit" data-i18n="sendMessage">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="publications" class="border-b-4 border-ink bg-ink py-20 text-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div data-aos="fade-up">
+          <p class="text-sm font-black uppercase tracking-[.25em] text-sun" data-i18n="sectionPublications">Our Publications</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="publicationsTitle">Read Laastras publications in the browser</h2>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <button class="pdf-card border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/Homocracy_and_Digital_Public_Infrastructure.pdf" data-title="Homocracy and Digital Public Infrastructure">
+            <span class="text-sm font-black uppercase text-ember">PDF</span>
+            <h3 class="mt-3 text-2xl font-black">Homocracy and Digital Public Infrastructure</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-sun p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/World_Federal_Government_Constitution.pdf" data-title="World Federal Government Constitution">
+            <span class="text-sm font-black uppercase text-royal">PDF</span>
+            <h3 class="mt-3 text-2xl font-black">World Federal Government Constitution</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-teal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 1">
+            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <h3 class="mt-3 text-2xl font-black">Comprehension Excerpts on LaaS/Homocracy - Volume 1</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-royal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 2">
+            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <h3 class="mt-3 text-2xl font-black">Comprehension Excerpts on LaaS/Homocracy - Volume 2</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-ember p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Laastras_Pitch_Deck.pdf" data-title="Laastras Pitch Deck">
+            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <h3 class="mt-3 text-2xl font-black">Laastras Pitch Deck</h3>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe" class="checker bg-white py-20">
+      <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8" data-aos="zoom-in">
+        <p class="text-sm font-black uppercase tracking-[.25em] text-ember" data-i18n="sectionSubscribe">Subscribe to News</p>
+        <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="subscribeTitle">Subscribe to latest News</h2>
+        <form class="validated-form mt-8 grid gap-4 border-4 border-ink bg-white p-5 shadow-hard sm:grid-cols-[1fr_auto]" action="https://formsubmit.co/onkezabahizi@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="Subscription" value="Email Below" />
+          <input type="hidden" name="_subject" value="Laastras News Subscription" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div>
+            <input required type="email" name="Email" data-label="Email" class="w-full min-w-0 border-2 border-ink px-4 py-3 text-left outline-none focus:bg-sun/20" placeholder="email@example.com" autocomplete="email" aria-describedby="subscribeEmailError" />
+            <span id="subscribeEmailError" class="field-error mt-1 block text-left text-sm font-black text-ember" data-error-for="Email"></span>
+          </div>
+          <button class="border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" type="submit" data-i18n="subscribeButton">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-4 border-ink bg-ink px-4 py-8 text-center text-white">
+    <p class="font-bold">&copy; <span id="year"></span> Laastras. <span data-i18n="heroTitle">One job. One e-card. Dignified Life</span>.</p>
+  </footer>
+
+  <div id="pdfViewer" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#10151f] text-white">
+    <div class="sticky top-0 z-10 border-b-4 border-white bg-ink px-4 py-4 shadow-xl">
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 id="pdfTitle" class="text-xl font-black"></h2>
+        <div class="flex flex-wrap gap-2">
+          <button id="zoomOut" class="border-2 border-white bg-white px-3 py-2 font-black text-ink">-</button>
+          <button id="zoomIn" class="border-2 border-white bg-sun px-3 py-2 font-black text-ink">+</button>
+          <button id="closePdfTop" class="border-2 border-white bg-ember px-4 py-2 font-black text-white" data-i18n="backToSite">Back to site</button>
+        </div>
+      </div>
+    </div>
+    <div id="pdfStatus" class="mx-auto max-w-6xl px-4 py-6 text-lg font-bold">Loading...</div>
+    <div id="pdfPages" class="pdf-page mx-auto grid max-w-5xl gap-8 px-4 pb-28"></div>
+    <button id="closePdfFloat" class="fixed bottom-5 right-5 border-2 border-white bg-sun px-5 py-4 font-black uppercase text-ink shadow-hard" data-i18n="backToSite">Back to site</button>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    const translations = {
+      en: {
+        navPlatforms: "Platforms",
+        navPhilosophy: "Philosophy",
+        navInstitutions: "Institutions",
+        navCommunity: "Join Our Community",
+        navPublications: "Our Publications",
+        navSubscribe: "Subscribe",
+        heroTitle: "One job. One e-card. Dignified Life",
+        heroCopy: "Laastras fixes the current fragmented and uncertain economy in which one job and one e-card are not enough to get everything one needs to live with dignity.",
+        explorePlatforms: "Explore Platforms",
+        joinCommunity: "Join Community",
+        sectionPlatforms: "Platforms",
+        platformsTitle: "An ecosystem of five platforms",
+        jobperonText: "An Artificial Intelligence-powered job search engine that makes job hunting natural. Describe the job you want and get curated results displayed.",
+        chaperonText: "A social support system that uses Artificial Intelligence for job placement and adds housing, meals, allowance fees, and training. It is a social form of loaning.",
+        getClienteleText: "An Artificial Intelligence-intensive clientele distribution platform that uses navigation technologies.",
+        ecardText: "A cloud infrastructure that ensures connectivity and delivers a multi-purpose e-card serving as wallet, identity document, passport, driver’s license, and unified access to official and social documents.",
+        aoriText: "AORI uses mergers and acquisitions to merge or acquire companies, individual properties, and governmental services so they form one unified conglomerate in which one job is enough to get everything one needs to live with dignity.",
+        sectionPhilosophy: "Philosophy",
+        philosophyCopy: "Laastras stands for Leadership as a Service Trade System. It is an application of LaaS, Leadership as a Service, operationalized by Homocracy, Governance by Equals.",
+        morshuxTitle: "Morshux",
+        morshuxText: "Management of Resources that Support Human Existence: a social and economic platform where one role yields Porshux.",
+        porshuxTitle: "Porshux",
+        porshuxText: "Portion of Resources that Support Human Existence: everything an individual needs to live with dignity.",
+        serxTitle: "SerX",
+        serxText: "Services Exchange: instead of using currency, it uses service as the means of exchange.",
+        vircuTitle: "VirCu",
+        vircuText: "Virtual Currency: a form of trade using Decentralized Finance to let individuals pursue creativity on their Porshux and gain extra comfort. It complements SerX.",
+        sectionInstitutions: "Institutions",
+        institutionsTitle: "Four institutions mirrored by the ecosystem",
+        hdnTitle: "HDN - Human Demography and Nutrition",
+        hdnText: "Mirrored by Jobperon and Chaperon, it inventories all humans as well as all life-supporting resources.",
+        ctpTitle: "CTP - Chain of Transformation and Production",
+        ctpText: "Parallel to AORI, Acquire and Integrate, it makes sure life-supporting resources are transformed and produced into consumables.",
+        wtscTitle: "WTSC - World Trade System Consortium",
+        wtscText: "Rooted in eCard Wireless, it synchronizes all other institutions, provides legal protection, digitizes everything, and maintains the trade-centered Constitution.",
+        ifassTitle: "IFaSS - International Fair Social System",
+        ifassText: "Emerging from GetClientele, it makes sure every individual gets all they need delivered to them.",
+        sectionCommunity: "Join Our Community",
+        communityTitle: "Volunteers, investors, philanthropists, and public leaders belong here.",
+        communityCopy: "Tell us how you want to help build a dignified-life economy around Laastras.",
+        fullName: "Full name",
+        whatsapp: "WhatsApp (Full Phone Number)",
+        message: "Message",
+        sendMessage: "Send Message",
+        sectionPublications: "Our Publications",
+        publicationsTitle: "Read Laastras publications in the browser",
+        sectionSubscribe: "Subscribe to News",
+        subscribeTitle: "Subscribe to latest News",
+        subscribeButton: "Subscribe",
+        backToSite: "Back to site",
+        requiredError: "This field is required.",
+        emailError: "Enter a valid email address.",
+        phoneError: "Use international format, for example +256700000000.",
+        minLengthError: "Please enter at least {min} characters."
+      },
+      fr: {
+        navPlatforms: "Plateformes",
+        navPhilosophy: "Philosophie",
+        navInstitutions: "Institutions",
+        navCommunity: "Rejoindre la communauté",
+        navPublications: "Nos publications",
+        navSubscribe: "S'abonner",
+        heroTitle: "Un emploi. Une carte électronique. Une vie de dignité",
+        heroCopy: "Laastras corrige l'économie actuelle, fragmentée et incertaine, dans laquelle un seul emploi et une seule carte électronique ne suffisent pas pour obtenir tout ce dont on a besoin pour vivre dans la dignité.",
+        explorePlatforms: "Explorer les plateformes",
+        joinCommunity: "Rejoindre la communauté",
+        sectionPlatforms: "Plateformes",
+        platformsTitle: "Un écosystème de cinq plateformes",
+        jobperonText: "Un moteur de recherche d'emploi alimenté par l'Intelligence Artificielle qui rend la recherche naturelle. Décrivez l'emploi souhaité et obtenez des résultats organisés.",
+        chaperonText: "Un système de soutien social qui utilise l'Intelligence Artificielle pour le placement professionnel et ajoute logement, repas, frais d'allocation et formation. C'est une forme sociale de prêt.",
+        getClienteleText: "Une distribution de clientèle intensive en Intelligence Artificielle qui utilise des technologies de navigation.",
+        ecardText: "Une infrastructure cloud qui assure la connectivité et fournit une carte électronique polyvalente servant de portefeuille, pièce d'identité, passeport, permis de conduire et accès unifié aux documents officiels et sociaux.",
+        aoriText: "AORI utilise les fusions et acquisitions pour fusionner ou acquérir des entreprises, des propriétés individuelles et des services gouvernementaux afin de former un conglomérat unifié où un seul emploi suffit à obtenir tout ce dont on a besoin pour vivre dans la dignité.",
+        sectionPhilosophy: "Philosophie",
+        philosophyCopy: "Laastras signifie Leadership as a Service Trade System. C'est une application de LaaS, Leadership as a Service, opérationnalisée par l'Homocracy, Governance by Equals.",
+        morshuxTitle: "Gerseh",
+        morshuxText: "Gestion des Ressources Supportant l'Existence Humaine: une plateforme sociale et économique où un rôle produit Porseh.",
+        porshuxTitle: "Porseh",
+        porshuxText: "Portion des Ressources Supportant l'Existence Humaine: tout ce dont une personne a besoin pour vivre dans la dignité.",
+        serxTitle: "Echase",
+        serxText: "Echange de Services: au lieu d'utiliser la monnaie, il utilise le service comme moyen d'échange.",
+        vircuTitle: "DeVi",
+        vircuText: "Devise Virtuelle: une forme d'échange utilisant la Finance Décentralisée pour permettre aux individus de poursuivre leur créativité sur leur Porseh et d'obtenir plus de confort. Elle complète Echase.",
+        sectionInstitutions: "Institutions",
+        institutionsTitle: "Quatre institutions reflétées par l'écosystème",
+        hdnTitle: "DHN - Démographie Humaine et Nutrition",
+        hdnText: "Reflétée par Jobperon et Chaperon, elle inventorie tous les humains ainsi que toutes les ressources qui soutiennent la vie.",
+        ctpTitle: "CTP - Chaine de Transformation et de Production",
+        ctpText: "Parallèle à AORI, Acquire and Integrate, elle veille à ce que les ressources qui soutiennent la vie soient transformées et produites en biens consommables.",
+        wtscTitle: "CSCM - Consortium du Système de Commerce Mondial",
+        wtscText: "Ancré dans eCard Wireless, il synchronise toutes les autres institutions, fournit une protection juridique, numérise tout et maintient la Constitution centrée sur le commerce.",
+        ifassTitle: "SIES - Système International d'Equité Sociale",
+        ifassText: "Appelée à émerger de GetClientele, elle veille à ce que chaque individu reçoive tout ce dont il a besoin.",
+        sectionCommunity: "Rejoindre la communauté",
+        communityTitle: "Volontaires, investisseurs, philanthropes et responsables publics ont leur place ici.",
+        communityCopy: "Dites-nous comment vous souhaitez aider à construire une économie de vie digne autour de Laastras.",
+        fullName: "Nom complet",
+        whatsapp: "WhatsApp (numéro complet)",
+        message: "Message",
+        sendMessage: "Envoyer",
+        sectionPublications: "Nos publications",
+        publicationsTitle: "Lire les publications de Laastras dans le navigateur",
+        sectionSubscribe: "S'abonner aux nouvelles",
+        subscribeTitle: "Abonnez-vous aux dernières nouvelles",
+        subscribeButton: "S'abonner",
+        backToSite: "Retour au site",
+        requiredError: "Ce champ est obligatoire.",
+        emailError: "Saisissez une adresse email valide.",
+        phoneError: "Utilisez le format international, par exemple +256700000000.",
+        minLengthError: "Veuillez saisir au moins {min} caractères."
       }
-      if (f.name === "email" &&
-          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)) {
-        setError(f, "Enter a valid email address.");
-        valid = false;
-      }
-      if (f.name === "phone_number" &&
-          !/^\+[0-9]{8,15}$/.test(f.value)) {
-        setError(f, "Phone must start with + and contain 8–15 digits.");
-        valid = false;
-      }
-      if (f.name === "message") {
-        if (f.value.trim().length === 0) {
-          setError(f, "Message is required.");
-          valid = false;
-        } else if (f.value.length > 3000) {
-          setError(f, "Message cannot exceed 3000 characters.");
-          valid = false;
+    };
+
+    const systemLang = (navigator.language || navigator.userLanguage || "en").toLowerCase().startsWith("fr") ? "fr" : "en";
+    let activeLang = localStorage.getItem("laastras-language") || systemLang;
+    if (!translations[activeLang]) activeLang = "en";
+
+    function applyLanguage(lang) {
+      activeLang = translations[lang] ? lang : "en";
+      localStorage.setItem("laastras-language", activeLang);
+      document.documentElement.lang = activeLang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (translations[activeLang][key]) el.textContent = translations[activeLang][key];
+      });
+      document.querySelectorAll(".lang-switch").forEach((button) => {
+        const isActive = button.dataset.lang === activeLang;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("bg-ink", isActive);
+        button.classList.toggle("text-white", isActive);
+      });
+      document.querySelectorAll(".validated-form [aria-invalid='true']").forEach(validateField);
+    }
+
+    document.querySelectorAll(".lang-switch").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(activeLang);
+
+    function validationMessage(field) {
+      const value = field.value.trim();
+      const min = Number(field.getAttribute("minlength") || 0);
+      if (field.hasAttribute("required") && !value) return translations[activeLang].requiredError;
+      if (field.type === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return translations[activeLang].emailError;
+      if (field.name === "WhatsApp" && value && !/^\+[1-9]\d{7,14}$/.test(value)) return translations[activeLang].phoneError;
+      if (min && value.length < min) return translations[activeLang].minLengthError.replace("{min}", min);
+      return "";
+    }
+
+    function setFieldError(field, message) {
+      const form = field.closest("form");
+      const error = form.querySelector(`[data-error-for="${CSS.escape(field.name)}"]`);
+      field.classList.toggle("border-ember", Boolean(message));
+      field.classList.toggle("bg-ember/10", Boolean(message));
+      field.setAttribute("aria-invalid", String(Boolean(message)));
+      if (error) error.textContent = message;
+    }
+
+    function validateField(field) {
+      const message = validationMessage(field);
+      setFieldError(field, message);
+      return !message;
+    }
+
+    document.querySelectorAll(".validated-form").forEach((form) => {
+      const fields = Array.from(form.querySelectorAll("input:not([type='hidden']), textarea"));
+      fields.forEach((field) => {
+        field.addEventListener("blur", () => validateField(field));
+        field.addEventListener("input", () => {
+          if (field.getAttribute("aria-invalid") === "true") validateField(field);
+        });
+      });
+      form.addEventListener("submit", (event) => {
+        const isValid = fields.map(validateField).every(Boolean);
+        if (!isValid) {
+          event.preventDefault();
+          const firstInvalid = fields.find((field) => field.getAttribute("aria-invalid") === "true");
+          if (firstInvalid) firstInvalid.focus();
         }
-      }
+      });
     });
 
-    if (!valid) {
-      e.preventDefault();
+    AOS.init({ duration: 800, once: true, offset: 90 });
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Re-enable submit button (fixes your earlier bug)
-      const btn = form.querySelector('button[type="submit"], button');
-      if (btn) {
-        btn.disabled = false;
-        btn.classList.remove('opacity-60');
-        btn.textContent = 'Send';
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    menuToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("hidden");
+      menuToggle.setAttribute("aria-expanded", String(!mainNav.classList.contains("hidden")));
+    });
+    document.querySelectorAll("#mainNav a").forEach((link) => link.addEventListener("click", () => {
+      if (window.innerWidth < 768) mainNav.classList.add("hidden");
+    }));
+
+    function createCarousel(rootId, dotId, intervalMs) {
+      const root = document.getElementById(rootId);
+      const slides = Array.from(root.querySelectorAll(".slide"));
+      const dots = document.getElementById(dotId);
+      let index = 0;
+      let timer;
+
+      dots.innerHTML = slides.map((_, i) => `<button class="h-4 w-12 border-2 border-current ${i === 0 ? "bg-ember" : "bg-white"}" aria-label="Go to slide ${i + 1}"></button>`).join("");
+      const dotButtons = Array.from(dots.querySelectorAll("button"));
+
+      const show = (next) => {
+        slides[index].classList.remove("active");
+        dotButtons[index].classList.remove("bg-ember");
+        dotButtons[index].classList.add("bg-white");
+        index = (next + slides.length) % slides.length;
+        slides[index].classList.add("active");
+        dotButtons[index].classList.add("bg-ember");
+        dotButtons[index].classList.remove("bg-white");
+        AOS.refresh();
+      };
+
+      const restart = () => {
+        clearInterval(timer);
+        timer = setInterval(() => show(index + 1), intervalMs);
+      };
+
+      dotButtons.forEach((dot, i) => dot.addEventListener("click", () => { show(i); restart(); }));
+      document.querySelectorAll(`[data-carousel="${rootId.replace("Carousel", "")}"]`).forEach((btn) => {
+        btn.addEventListener("click", () => {
+          show(btn.classList.contains("carousel-prev") ? index - 1 : index + 1);
+          restart();
+        });
+      });
+      restart();
+    }
+
+    createCarousel("platformsCarousel", "platformDots", 30000);
+    createCarousel("institutionsCarousel", "institutionDots", 12000);
+
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`));
+        }
+      });
+    }, { rootMargin: "-40% 0px -50% 0px" });
+    sections.forEach((section) => observer.observe(section));
+
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+    const viewer = document.getElementById("pdfViewer");
+    const pdfPages = document.getElementById("pdfPages");
+    const pdfStatus = document.getElementById("pdfStatus");
+    const pdfTitle = document.getElementById("pdfTitle");
+    let currentPdf = null;
+    let pdfScale = 1.2;
+    let renderToken = 0;
+
+    async function renderPdf(url, title) {
+      const token = ++renderToken;
+      viewer.classList.remove("hidden");
+      document.documentElement.classList.add("pdf-open");
+      pdfTitle.textContent = title;
+      pdfPages.innerHTML = "";
+      pdfStatus.textContent = "Loading...";
+      currentPdf = { url, title };
+
+      if (!window.pdfjsLib) {
+        pdfStatus.textContent = `${title} - browser PDF view`;
+        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[78vh] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
+        return;
+      }
+
+      try {
+        const pdf = await pdfjsLib.getDocument(url).promise;
+        pdfStatus.textContent = `${pdf.numPages} pages`;
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+          if (token !== renderToken) return;
+          const page = await pdf.getPage(pageNumber);
+          const viewport = page.getViewport({ scale: pdfScale });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          const wrap = document.createElement("div");
+          wrap.className = "pdf-page";
+          wrap.appendChild(canvas);
+          pdfPages.appendChild(wrap);
+          await page.render({ canvasContext: context, viewport }).promise;
+        }
+        pdfStatus.textContent = `${title} - ${pdf.numPages} pages`;
+      } catch (error) {
+        pdfStatus.textContent = `${title} - browser PDF view`;
+        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[78vh] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
       }
     }
-  });
 
-</script></body>
+    function closePdf() {
+      ++renderToken;
+      viewer.classList.add("hidden");
+      document.documentElement.classList.remove("pdf-open");
+      pdfPages.innerHTML = "";
+    }
+
+    document.querySelectorAll(".pdf-card").forEach((card) => {
+      card.addEventListener("click", () => renderPdf(card.dataset.pdf, card.dataset.title));
+    });
+    document.getElementById("closePdfTop").addEventListener("click", closePdf);
+    document.getElementById("closePdfFloat").addEventListener("click", closePdf);
+    document.getElementById("zoomIn").addEventListener("click", () => {
+      pdfScale = Math.min(pdfScale + 0.2, 2.2);
+      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title);
+    });
+    document.getElementById("zoomOut").addEventListener("click", () => {
+      pdfScale = Math.max(pdfScale - 0.2, 0.7);
+      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !viewer.classList.contains("hidden")) closePdf();
+    });
+  </script>
+</body>
 </html>
