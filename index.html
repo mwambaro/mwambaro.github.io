@@ -57,6 +57,18 @@
     .nav-link.active { color: #f05a28; }
     .pdf-page canvas { width: 100%; height: auto; box-shadow: 10px 10px 0 rgba(16, 21, 31, 0.12); background: white; }
     .field-error { min-height: 1.25rem; }
+    .flat-icon { display: inline-block; width: 1.1rem; height: 1.1rem; stroke-width: 2.6; vertical-align: -0.18rem; }
+    .submit-spinner {
+      display: none;
+      width: 1.1rem;
+      height: 1.1rem;
+      border: 3px solid currentColor;
+      border-right-color: transparent;
+      animation: spin .75s linear infinite;
+    }
+    .is-submitting .submit-spinner { display: inline-block; }
+    .is-submitting .submit-icon { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body class="no-radius font-body antialiased">
@@ -66,20 +78,20 @@
         <img src="assets/logo.png" alt="Laastras logo" class="h-11 w-auto" />
         <span class="leading-tight">
           <span class="block text-sm font-black text-ink sm:text-base">Laastras</span>
-          <span class="block text-xs font-black uppercase text-ember sm:text-sm">Dignified Life for All</span>
+          <span class="block text-xs font-black uppercase text-ember sm:text-sm" data-i18n="brandTagline">Dignified Life for All</span>
         </span>
       </a>
-      <button id="menuToggle" class="border-2 border-ink bg-sun px-3 py-2 text-sm font-black uppercase shadow-hard md:hidden" aria-expanded="false" aria-controls="mainNav">
-        Menu
+      <button id="menuToggle" class="inline-flex items-center gap-2 border-2 border-ink bg-sun px-3 py-2 text-sm font-black uppercase shadow-hard md:hidden" aria-expanded="false" aria-controls="mainNav">
+        <i class="flat-icon" data-lucide="menu"></i><span>Menu</span>
       </button>
       <div id="mainNav" class="hidden absolute left-0 right-0 top-full border-b-4 border-ink bg-white p-4 shadow-xl md:static md:flex md:border-0 md:bg-transparent md:p-0 md:shadow-none">
         <div class="flex flex-col gap-3 text-sm font-black uppercase tracking-wide md:flex-row md:items-center md:gap-5">
-          <a class="nav-link hover:text-ember" href="#platforms" data-i18n="navPlatforms">Platforms</a>
-          <a class="nav-link hover:text-ember" href="#philosophy" data-i18n="navPhilosophy">Philosophy</a>
-          <a class="nav-link hover:text-ember" href="#institutions" data-i18n="navInstitutions">Institutions</a>
-          <a class="nav-link hover:text-ember" href="#community" data-i18n="navCommunity">Join Our Community</a>
-          <a class="nav-link hover:text-ember" href="#publications" data-i18n="navPublications">Our Publications</a>
-          <a class="nav-link border-2 border-ink bg-teal px-3 py-2 text-white shadow-hard hover:text-white" href="#subscribe" data-i18n="navSubscribe">Subscribe</a>
+          <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#platforms"><i class="flat-icon" data-lucide="layers-3"></i><span data-i18n="navPlatforms">Platforms</span></a>
+          <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#philosophy"><i class="flat-icon" data-lucide="lightbulb"></i><span data-i18n="navPhilosophy">Philosophy</span></a>
+          <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#institutions"><i class="flat-icon" data-lucide="landmark"></i><span data-i18n="navInstitutions">Institutions</span></a>
+          <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#community"><i class="flat-icon" data-lucide="users"></i><span data-i18n="navCommunity">Join Our Community</span></a>
+          <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#publications"><i class="flat-icon" data-lucide="book-open"></i><span data-i18n="navPublications">Our Publications</span></a>
+          <a class="nav-link inline-flex items-center gap-2 border-2 border-ink bg-teal px-3 py-2 text-white shadow-hard hover:text-white" href="#subscribe"><i class="flat-icon" data-lucide="send"></i><span data-i18n="navSubscribe">Subscribe</span></a>
           <div class="grid w-24 shrink-0 grid-cols-2 self-start border-2 border-ink bg-white shadow-hard md:self-auto" aria-label="Language switch">
             <button type="button" class="lang-switch px-3 py-2 text-center font-black" data-lang="en" aria-pressed="true">EN</button>
             <button type="button" class="lang-switch border-l-2 border-ink px-3 py-2 text-center font-black" data-lang="fr" aria-pressed="false">FR</button>
@@ -102,8 +114,8 @@
             Laastras fixes the current fragmented and uncertain economy in which one job and one e-card are not enough to get everything one needs to live with dignity.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
-            <a href="#platforms" class="border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" data-i18n="explorePlatforms">Explore Platforms</a>
-            <a href="#community" class="border-2 border-ink bg-white px-6 py-3 font-black uppercase shadow-hard transition hover:-translate-y-1" data-i18n="joinCommunity">Join Community</a>
+            <a href="#platforms" class="inline-flex items-center gap-2 border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1"><i class="flat-icon" data-lucide="compass"></i><span data-i18n="explorePlatforms">Explore Platforms</span></a>
+            <a href="#community" class="inline-flex items-center gap-2 border-2 border-ink bg-white px-6 py-3 font-black uppercase shadow-hard transition hover:-translate-y-1"><i class="flat-icon" data-lucide="handshake"></i><span data-i18n="joinCommunity">Join Community</span></a>
           </div>
         </div>
         <div class="relative" data-aos="zoom-in" data-aos-delay="120">
@@ -121,8 +133,8 @@
             <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="platformsTitle">An ecosystem of five platforms</h2>
           </div>
           <div class="flex justify-center gap-3">
-            <button class="carousel-prev border-2 border-white bg-white px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Previous platform">Prev</button>
-            <button class="carousel-next border-2 border-white bg-sun px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Next platform">Next</button>
+            <button class="carousel-prev inline-flex items-center gap-2 border-2 border-white bg-white px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Previous platform"><i class="flat-icon" data-lucide="arrow-left"></i><span data-i18n="prevButton">Prev</span></button>
+            <button class="carousel-next inline-flex items-center gap-2 border-2 border-white bg-sun px-4 py-3 font-black text-ink shadow-hard" data-carousel="platforms" aria-label="Next platform"><span data-i18n="nextButton">Next</span><i class="flat-icon" data-lucide="arrow-right"></i></button>
           </div>
         </div>
         <div id="platformsCarousel" class="relative">
@@ -130,7 +142,7 @@
             <img src="assets/platforms_Jobperon.png" alt="Jobperon platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
             <div class="border-4 border-white bg-white p-6 text-ink shadow-hard sm:p-8">
               <span class="bg-ember px-3 py-1 text-sm font-black uppercase text-white">01</span>
-              <h3 class="mt-5 text-3xl font-black">Jobperon</h3>
+              <h3 class="mt-5 flex items-center gap-3 text-3xl font-black"><i class="flat-icon text-ember" data-lucide="search"></i>Jobperon</h3>
               <p class="mt-4 text-lg leading-8" data-i18n="jobperonText">An Artificial Intelligence-powered job search engine that makes job hunting natural. Describe the job you want and get curated results displayed.</p>
             </div>
           </article>
@@ -138,7 +150,7 @@
             <img src="assets/platforms_Chaperon.png" alt="Chaperon platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
             <div class="border-4 border-white bg-teal p-6 text-white shadow-hard sm:p-8">
               <span class="bg-ink px-3 py-1 text-sm font-black uppercase text-white">02</span>
-              <h3 class="mt-5 text-3xl font-black">Chaperon</h3>
+              <h3 class="mt-5 flex items-center gap-3 text-3xl font-black"><i class="flat-icon" data-lucide="home"></i>Chaperon</h3>
               <p class="mt-4 text-lg leading-8" data-i18n="chaperonText">A social support system that uses Artificial Intelligence for job placement and adds housing, meals, allowance fees, and training. It is a social form of loaning.</p>
             </div>
           </article>
@@ -146,7 +158,7 @@
             <img src="assets/platforms_GetClientele.png" alt="GetClientele platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
             <div class="border-4 border-white bg-sun p-6 text-ink shadow-hard sm:p-8">
               <span class="bg-royal px-3 py-1 text-sm font-black uppercase text-white">03</span>
-              <h3 class="mt-5 text-3xl font-black">GetClientele</h3>
+              <h3 class="mt-5 flex items-center gap-3 text-3xl font-black"><i class="flat-icon text-royal" data-lucide="route"></i>GetClientele</h3>
               <p class="mt-4 text-lg leading-8" data-i18n="getClienteleText">An Artificial Intelligence-intensive clientele distribution platform that uses navigation technologies.</p>
             </div>
           </article>
@@ -154,7 +166,7 @@
             <img src="assets/platforms_eCard_Wireless.png" alt="eCard Wireless platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
             <div class="border-4 border-white bg-royal p-6 text-white shadow-hard sm:p-8">
               <span class="bg-sun px-3 py-1 text-sm font-black uppercase text-ink">04</span>
-              <h3 class="mt-5 text-3xl font-black">eCard Wireless</h3>
+              <h3 class="mt-5 flex items-center gap-3 text-3xl font-black"><i class="flat-icon" data-lucide="badge-check"></i>eCard Wireless</h3>
               <p class="mt-4 text-lg leading-8" data-i18n="ecardText">A cloud infrastructure that ensures connectivity and delivers a multi-purpose e-card serving as wallet, identity document, passport, driver’s license, and unified access to official and social documents.</p>
             </div>
           </article>
@@ -162,7 +174,7 @@
             <img src="assets/platforms_AORI.png" alt="AORI platform" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-white bg-white object-contain shadow-hard" />
             <div class="border-4 border-white bg-leaf p-6 text-white shadow-hard sm:p-8">
               <span class="bg-ink px-3 py-1 text-sm font-black uppercase text-white">05</span>
-              <h3 class="mt-5 text-3xl font-black">AORI</h3>
+              <h3 class="mt-5 flex items-center gap-3 text-3xl font-black"><i class="flat-icon" data-lucide="combine"></i>AORI</h3>
               <p class="mt-4 text-lg leading-8" data-i18n="aoriText">AORI uses mergers and acquisitions to merge or acquire companies, individual properties, and governmental services so they form one unified conglomerate in which one job is enough to get everything one needs to live with dignity.</p>
             </div>
           </article>
@@ -184,19 +196,19 @@
           </p>
           <div class="mt-8 grid gap-4 sm:grid-cols-2">
             <div class="border-4 border-ink bg-sun p-5 shadow-hard">
-              <h3 class="text-xl font-black" data-i18n="morshuxTitle">Morshux</h3>
+              <h3 class="flex items-center gap-2 text-xl font-black"><i class="flat-icon" data-lucide="network"></i><span data-i18n="morshuxTitle">Morshux</span></h3>
               <p class="mt-3 leading-7" data-i18n="morshuxText">Management of Resources that Support Human Existence: a social and economic platform where one role yields Porshux.</p>
             </div>
             <div class="border-4 border-ink bg-teal p-5 text-white shadow-hard">
-              <h3 class="text-xl font-black" data-i18n="porshuxTitle">Porshux</h3>
+              <h3 class="flex items-center gap-2 text-xl font-black"><i class="flat-icon" data-lucide="package-check"></i><span data-i18n="porshuxTitle">Porshux</span></h3>
               <p class="mt-3 leading-7" data-i18n="porshuxText">Portion of Resources that Support Human Existence: everything an individual needs to live with dignity.</p>
             </div>
             <div class="border-4 border-ink bg-ember p-5 text-white shadow-hard">
-              <h3 class="text-xl font-black" data-i18n="serxTitle">SerX</h3>
+              <h3 class="flex items-center gap-2 text-xl font-black"><i class="flat-icon" data-lucide="repeat-2"></i><span data-i18n="serxTitle">SerX</span></h3>
               <p class="mt-3 leading-7" data-i18n="serxText">Services Exchange: instead of using currency, it uses service as the means of exchange.</p>
             </div>
             <div class="border-4 border-ink bg-royal p-5 text-white shadow-hard">
-              <h3 class="text-xl font-black" data-i18n="vircuTitle">VirCu</h3>
+              <h3 class="flex items-center gap-2 text-xl font-black"><i class="flat-icon" data-lucide="coins"></i><span data-i18n="vircuTitle">VirCu</span></h3>
               <p class="mt-3 leading-7" data-i18n="vircuText">Virtual Currency: a form of trade using Decentralized Finance to let individuals pursue creativity on their Porshux and gain extra comfort. It complements SerX.</p>
             </div>
           </div>
@@ -212,36 +224,36 @@
             <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="institutionsTitle">Four institutions mirrored by the ecosystem</h2>
           </div>
           <div class="flex justify-center gap-3">
-            <button class="carousel-prev border-2 border-ink bg-white px-4 py-3 font-black shadow-hard" data-carousel="institutions" aria-label="Previous institution">Prev</button>
-            <button class="carousel-next border-2 border-ink bg-ember px-4 py-3 font-black text-white shadow-hard" data-carousel="institutions" aria-label="Next institution">Next</button>
+            <button class="carousel-prev inline-flex items-center gap-2 border-2 border-ink bg-white px-4 py-3 font-black shadow-hard" data-carousel="institutions" aria-label="Previous institution"><i class="flat-icon" data-lucide="arrow-left"></i><span data-i18n="prevButton">Prev</span></button>
+            <button class="carousel-next inline-flex items-center gap-2 border-2 border-ink bg-ember px-4 py-3 font-black text-white shadow-hard" data-carousel="institutions" aria-label="Next institution"><span data-i18n="nextButton">Next</span><i class="flat-icon" data-lucide="arrow-right"></i></button>
           </div>
         </div>
         <div id="institutionsCarousel">
           <article class="slide active grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]" data-aos="fade-up">
             <img src="assets/institutions_HDN.jpg" alt="Human Demography and Nutrition" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
             <div class="border-4 border-ink bg-white p-6 shadow-hard sm:p-8">
-              <h3 class="text-3xl font-black" data-i18n="hdnTitle">HDN – Human Demography and Nutrition</h3>
+              <h3 class="flex items-center gap-3 text-3xl font-black"><i class="flat-icon text-teal" data-lucide="heart-pulse"></i><span data-i18n="hdnTitle">HDN – Human Demography and Nutrition</span></h3>
               <p class="mt-4 text-lg leading-8" data-i18n="hdnText">Mirrored by Jobperon and Chaperon, it inventories all humans as well as all life-supporting resources.</p>
             </div>
           </article>
           <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
             <img src="assets/institutions_CTP.jpg" alt="Chain of Transformation and Production" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
             <div class="border-4 border-ink bg-sun p-6 shadow-hard sm:p-8">
-              <h3 class="text-3xl font-black" data-i18n="ctpTitle">CTP – Chain of Transformation and Production</h3>
+              <h3 class="flex items-center gap-3 text-3xl font-black"><i class="flat-icon text-ember" data-lucide="factory"></i><span data-i18n="ctpTitle">CTP – Chain of Transformation and Production</span></h3>
               <p class="mt-4 text-lg leading-8" data-i18n="ctpText">Parallel to AORI, Acquire and Integrate, it makes sure life-supporting resources are transformed and produced into consumables.</p>
             </div>
           </article>
           <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
             <img src="assets/institutions_WTSC.jpg" alt="World Trade System Consortium" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
             <div class="border-4 border-ink bg-royal p-6 text-white shadow-hard sm:p-8">
-              <h3 class="text-3xl font-black" data-i18n="wtscTitle">WTSC – World Trade System Consortium</h3>
+              <h3 class="flex items-center gap-3 text-3xl font-black"><i class="flat-icon" data-lucide="globe-2"></i><span data-i18n="wtscTitle">WTSC – World Trade System Consortium</span></h3>
               <p class="mt-4 text-lg leading-8" data-i18n="wtscText">Rooted in eCard Wireless, it synchronizes all other institutions, provides legal protection, digitizes everything, and maintains the trade-centered Constitution.</p>
             </div>
           </article>
           <article class="slide grid-cols-1 gap-8 lg:grid-cols-[.95fr_1.05fr]">
             <img src="assets/institutions_IFaSS.jpg" alt="International Fair Social System" class="h-full max-h-[70vh] min-h-[320px] w-full border-4 border-ink bg-white object-contain shadow-hard" />
             <div class="border-4 border-ink bg-teal p-6 text-white shadow-hard sm:p-8">
-              <h3 class="text-3xl font-black" data-i18n="ifassTitle">IFaSS – International Fair Social System</h3>
+              <h3 class="flex items-center gap-3 text-3xl font-black"><i class="flat-icon" data-lucide="scale"></i><span data-i18n="ifassTitle">IFaSS – International Fair Social System</span></h3>
               <p class="mt-4 text-lg leading-8" data-i18n="ifassText">Emerging from GetClientele, it makes sure every individual gets all they need delivered to them.</p>
             </div>
           </article>
@@ -278,7 +290,11 @@
               <span id="messageError" class="field-error mt-1 block text-sm font-black text-ember" data-error-for="Message"></span>
             </label>
           </div>
-          <button class="mt-6 border-2 border-ink bg-ember px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" type="submit" data-i18n="sendMessage">Send Message</button>
+          <button class="mt-6 inline-flex items-center gap-2 border-2 border-ink bg-ember px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-80" type="submit" data-loading-key="sendingMessage">
+            <i class="submit-icon flat-icon" data-lucide="mail"></i>
+            <span class="submit-spinner" aria-hidden="true"></span>
+            <span class="submit-label" data-i18n="sendMessage">Send Message</span>
+          </button>
         </form>
       </div>
     </section>
@@ -291,23 +307,23 @@
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <button class="pdf-card border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/Homocracy_and_Digital_Public_Infrastructure.pdf" data-title="Homocracy and Digital Public Infrastructure">
-            <span class="text-sm font-black uppercase text-ember">PDF</span>
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-ember"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
             <h3 class="mt-3 text-2xl font-black">Homocracy and Digital Public Infrastructure</h3>
           </button>
           <button class="pdf-card border-4 border-white bg-sun p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/World_Federal_Government_Constitution.pdf" data-title="World Federal Government Constitution">
-            <span class="text-sm font-black uppercase text-royal">PDF</span>
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-royal"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
             <h3 class="mt-3 text-2xl font-black">World Federal Government Constitution</h3>
           </button>
           <button class="pdf-card border-4 border-white bg-teal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 1">
-            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
             <h3 class="mt-3 text-2xl font-black">Comprehension Excerpts on LaaS/Homocracy - Volume 1</h3>
           </button>
           <button class="pdf-card border-4 border-white bg-royal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 2">
-            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
             <h3 class="mt-3 text-2xl font-black">Comprehension Excerpts on LaaS/Homocracy - Volume 2</h3>
           </button>
           <button class="pdf-card border-4 border-white bg-ember p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Laastras_Pitch_Deck.pdf" data-title="Laastras Pitch Deck">
-            <span class="text-sm font-black uppercase text-sun">PDF</span>
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
             <h3 class="mt-3 text-2xl font-black">Laastras Pitch Deck</h3>
           </button>
         </div>
@@ -326,7 +342,11 @@
             <input required type="email" name="Email" data-label="Email" class="w-full min-w-0 border-2 border-ink px-4 py-3 text-left outline-none focus:bg-sun/20" placeholder="email@example.com" autocomplete="email" aria-describedby="subscribeEmailError" />
             <span id="subscribeEmailError" class="field-error mt-1 block text-left text-sm font-black text-ember" data-error-for="Email"></span>
           </div>
-          <button class="border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1" type="submit" data-i18n="subscribeButton">Subscribe</button>
+          <button class="inline-flex items-center justify-center gap-2 border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-80" type="submit" data-loading-key="subscribing">
+            <i class="submit-icon flat-icon" data-lucide="bell-plus"></i>
+            <span class="submit-spinner" aria-hidden="true"></span>
+            <span class="submit-label" data-i18n="subscribeButton">Subscribe</span>
+          </button>
         </form>
       </div>
     </section>
@@ -341,22 +361,24 @@
       <div class="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 id="pdfTitle" class="text-xl font-black"></h2>
         <div class="flex flex-wrap gap-2">
-          <button id="zoomOut" class="border-2 border-white bg-white px-3 py-2 font-black text-ink">-</button>
-          <button id="zoomIn" class="border-2 border-white bg-sun px-3 py-2 font-black text-ink">+</button>
-          <button id="closePdfTop" class="border-2 border-white bg-ember px-4 py-2 font-black text-white" data-i18n="backToSite">Back to site</button>
+          <button id="zoomOut" class="border-2 border-white bg-white px-3 py-2 font-black text-ink" aria-label="Zoom out"><i class="flat-icon" data-lucide="zoom-out"></i></button>
+          <button id="zoomIn" class="border-2 border-white bg-sun px-3 py-2 font-black text-ink" aria-label="Zoom in"><i class="flat-icon" data-lucide="zoom-in"></i></button>
+          <button id="closePdfTop" class="inline-flex items-center gap-2 border-2 border-white bg-ember px-4 py-2 font-black text-white"><i class="flat-icon" data-lucide="arrow-left-to-line"></i><span data-i18n="backToSite">Back to site</span></button>
         </div>
       </div>
     </div>
     <div id="pdfStatus" class="mx-auto max-w-6xl px-4 py-6 text-lg font-bold">Loading...</div>
     <div id="pdfPages" class="pdf-page mx-auto grid max-w-5xl gap-8 px-4 pb-28"></div>
-    <button id="closePdfFloat" class="fixed bottom-5 right-5 border-2 border-white bg-sun px-5 py-4 font-black uppercase text-ink shadow-hard" data-i18n="backToSite">Back to site</button>
+    <button id="closePdfFloat" class="fixed bottom-5 right-5 inline-flex items-center gap-2 border-2 border-white bg-sun px-5 py-4 font-black uppercase text-ink shadow-hard"><i class="flat-icon" data-lucide="arrow-left-to-line"></i><span data-i18n="backToSite">Back to site</span></button>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     const translations = {
       en: {
+        brandTagline: "Dignified Life for All",
         navPlatforms: "Platforms",
         navPhilosophy: "Philosophy",
         navInstitutions: "Institutions",
@@ -367,6 +389,8 @@
         heroCopy: "Laastras fixes the current fragmented and uncertain economy in which one job and one e-card are not enough to get everything one needs to live with dignity.",
         explorePlatforms: "Explore Platforms",
         joinCommunity: "Join Community",
+        prevButton: "Prev",
+        nextButton: "Next",
         sectionPlatforms: "Platforms",
         platformsTitle: "An ecosystem of five platforms",
         jobperonText: "An Artificial Intelligence-powered job search engine that makes job hunting natural. Describe the job you want and get curated results displayed.",
@@ -401,11 +425,13 @@
         whatsapp: "WhatsApp (Full Phone Number)",
         message: "Message",
         sendMessage: "Send Message",
+        sendingMessage: "Sending...",
         sectionPublications: "Our Publications",
         publicationsTitle: "Read Laastras publications in the browser",
         sectionSubscribe: "Subscribe to News",
         subscribeTitle: "Subscribe to latest News",
         subscribeButton: "Subscribe",
+        subscribing: "Subscribing...",
         backToSite: "Back to site",
         requiredError: "This field is required.",
         emailError: "Enter a valid email address.",
@@ -413,6 +439,7 @@
         minLengthError: "Please enter at least {min} characters."
       },
       fr: {
+        brandTagline: "Une Vie de Dignité pour Tous",
         navPlatforms: "Plateformes",
         navPhilosophy: "Philosophie",
         navInstitutions: "Institutions",
@@ -423,6 +450,8 @@
         heroCopy: "Laastras corrige l'économie actuelle, fragmentée et incertaine, dans laquelle un seul emploi et une seule carte électronique ne suffisent pas pour obtenir tout ce dont on a besoin pour vivre dans la dignité.",
         explorePlatforms: "Explorer les plateformes",
         joinCommunity: "Rejoindre la communauté",
+        prevButton: "Préc.",
+        nextButton: "Suiv.",
         sectionPlatforms: "Plateformes",
         platformsTitle: "Un écosystème de cinq plateformes",
         jobperonText: "Un moteur de recherche d'emploi alimenté par l'Intelligence Artificielle qui rend la recherche naturelle. Décrivez l'emploi souhaité et obtenez des résultats organisés.",
@@ -457,11 +486,13 @@
         whatsapp: "WhatsApp (numéro complet)",
         message: "Message",
         sendMessage: "Envoyer",
+        sendingMessage: "Envoi...",
         sectionPublications: "Nos publications",
         publicationsTitle: "Lire les publications de Laastras dans le navigateur",
         sectionSubscribe: "S'abonner aux nouvelles",
         subscribeTitle: "Abonnez-vous aux dernières nouvelles",
         subscribeButton: "S'abonner",
+        subscribing: "Abonnement...",
         backToSite: "Retour au site",
         requiredError: "Ce champ est obligatoire.",
         emailError: "Saisissez une adresse email valide.",
@@ -489,12 +520,14 @@
         button.classList.toggle("text-white", isActive);
       });
       document.querySelectorAll(".validated-form [aria-invalid='true']").forEach(validateField);
+      if (window.lucide) lucide.createIcons();
     }
 
     document.querySelectorAll(".lang-switch").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
     applyLanguage(activeLang);
+    if (window.lucide) lucide.createIcons();
 
     function validationMessage(field) {
       const value = field.value.trim();
@@ -535,6 +568,19 @@
           event.preventDefault();
           const firstInvalid = fields.find((field) => field.getAttribute("aria-invalid") === "true");
           if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+
+        const button = form.querySelector("button[type='submit']");
+        if (button) {
+          const label = button.querySelector(".submit-label");
+          const loadingKey = button.dataset.loadingKey;
+          button.disabled = true;
+          button.classList.add("is-submitting");
+          button.setAttribute("aria-busy", "true");
+          if (label && loadingKey && translations[activeLang][loadingKey]) {
+            label.textContent = translations[activeLang][loadingKey];
+          }
         }
       });
     });
