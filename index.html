@@ -190,7 +190,7 @@
         </div>
         <div data-aos="fade-left">
           <p class="text-sm font-black uppercase tracking-[.25em] text-royal" data-i18n="sectionPhilosophy">Philosophy</p>
-          <h2 class="mt-3 text-3xl font-black sm:text-5xl">Laastras, LaaS, Homocracy</h2>
+          <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="philosophyTitle">Laastras, LaaS, Homocracy</h2>
           <p class="mt-5 text-lg leading-8 text-steel" data-i18n="philosophyCopy">
             Laastras stands for Leadership as a Service Trade System. It is an application of LaaS, Leadership as a Service, operationalized by Homocracy, Governance by Equals.
           </p>
@@ -378,6 +378,7 @@
   <script>
     const translations = {
       en: {
+        pageTitle: "Laastras | One job. One e-card. Dignified Life",
         brandTagline: "Dignified Life for All",
         navPlatforms: "Platforms",
         navPhilosophy: "Philosophy",
@@ -397,9 +398,10 @@
         chaperonText: "A social support system that uses Artificial Intelligence for job placement and adds housing, meals, allowance fees, and training. It is a social form of loaning.",
         getClienteleText: "An Artificial Intelligence-intensive clientele distribution platform that uses navigation technologies.",
         ecardText: "A cloud infrastructure that ensures connectivity and delivers a multi-purpose e-card serving as wallet, identity document, passport, driver’s license, and unified access to official and social documents.",
-        aoriText: "AORI uses mergers and acquisitions to merge or acquire companies, individual properties, and governmental services so they form one unified conglomerate in which one job is enough to get everything one needs to live with dignity.",
+        aoriText: "AORI uses mergers and acquisitions (M&A) to merge or acquire companies, individual properties, and governmental services so they form one unified conglomerate in which one job is enough to get everything one needs to live with dignity.",
         sectionPhilosophy: "Philosophy",
-        philosophyCopy: "Laastras stands for Leadership as a Service Trade System. It is an application of LaaS, Leadership as a Service, operationalized by Homocracy, Governance by Equals.",
+        philosophyTitle: "Laastras, LaaS, Homocracy",
+        philosophyCopy: "Laastras stands for \"Leadership as a Service Trade System\". It is an application of LaaS, \"Leadership as a Service\", operationalized by Homocracy, \"Governance by Equals\".",
         morshuxTitle: "Morshux",
         morshuxText: "Management of Resources that Support Human Existence: a social and economic platform where one role yields Porshux.",
         porshuxTitle: "Porshux",
@@ -439,6 +441,7 @@
         minLengthError: "Please enter at least {min} characters."
       },
       fr: {
+        pageTitle: "Laastras | Un emploi. Une carte électronique. Une vie de dignité",
         brandTagline: "Une Vie de Dignité pour Tous",
         navPlatforms: "Plateformes",
         navPhilosophy: "Philosophie",
@@ -460,7 +463,8 @@
         ecardText: "Une infrastructure cloud qui assure la connectivité et fournit une carte électronique polyvalente servant de portefeuille, pièce d'identité, passeport, permis de conduire et accès unifié aux documents officiels et sociaux.",
         aoriText: "AORI utilise les fusions et acquisitions pour fusionner ou acquérir des entreprises, des propriétés individuelles et des services gouvernementaux afin de former un conglomérat unifié où un seul emploi suffit à obtenir tout ce dont on a besoin pour vivre dans la dignité.",
         sectionPhilosophy: "Philosophie",
-        philosophyCopy: "Laastras signifie Leadership as a Service Trade System. C'est une application de LaaS, Leadership as a Service, opérationnalisée par l'Homocracy, Governance by Equals.",
+        philosophyTitle: "Laatras, LaaS, Homocratie",
+        philosophyCopy: "Laastras signifie \"Système de Commerce appliquant le Leadership comme Service\". C'est une application de LaaS, \"Leadership comme Service\", opérationnalisée par l'Homocractie, \"Gouvernance par les Egaux\".",
         morshuxTitle: "Gerseh",
         morshuxText: "Gestion des Ressources Supportant l'Existence Humaine: une plateforme sociale et économique où un rôle produit Porseh.",
         porshuxTitle: "Porseh",
@@ -474,11 +478,11 @@
         hdnTitle: "DHN - Démographie Humaine et Nutrition",
         hdnText: "Reflétée par Jobperon et Chaperon, elle inventorie tous les humains ainsi que toutes les ressources qui soutiennent la vie.",
         ctpTitle: "CTP - Chaine de Transformation et de Production",
-        ctpText: "Parallèle à AORI, Acquire and Integrate, elle veille à ce que les ressources qui soutiennent la vie soient transformées et produites en biens consommables.",
+        ctpText: "Parallèle à AORI, \"Acquire and Integrate\", elle veille à ce que les ressources qui soutiennent la vie soient transformées et produites en biens consommables.",
         wtscTitle: "CSCM - Consortium du Système de Commerce Mondial",
         wtscText: "Ancré dans eCard Wireless, il synchronise toutes les autres institutions, fournit une protection juridique, numérise tout et maintient la Constitution centrée sur le commerce.",
         ifassTitle: "SIES - Système International d'Equité Sociale",
-        ifassText: "Appelée à émerger de GetClientele, elle veille à ce que chaque individu reçoive tout ce dont il a besoin.",
+        ifassText: "Emergeant de GetClientele, elle veille à ce que chaque individu reçoive tout ce dont il a besoin.",
         sectionCommunity: "Rejoindre la communauté",
         communityTitle: "Volontaires, investisseurs, philanthropes et responsables publics ont leur place ici.",
         communityCopy: "Dites-nous comment vous souhaitez aider à construire une économie de vie digne autour de Laastras.",
@@ -501,7 +505,21 @@
       }
     };
 
-    const systemLang = (navigator.language || navigator.userLanguage || "en").toLowerCase().startsWith("fr") ? "fr" : "en";
+    function normalizeLanguage(locale) {
+      return String(locale || "").toLowerCase().startsWith("fr") ? "fr" : "";
+    }
+
+    function detectSystemLanguage() {
+      const localeSources = [
+        Intl.DateTimeFormat().resolvedOptions().locale,
+        ...(navigator.languages || []),
+        navigator.language,
+        navigator.userLanguage
+      ];
+      return localeSources.map(normalizeLanguage).find(Boolean) || "en";
+    }
+
+    const systemLang = detectSystemLanguage();
     let activeLang = localStorage.getItem("laastras-language") || systemLang;
     if (!translations[activeLang]) activeLang = "en";
 
@@ -509,6 +527,7 @@
       activeLang = translations[lang] ? lang : "en";
       localStorage.setItem("laastras-language", activeLang);
       document.documentElement.lang = activeLang;
+      document.title = translations[activeLang].pageTitle;
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.dataset.i18n;
         if (translations[activeLang][key]) el.textContent = translations[activeLang][key];
