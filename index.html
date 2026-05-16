@@ -509,10 +509,21 @@
     {
         let isFr = "en";
 
+        /*
+        const frenchSpeakingCountryNames = new Set([
+            'Belgium', 'Benin', 'Burkina Faso', 'Burundi', 'Central African Republic', 'Chad', 
+            'Comoros', 'Democratic Republic of the Congo', 'Republic of the Congo', 'Côte d’Ivoire', 'Djibouti', 
+            'Equatorial Guinea', 'France', 'Gabon', 'Guinea', 'Haiti', 'Luxembourg', 'Madagascar', 'Mali', 'Monaco', 
+            'Niger', 'Senegal', 'Seychelles', 'Switzerland', 'Togo', 'Vanuatu'
+        ]);
+        **/
+
         // Set containing official/co-official French speaking country ISO 2-letter codes 
         const frenchSpeakingCountries = new Set([
-            'FR', 'CA', 'CD', 'MG', 'CM', 'CI', 'NE', 'BF', 'ML', 'SN', 'TD', 'GN', 'RW', 'BI', 
-            'BJ', 'HT', 'CH', 'TG', 'CF', 'CG', 'GA', 'DJ', 'GQ', 'KM', 'LU', 'VU', 'SC', 'MC', 'BE'
+            'BE', 'BJ', 'BF', 'BI', 'CF', 'TD', 
+            'KM', 'CD', 'CG', 'CI', 'DJ', 
+            'GQ', 'FR', 'GA', 'GN', 'HT', 'LU', 'MG', 'ML', 'MC', 
+            'NE', 'SN', 'SC', 'CH', 'TG', 'VU'
         ]);
 
         // Create a container element for the spinner overlay
