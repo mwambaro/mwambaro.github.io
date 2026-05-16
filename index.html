@@ -505,6 +505,61 @@
       }
     };
 
+    async function preciseDefaultLanguage()
+    {
+        let isFr = "en";
+
+        // Set containing official/co-official French speaking country ISO 2-letter codes 
+        const frenchSpeakingCountries = new Set([
+            'FR', 'CA', 'CD', 'MG', 'CM', 'CI', 'NE', 'BF', 'ML', 'SN', 'TD', 'GN', 'RW', 'BI', 
+            'BJ', 'HT', 'CH', 'TG', 'CF', 'CG', 'GA', 'DJ', 'GQ', 'KM', 'LU', 'VU', 'SC', 'MC', 'BE'
+        ]);
+
+        // Create a container element for the spinner overlay
+        const spinnerOverlay = document.createElement('div');
+        
+        // Apply Tailwind classes for a centered, full-screen blur overlay
+        spinnerOverlay.className = "fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm";
+        
+        // Insert the Tailwind HTML markup for the spinning icon inside the container
+        spinnerOverlay.innerHTML = `
+            <div class="h-12 w-12 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600"></div>
+        `;
+        
+        // Inject the spinner into the DOM (makes it visible instantly)
+        document.body.appendChild(spinnerOverlay);
+
+        try {
+                        
+            // Call the geojs.io combined data endpoint asynchronously
+            const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+            if (!response.ok) throw new Error('API server unreachable');
+                        
+            const data = await response.json();
+
+            // Extract variables out of the geojs payload
+            const countryCode = data.country_code ? data.country_code.toUpperCase() : null;
+
+            // Evaluate whether the extracted country is French-speaking
+            if (countryCode && frenchSpeakingCountries.has(countryCode)) {
+                console.log("[OK] GeoJS: " + countryCode + " detected as French-speaking country. Defaulting to French.");
+                isFr = "fr";
+            } 
+            else {
+                console.log("[OK] GeoJS: " + countryCode + " detected as non-French-speaking country. Defaulting to English.");
+            }
+
+        } catch (error) {
+            console.error("GeoJS Error: ", error);
+            isFr = null;
+        } finally {
+            // ALWAYS remove the spinner, even if the async function crashes
+            spinnerOverlay.remove();
+        }
+
+        return isFr;
+    }
+
     function normalizeLanguage(locale) {
       return String(locale || "").toLowerCase().startsWith("fr") ? "fr" : "";
     }
@@ -519,7 +574,7 @@
       return localeSources.map(normalizeLanguage).find(Boolean) || "en";
     }
 
-    const systemLang = detectSystemLanguage();
+    const systemLang = preciseDefaultLanguage() || detectSystemLanguage();
     let activeLang = localStorage.getItem("laastras-language") || systemLang;
     if (!translations[activeLang]) activeLang = "en";
 
