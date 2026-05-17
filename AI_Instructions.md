@@ -76,3 +76,50 @@ It is a form that has one field: Email. It asks the user to subscribe to latest 
 7. CTP – “Chain of Transformation and Production”: CTP – “Chaine de Transformation et de Production”.
 8. WTSC – “World Trade System Consortium”: CSCM – “Consortium du Système de Commerce Mondial”.
 9. IFaSS – “International Fair Social System”: SIES – “Système International d’Equité Sociale”
+
+# More behavior 1
+
+Translate the sentence "Dignified Life for All", which is beside the logo, into French as follows: "Une Vie de Dignité pour Tous". Put appropriate flat icons wherever possible in the entire website. Also make sure this behavior is consistent in both languages.
+
+# More behavior 2 
+
+I finally opted for a more precise way of rendering the default language. We must use the following code to learn whether the visitor's country is French-speaking or not. If the response is not null, then use the returned language code (either fr or en), else fall back to the code
+we already have in place. Please, validate the code below before using it and patch any possible errors. Code to use:
+```
+function preciseDefaultLanguage()
+{
+    let isFr = "en";
+
+    // Set containing official/co-official French speaking country ISO 2-letter codes 
+    const frenchSpeakingCountries = new Set([
+        'FR', 'CA', 'CD', 'MG', 'CM', 'CI', 'NE', 'BF', 'ML', 'SN', 'TD', 'GN', 'RW', 'BI', 
+        'BJ', 'HT', 'CH', 'TG', 'CF', 'CG', 'GA', 'DJ', 'GQ', 'KM', 'LU', 'VU', 'SC', 'MC', 'BE'
+    ]);
+
+    try {
+                    
+        // Call the geojs.io combined data endpoint asynchronously
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        if (!response.ok) throw new Error('API server unreachable');
+                    
+        const data = await response.json();
+
+        // Extract variables out of the geojs payload
+        const countryCode = data.country_code ? data.country_code.toUpperCase() : null;
+
+        // Evaluate whether the extracted country is French-speaking
+        if (countryCode && frenchSpeakingCountries.has(countryCode)) {
+            isFr = "fr";
+        } 
+
+    } catch (error) {
+        console.error("GeoJS Error: ", error);
+        isFr = null;
+    }
+
+    return isFr;
+}
+```
+# More behavior 3
+
+The static website is bilingual. The code is in the root index.html file and it uses the 'assets' sub-folder. The bug to fix is the navigation bar. It does not collapse into the Menu hamburger, when I press CTRL+SHIFT+I to open development tools in the browser but you can see very well that the menu items do no longer fit in the navigation bar. Leave the rest of the code as is.

@@ -81,18 +81,18 @@
           <span class="block text-xs font-black uppercase text-ember sm:text-sm" data-i18n="brandTagline">Dignified Life for All</span>
         </span>
       </a>
-      <button id="menuToggle" class="inline-flex items-center gap-2 border-2 border-ink bg-sun px-3 py-2 text-sm font-black uppercase shadow-hard md:hidden" aria-expanded="false" aria-controls="mainNav">
+      <button id="menuToggle" class="inline-flex items-center gap-2 border-2 border-ink bg-sun px-3 py-2 text-sm font-black uppercase shadow-hard lg:hidden" aria-expanded="false" aria-controls="mainNav">
         <i class="flat-icon" data-lucide="menu"></i><span>Menu</span>
       </button>
-      <div id="mainNav" class="hidden absolute left-0 right-0 top-full border-b-4 border-ink bg-white p-4 shadow-xl md:static md:flex md:border-0 md:bg-transparent md:p-0 md:shadow-none">
-        <div class="flex flex-col gap-3 text-sm font-black uppercase tracking-wide md:flex-row md:items-center md:gap-5">
+      <div id="mainNav" class="hidden absolute left-0 right-0 top-full border-b-4 border-ink bg-white p-4 shadow-xl lg:static lg:flex lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
+        <div class="flex flex-col gap-3 text-sm font-black uppercase tracking-wide lg:flex-row lg:items-center lg:gap-5">
           <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#platforms"><i class="flat-icon" data-lucide="layers-3"></i><span data-i18n="navPlatforms">Platforms</span></a>
           <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#philosophy"><i class="flat-icon" data-lucide="lightbulb"></i><span data-i18n="navPhilosophy">Philosophy</span></a>
           <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#institutions"><i class="flat-icon" data-lucide="landmark"></i><span data-i18n="navInstitutions">Institutions</span></a>
           <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#community"><i class="flat-icon" data-lucide="users"></i><span data-i18n="navCommunity">Join Our Community</span></a>
           <a class="nav-link inline-flex items-center gap-2 hover:text-ember" href="#publications"><i class="flat-icon" data-lucide="book-open"></i><span data-i18n="navPublications">Our Publications</span></a>
           <a class="nav-link inline-flex items-center gap-2 border-2 border-ink bg-teal px-3 py-2 text-white shadow-hard hover:text-white" href="#subscribe"><i class="flat-icon" data-lucide="send"></i><span data-i18n="navSubscribe">Subscribe</span></a>
-          <div class="grid w-24 shrink-0 grid-cols-2 self-start border-2 border-ink bg-white shadow-hard md:self-auto" aria-label="Language switch">
+          <div class="grid w-24 shrink-0 grid-cols-2 self-start border-2 border-ink bg-white shadow-hard lg:self-auto" aria-label="Language switch">
             <button type="button" class="lang-switch px-3 py-2 text-center font-black" data-lang="en" aria-pressed="true">EN</button>
             <button type="button" class="lang-switch border-l-2 border-ink px-3 py-2 text-center font-black" data-lang="fr" aria-pressed="false">FR</button>
           </div>
@@ -585,9 +585,14 @@
       return localeSources.map(normalizeLanguage).find(Boolean) || "en";
     }
 
-    const systemLang = preciseDefaultLanguage() || detectSystemLanguage();
-    let activeLang = localStorage.getItem("laastras-language") || systemLang;
-    if (!translations[activeLang]) activeLang = "en";
+    let activeLang = localStorage.getItem("laastras-language");
+
+    async function initializeLanguage() {
+      const systemLang = (await preciseDefaultLanguage()) || detectSystemLanguage();
+      activeLang = activeLang || systemLang;
+      if (!translations[activeLang]) activeLang = "en";
+      applyLanguage(activeLang);
+    }
 
     function applyLanguage(lang) {
       activeLang = translations[lang] ? lang : "en";
@@ -611,8 +616,7 @@
     document.querySelectorAll(".lang-switch").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
-    applyLanguage(activeLang);
-    if (window.lucide) lucide.createIcons();
+    initializeLanguage();
 
     function validationMessage(field) {
       const value = field.value.trim();
