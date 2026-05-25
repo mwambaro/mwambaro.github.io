@@ -123,3 +123,7 @@ function preciseDefaultLanguage()
 # More behavior 3
 
 The static website is bilingual. The code is in the root index.html file and it uses the 'assets' sub-folder. The bug to fix is the navigation bar. It does not collapse into the Menu hamburger, when I press CTRL+SHIFT+I to open development tools in the browser but you can see very well that the menu items do no longer fit in the navigation bar. Leave the rest of the code as is.
+
+# More behavior 4
+
+Add a section before the Footer that contains the node `Laastras has been accepted into the EquityPilot program of <a href="https://www.fastercapital.com" style="color: blue; text-decoration: underline;">FasterCapital</a> and is seeking a capital of $500,000`. It should not be translated and must be put in such a way that it is easy to remove without affecting the rest of the code. The section should have no link in the navigation bar. However its look should be consistent with the rest of the page.
