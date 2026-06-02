@@ -55,7 +55,8 @@
     .slide.active { display: grid; }
     .pdf-open body { overflow: hidden; }
     .nav-link.active { color: #f05a28; }
-    .pdf-page canvas { width: 100%; height: auto; box-shadow: 10px 10px 0 rgba(16, 21, 31, 0.12); background: white; }
+    .pdf-page { width: 100%; }
+    .pdf-page canvas { display: block; width: 100%; height: auto; box-shadow: 0 6px 18px rgba(16, 21, 31, 0.24); background: white; }
     .field-error { min-height: 1.25rem; }
     .flat-icon { display: inline-block; width: 1.1rem; height: 1.1rem; stroke-width: 2.6; vertical-align: -0.18rem; }
     .submit-spinner {
@@ -379,13 +380,12 @@
         <div class="flex flex-wrap gap-2">
           <button id="zoomOut" class="border-2 border-white bg-white px-3 py-2 font-black text-ink" aria-label="Zoom out"><i class="flat-icon" data-lucide="zoom-out"></i></button>
           <button id="zoomIn" class="border-2 border-white bg-sun px-3 py-2 font-black text-ink" aria-label="Zoom in"><i class="flat-icon" data-lucide="zoom-in"></i></button>
-          <button id="closePdfTop" class="inline-flex items-center gap-2 border-2 border-white bg-ember px-4 py-2 font-black text-white"><i class="flat-icon" data-lucide="arrow-left-to-line"></i><span data-i18n="backToSite">Back to site</span></button>
+          <button id="closePdfTop" class="inline-flex items-center gap-2 border-2 border-white bg-ember px-4 py-2 font-black text-white" aria-label="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line"></i></button>
         </div>
       </div>
     </div>
     <div id="pdfStatus" class="mx-auto max-w-6xl px-4 py-6 text-lg font-bold">Loading...</div>
-    <div id="pdfPages" class="pdf-page mx-auto grid max-w-5xl gap-8 px-4 pb-28"></div>
-    <button id="closePdfFloat" class="fixed bottom-5 right-5 inline-flex items-center gap-2 border-2 border-white bg-sun px-5 py-4 font-black uppercase text-ink shadow-hard"><i class="flat-icon" data-lucide="arrow-left-to-line"></i><span data-i18n="backToSite">Back to site</span></button>
+    <div id="pdfPages" class="grid w-full gap-3 px-1 pb-4 sm:px-2"></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -769,7 +769,7 @@
 
       if (!window.pdfjsLib) {
         pdfStatus.textContent = `${title} - browser PDF view`;
-        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[78vh] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
+        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[calc(100vh-5.5rem)] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
         return;
       }
 
@@ -793,7 +793,7 @@
         pdfStatus.textContent = `${title} - ${pdf.numPages} pages`;
       } catch (error) {
         pdfStatus.textContent = `${title} - browser PDF view`;
-        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[78vh] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
+        pdfPages.innerHTML = `<iframe src="${url}" title="${title}" class="h-[calc(100vh-5.5rem)] w-full border-4 border-white bg-white shadow-hard"></iframe>`;
       }
     }
 
@@ -808,7 +808,6 @@
       card.addEventListener("click", () => renderPdf(card.dataset.pdf, card.dataset.title));
     });
     document.getElementById("closePdfTop").addEventListener("click", closePdf);
-    document.getElementById("closePdfFloat").addEventListener("click", closePdf);
     document.getElementById("zoomIn").addEventListener("click", () => {
       pdfScale = Math.min(pdfScale + 0.2, 2.2);
       if (currentPdf) renderPdf(currentPdf.url, currentPdf.title);
