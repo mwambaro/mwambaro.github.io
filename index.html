@@ -381,6 +381,7 @@
           <button id="zoomOut" class="border-2 border-white bg-white px-3 py-2 font-black text-ink" aria-label="Zoom out"><i class="flat-icon" data-lucide="zoom-out"></i></button>
           <button id="zoomIn" class="border-2 border-white bg-sun px-3 py-2 font-black text-ink" aria-label="Zoom in"><i class="flat-icon" data-lucide="zoom-in"></i></button>
           <button id="closePdfTop" class="inline-flex items-center gap-2 border-2 border-white bg-ember px-4 py-2 font-black text-white" aria-label="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line"></i></button>
+          <button id="copyPdfLink" class="inline-flex items-center gap-2 border-2 border-white bg-teal px-4 py-2 font-black text-white" aria-label="Copy link"><i class="flat-icon" data-lucide="link"></i></button>
         </div>
       </div>
     </div>
@@ -754,18 +755,63 @@
     const pdfPages = document.getElementById("pdfPages");
     const pdfStatus = document.getElementById("pdfStatus");
     const pdfTitle = document.getElementById("pdfTitle");
+    const copyPdfLink = document.getElementById("copyPdfLink");
+    const pdfCards = Array.from(document.querySelectorAll(".pdf-card"));
     let currentPdf = null;
     let pdfScale = 1.2;
     let renderToken = 0;
 
-    async function renderPdf(url, title) {
+    function getPdfShareUrl(url) {
+      const shareUrl = new URL(window.location.href);
+      shareUrl.hash = `pdf=${encodeURIComponent(url)}`;
+      return shareUrl.toString();
+    }
+
+    function syncPdfHash(url) {
+      const shareUrl = getPdfShareUrl(url);
+      if (window.location.href !== shareUrl) history.pushState(null, "", shareUrl);
+    }
+
+    function clearPdfHash() {
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.hash = "";
+      history.pushState(null, "", cleanUrl.toString());
+    }
+
+    function getHashPdfCard() {
+      const params = new URLSearchParams(window.location.hash.slice(1));
+      const pdfUrl = params.get("pdf");
+      if (!pdfUrl) return null;
+      return pdfCards.find((card) => card.dataset.pdf === pdfUrl) || null;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const input = document.createElement("textarea");
+      input.value = text;
+      input.setAttribute("readonly", "");
+      input.className = "fixed left-[-9999px] top-0";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      input.remove();
+    }
+
+    async function renderPdf(url, title, options = {}) {
+      const { updateUrl = true } = options;
       const token = ++renderToken;
       viewer.classList.remove("hidden");
       document.documentElement.classList.add("pdf-open");
       pdfTitle.textContent = title;
       pdfPages.innerHTML = "";
       pdfStatus.textContent = "Loading...";
-      currentPdf = { url, title };
+      currentPdf = { url, title, shareUrl: getPdfShareUrl(url) };
+      copyPdfLink.setAttribute("aria-label", "Copy link");
+      if (updateUrl) syncPdfHash(url);
 
       if (!window.pdfjsLib) {
         pdfStatus.textContent = `${title} - browser PDF view`;
@@ -802,23 +848,38 @@
       viewer.classList.add("hidden");
       document.documentElement.classList.remove("pdf-open");
       pdfPages.innerHTML = "";
+      currentPdf = null;
+      if (window.location.hash.startsWith("#pdf=")) clearPdfHash();
     }
 
-    document.querySelectorAll(".pdf-card").forEach((card) => {
+    pdfCards.forEach((card) => {
       card.addEventListener("click", () => renderPdf(card.dataset.pdf, card.dataset.title));
     });
     document.getElementById("closePdfTop").addEventListener("click", closePdf);
+    copyPdfLink.addEventListener("click", async () => {
+      if (!currentPdf) return;
+      await copyText(currentPdf.shareUrl);
+      copyPdfLink.setAttribute("aria-label", "Copied link");
+      setTimeout(() => copyPdfLink.setAttribute("aria-label", "Copy link"), 1600);
+    });
     document.getElementById("zoomIn").addEventListener("click", () => {
       pdfScale = Math.min(pdfScale + 0.2, 2.2);
-      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title);
+      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title, { updateUrl: false });
     });
     document.getElementById("zoomOut").addEventListener("click", () => {
       pdfScale = Math.max(pdfScale - 0.2, 0.7);
-      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title);
+      if (currentPdf) renderPdf(currentPdf.url, currentPdf.title, { updateUrl: false });
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !viewer.classList.contains("hidden")) closePdf();
     });
+    window.addEventListener("hashchange", () => {
+      const card = getHashPdfCard();
+      if (card) renderPdf(card.dataset.pdf, card.dataset.title, { updateUrl: false });
+    });
+
+    const hashPdfCard = getHashPdfCard();
+    if (hashPdfCard) renderPdf(hashPdfCard.dataset.pdf, hashPdfCard.dataset.title, { updateUrl: false });
   </script>
 </body>
 </html>
