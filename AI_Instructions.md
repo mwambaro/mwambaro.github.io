@@ -136,4 +136,8 @@ In the 'assets' folder, there are sub-folders named after the file names of the 
 
 In the 'assets' root folder, there are sub-folders named after the file names of the PDF publications, except for 'Laastras Pitch Deck'. These sub-folders contain the html versions of the publications. Inspect the code of each html publication to fix the behavior related to the hamburger in the top left corner. Make sure it looks like a hamburger button. The hamburger should, once clicked, should lead to a left sidebar menu that links to the headings and subheadings in the related html publication. The two buttons in the navigation bar in the top right corner of each html publication are 'back to site' and 'link copy' buttons. They should look exactly like the ones in the PDF viewer within the 'index.html' root file and must lead back to the main site and allow link copying for sharing, respectfully. Since the hamburger allows quick access to headings and subheadings of the html publications, we no longer need the 'table of contents' section, so, it must be removed anywhere it appears in those html publications. The rest of the behavior in the site should remain as is.
 
+# More behavior 7
+
+The hamburger button, once clicked, does not open the left sidebar menu leading to headings and subheadings. Plus, it does not exactly look like a hamburger button, I do not see the horizontal lines in it. The 'back to site' and 'copy link' buttons work but they should look exactly like the ones in the PDF Viewer. Fix all that.
+
 

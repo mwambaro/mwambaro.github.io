@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Laastras builds an integrated platform ecosystem for one job, more free time, and a dignified life with access to all universal basic services due to advancements in artificial intelligence (AI), automation, and robotics." />
+  <meta name="description" content="Laastras builds an integrated platform ecosystem for one job, one e-card, and a dignified life." />
   <!-- Open Graph Data -->
   <meta content="Laastras—Dignified Life for All" property="og:title"/>
   <meta content="https://mwambaro.github.io" property="og:url"/>
-  <meta content="Laastras | One Job. 9 to 1. AI Is Here." property="og:description"/>
+  <meta content="Laastras | One job. One e-card. Dignified Life" property="og:description"/>
   <meta content="https://1drv.ms/i/c/2e6ead2d38e36d5a/IQRiUhA4alGOToMcF6WhACqnAfUdGJm__4sdk6QkHV91bVg?width=1536&height=1024" property="og:image"/>
-  <title>Laastras | One Job. 9 to 1. AI Is Here</title>
+  <title>Laastras | One job. One e-card. Dignified Life</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -57,13 +56,6 @@
     .pdf-open body { overflow: hidden; }
     .nav-link.active { color: #f05a28; }
     .pdf-frame { display: block; height: calc(100vh - 5.5rem); width: 100%; border: 0; background: white; }
-    .pdf-viewer-container { height: calc(100vh - 5.5rem); width: 100%; overflow: auto; background: #1a1a1a; display: flex; flex-direction: column; align-items: center; }
-    .pdf-canvas-page { display: flex; justify-content: center; align-items: flex-start; margin: 0.5rem 0; padding: 0.5rem; }
-    .pdf-canvas-page canvas { max-width: 100%; height: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.3); display: block; }
-    @media (max-width: 640px) {
-      .pdf-viewer-container { height: calc(100vh - 4.5rem); }
-      .pdf-canvas-page { margin: 0.25rem 0; padding: 0.25rem; }
-    }
     .field-error { min-height: 1.25rem; }
     .flat-icon { display: inline-block; width: 1.1rem; height: 1.1rem; stroke-width: 2.6; vertical-align: -0.18rem; }
     .submit-spinner {
@@ -116,10 +108,10 @@
         <div data-aos="fade-right">
           <p class="mb-4 inline-block border-2 border-ink bg-ember px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-hard">Laastras</p>
           <h1 class="max-w-4xl text-4xl font-black leading-tight text-ink sm:text-6xl lg:text-7xl">
-            <span data-i18n="heroTitle">One Job. 9 to 1. AI Is Here.</span>
+            <span data-i18n="heroTitle">One job. One e-card. Dignified Life</span>
           </h1>
           <p class="mt-6 max-w-2xl text-lg leading-8 text-steel sm:text-xl" data-i18n="heroCopy">
-            Laastras pilots platforms that establish and educate about an employment economy in which AI guarantees work, more free time, without losing access to Universal Basic Services.
+            Laastras fixes the current fragmented and uncertain economy in which one job and one e-card are not enough to get everything one needs to live with dignity.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
             <a href="#platforms" class="inline-flex items-center gap-2 border-2 border-ink bg-royal px-6 py-3 font-black uppercase text-white shadow-hard transition hover:-translate-y-1"><i class="flat-icon" data-lucide="compass"></i><span data-i18n="explorePlatforms">Explore Platforms</span></a>
@@ -319,65 +311,30 @@
           <h2 class="mt-3 text-3xl font-black sm:text-5xl" data-i18n="publicationsTitle">Read Laastras publications in the browser</h2>
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-ember"><i class="flat-icon" data-lucide="book-open"></i>WEB/PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationHomocracyDpi">Homocracy and Digital Public Infrastructure</h3>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <a class="inline-flex items-center justify-center gap-2 border-2 border-ink bg-teal px-4 py-3 text-sm font-black uppercase text-white shadow-hard" href="assets/Homocracy_and_Digital_Public_Infrastructure/Homocracy_and_Digital_Public_Infrastructure.html"><i class="flat-icon" data-lucide="globe-2"></i>WEB</a>
-              <button class="pdf-card inline-flex items-center justify-center gap-2 border-2 border-ink bg-ember px-4 py-3 text-sm font-black uppercase text-white shadow-hard" data-pdf="assets/Homocracy_and_Digital_Public_Infrastructure.pdf" data-title="Homocracy and Digital Public Infrastructure" data-title-key="publicationHomocracyDpi"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-sun p-6 text-left text-ink shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-royal"><i class="flat-icon" data-lucide="book-open"></i>WEB/PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationWorldFederalGovernment">World Federal Government Constitution</h3>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <a class="inline-flex items-center justify-center gap-2 border-2 border-ink bg-royal px-4 py-3 text-sm font-black uppercase text-white shadow-hard" href="assets/World_Federal_Government_Constitution/World_Federal_Government_Constitution.html"><i class="flat-icon" data-lucide="globe-2"></i>WEB</a>
-              <button class="pdf-card inline-flex items-center justify-center gap-2 border-2 border-ink bg-white px-4 py-3 text-sm font-black uppercase text-ink shadow-hard" data-pdf="assets/World_Federal_Government_Constitution.pdf" data-title="World Federal Government Constitution" data-title-key="publicationWorldFederalGovernment"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-teal p-6 text-left text-white shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="book-open"></i>WEB/PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume1">Comprehension Excerpts on LaaS/Homocracy - Volume 1</h3>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <a class="inline-flex items-center justify-center gap-2 border-2 border-white bg-sun px-4 py-3 text-sm font-black uppercase text-ink shadow-hard" href="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1.html"><i class="flat-icon" data-lucide="globe-2"></i>WEB</a>
-              <button class="pdf-card inline-flex items-center justify-center gap-2 border-2 border-white bg-ink px-4 py-3 text-sm font-black uppercase text-white shadow-hard" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 1" data-title-key="publicationComprehensionVolume1"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-royal p-6 text-left text-white shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="book-open"></i>WEB/PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume2">Comprehension Excerpts on LaaS/Homocracy - Volume 2</h3>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <a class="inline-flex items-center justify-center gap-2 border-2 border-white bg-sun px-4 py-3 text-sm font-black uppercase text-ink shadow-hard" href="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2.html"><i class="flat-icon" data-lucide="globe-2"></i>WEB</a>
-              <button class="pdf-card inline-flex items-center justify-center gap-2 border-2 border-white bg-ink px-4 py-3 text-sm font-black uppercase text-white shadow-hard" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 2" data-title-key="publicationComprehensionVolume2"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-ember"><i class="flat-icon" data-lucide="book-open"></i>WEB/PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume3">Comprehension Excerpts on LaaS/Homocracy - Volume 3</h3>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <a class="inline-flex items-center justify-center gap-2 border-2 border-ink bg-teal px-4 py-3 text-sm font-black uppercase text-white shadow-hard" href="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-3/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-3.html"><i class="flat-icon" data-lucide="globe-2"></i>WEB</a>
-              <button class="pdf-card inline-flex items-center justify-center gap-2 border-2 border-ink bg-ember px-4 py-3 text-sm font-black uppercase text-white shadow-hard" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-3.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 3" data-title-key="publicationComprehensionVolume3"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
-          <article class="flex min-h-[220px] flex-col justify-between border-4 border-white bg-ember p-6 text-left text-white shadow-hard transition hover:-translate-y-1">
-            <div>
-              <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
-              <h3 class="mt-3 text-2xl font-black" data-i18n="publicationPitchDeck">Laastras Pitch Deck</h3>
-            </div>
-            <div class="mt-6">
-              <button class="pdf-card inline-flex w-full items-center justify-center gap-2 border-2 border-white bg-ink px-4 py-3 text-sm font-black uppercase text-white shadow-hard" data-pdf="assets/Laastras_Pitch_Deck.pdf" data-title="Laastras Pitch Deck" data-title-key="publicationPitchDeck"><i class="flat-icon" data-lucide="file-text"></i>PDF</button>
-            </div>
-          </article>
+          <button class="pdf-card border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/Homocracy_and_Digital_Public_Infrastructure.pdf" data-title="Homocracy and Digital Public Infrastructure" data-title-key="publicationHomocracyDpi">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-ember"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationHomocracyDpi">Homocracy and Digital Public Infrastructure</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-sun p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/World_Federal_Government_Constitution.pdf" data-title="World Federal Government Constitution" data-title-key="publicationWorldFederalGovernment">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-royal"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationWorldFederalGovernment">World Federal Government Constitution</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-teal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-1.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 1" data-title-key="publicationComprehensionVolume1">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume1">Comprehension Excerpts on LaaS/Homocracy - Volume 1</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-royal p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-2.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 2" data-title-key="publicationComprehensionVolume2">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume2">Comprehension Excerpts on LaaS/Homocracy - Volume 2</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-white p-6 text-left text-ink shadow-hard transition hover:-translate-y-1" data-pdf="assets/Comprehension_Excerpts_on_LaaS_Homocracy—Volume-3.pdf" data-title="Comprehension Excerpts on LaaS/Homocracy - Volume 3" data-title-key="publicationComprehensionVolume3">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-ember"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationComprehensionVolume3">Comprehension Excerpts on LaaS/Homocracy - Volume 3</h3>
+          </button>
+          <button class="pdf-card border-4 border-white bg-ember p-6 text-left text-white shadow-hard transition hover:-translate-y-1" data-pdf="assets/Laastras_Pitch_Deck.pdf" data-title="Laastras Pitch Deck" data-title-key="publicationPitchDeck">
+            <span class="inline-flex items-center gap-2 text-sm font-black uppercase text-sun"><i class="flat-icon" data-lucide="file-text"></i>PDF</span>
+            <h3 class="mt-3 text-2xl font-black" data-i18n="publicationPitchDeck">Laastras Pitch Deck</h3>
+          </button>
         </div>
       </div>
     </section>
@@ -416,7 +373,7 @@
   </main>
 
   <footer class="border-t-4 border-ink bg-ink px-4 py-8 text-center text-white">
-    <p class="font-bold">&copy; <span id="year"></span> Laastras. <span data-i18n="heroTitle">One job. 9 to 1. AI Is Here.</span></p>
+    <p class="font-bold">&copy; <span id="year"></span> Laastras. <span data-i18n="heroTitle">One job. One e-card. Dignified Life</span>.</p>
   </footer>
 
   <div id="pdfViewer" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#10151f] text-white">
@@ -437,7 +394,7 @@
   <script>
     const translations = {
       en: {
-        pageTitle: "Laastras | One job. 9 to 1. AI Is Here.",
+        pageTitle: "Laastras | One job. One e-card. Dignified Life",
         brandTagline: "Dignified Life for All",
         navPlatforms: "Platforms",
         navPhilosophy: "Philosophy",
@@ -445,8 +402,8 @@
         navCommunity: "Join Our Community",
         navPublications: "Our Publications",
         navSubscribe: "Subscribe",
-        heroTitle: "One job. 9 to 1. AI Is Here.",
-        heroCopy: "Laastras pilots platforms that establish and educate about an employment economy in which AI guarantees work, more free time, without losing access to Universal Basic Services.",
+        heroTitle: "One job. One e-card. Dignified Life",
+        heroCopy: "Laastras fixes the current employment economy which is fragmented, uncertain, unattended to — like a child without parents — in which one job, if any, and one e-card are not enough to get everything you need to live with dignity.",
         explorePlatforms: "Explore Platforms",
         joinCommunity: "Join Community",
         prevButton: "Prev",
@@ -507,7 +464,7 @@
         minLengthError: "Please enter at least {min} characters."
       },
       fr: {
-        pageTitle: "Laastras | Un travail. De 9h à 13h. L'IA est là",
+        pageTitle: "Laastras | Un emploi. Une carte électronique. Une vie de dignité",
         brandTagline: "Une Vie de Dignité pour Tous",
         navPlatforms: "Plateformes",
         navPhilosophy: "Philosophie",
@@ -515,8 +472,8 @@
         navCommunity: "Rejoindre la communauté",
         navPublications: "Nos publications",
         navSubscribe: "S'abonner",
-        heroTitle: "Un travail. De 9h à 13h. L'IA est là.",
-        heroCopy: " Laastras pilote des plateformes qui mettent en place et sensibilisent à une économie de l'emploi dans laquelle l'IA garantit du travail et plus de temps libre, sans perdre l'accès aux Services Publics Universels.",
+        heroTitle: "Un emploi. Une carte électronique. Une vie de dignité",
+        heroCopy: "Laastras corrige l'économie du travail actuelle, fragmentée, incertaine, laissée à l'abandon — comme un enfant sans parents — dans laquelle un seul emploi, s'il y en a un, et une seule carte électronique ne suffisent pas pour obtenir tout ce dont on a besoin pour vivre dans la dignité.",
         explorePlatforms: "Explorer les plateformes",
         joinCommunity: "Rejoindre la communauté",
         prevButton: "Préc.",
@@ -810,30 +767,6 @@
     const pdfCards = Array.from(document.querySelectorAll(".pdf-card"));
     let currentPdf = null;
     let renderToken = 0;
-    
-    // Wait for PDF.js to load and initialize
-    function waitForPdfJs() {
-      return new Promise((resolve) => {
-        if (typeof pdfjsLib !== "undefined" && pdfjsLib.GlobalWorkerOptions) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js";
-          resolve(pdfjsLib);
-        } else {
-          // Retry every 50ms for up to 5 seconds
-          let attempts = 0;
-          const interval = setInterval(() => {
-            attempts++;
-            if (typeof pdfjsLib !== "undefined" && pdfjsLib.GlobalWorkerOptions) {
-              pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js";
-              clearInterval(interval);
-              resolve(pdfjsLib);
-            } else if (attempts > 100) {
-              clearInterval(interval);
-              resolve(null);
-            }
-          }, 50);
-        }
-      });
-    }
 
     function getPdfShareUrl(url) {
       const shareUrl = new URL(window.location.href);
