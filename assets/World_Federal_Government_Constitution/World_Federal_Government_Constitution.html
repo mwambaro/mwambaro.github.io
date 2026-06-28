@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<title>World Federal Government Constitution—Leadership as a Service</title>
 	<meta name="generator" content="LibreOffice 24.8.1.2 (Linux)"/>
@@ -33,9 +36,12 @@
 		h4.ctl { font-family: ; font-style: italic }
 		a:link { color: #0563c1; text-decoration: underline }
 		a:visited { color: #954f72; text-decoration: underline }
+		html, body {
+      		max-width: 100%;
+      		overflow-x: hidden;
+    	}
 	</style>
 <!-- Publication reader assets start -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -51,7 +57,12 @@
     line-height: 1.78 !important;
     overflow-x: hidden;
   }
-  body, body *:not(i) { font-family: "Nunito", ui-sans-serif, system-ui, sans-serif !important; }
+  
+  /* FIXED: Set font globally on body and components safely without using universal selectors (*) that break SVGs */
+  body, .publication-nav, .publication-sidebar { 
+    font-family: "Nunito", ui-sans-serif, system-ui, sans-serif !important; 
+  }
+  
   body > :not(.publication-nav):not(.publication-sidebar):not(.publication-backdrop):not(script):not(style) {
     max-width: 58rem;
     margin-left: auto !important;
@@ -77,8 +88,20 @@
     margin-right: auto !important;
   }
   table { max-width: 100% !important; width: auto !important; margin-left: auto !important; margin-right: auto !important; border-collapse: collapse; }
-  .flat-icon { display: inline-block; width: 1.1rem; height: 1.1rem; stroke-width: 2.6; vertical-align: -0.18rem; }
-  .publication-nav svg, .publication-sidebar svg { width: 1.15rem; height: 1.15rem; stroke-width: 2.6; }
+  
+  /* FIXED: Ensure dimensions and rendering properties are strictly applied to icons */
+  .flat-icon, .publication-nav svg, .publication-nav i, .publication-sidebar svg { 
+  	width: 1.25rem !important; 
+  	height: 1.25rem !important; 
+  	stroke-width: 2.6 !important; 
+  	fill: none !important;             
+  	stroke: currentColor !important;   
+    display: inline-block !important;
+  }
+  .flat-icon {
+  	vertical-align: -0.22rem; 
+  }
+
   .publication-sidebar.is-open { transform: translateX(0) !important; }
   .publication-backdrop.is-open { opacity: 1 !important; pointer-events: auto !important; }
 </style>
@@ -89,16 +112,17 @@
 <!-- Publication reader nav start -->
 <nav class="publication-nav fixed inset-x-0 top-0 z-50 border-b-4 border-[#10151f] bg-white/95 shadow-lg backdrop-blur" aria-label="Publication controls">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-    <button id="publicationMenuButton" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#ffc857] px-3 py-2 font-black text-[#10151f] shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Open table of contents" aria-controls="publicationSidebar" aria-expanded="false">
-      <i class="flat-icon" data-lucide="menu" aria-hidden="true"></i>
+    <button id="publicationMenuButton" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#ffc857] px-3 py-2 font-black text-[#10151f] shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Open table of contents" aria-controls="publicationSidebar" aria-expanded="false">
+      <i class="flat-icon" data-lucide="menu"></i>
     </button>
     <div class="min-w-0 flex-1 px-2 text-sm font-bold uppercase tracking-wide text-[#10151f] sm:text-base truncate">World Federal Government Constitution</div>
     <div class="flex items-center gap-2">
-      <a href="../../index.html#publications" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#f05a28] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Back to site" title="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line" aria-hidden="true"></i></a>
-      <button id="copyPublicationLink" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#00a6a6] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Copy link" title="Copy link"><i class="flat-icon" data-lucide="link" aria-hidden="true"></i></button>
-    </div>
+      <a href="../../index.html#publications" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#f05a28] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Back to site" title="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line"></i></a>
+      <button id="copyPublicationLink" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#00a6a6] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Copy link" title="Copy link"><i class="flat-icon" data-lucide="link"></i></button>
+	</div>
   </div>
 </nav>
+
 <div id="publicationBackdrop" class="publication-backdrop fixed inset-0 z-40 bg-[#10151f]/45 opacity-0 pointer-events-none transition-opacity" aria-hidden="true"></div>
 <aside id="publicationSidebar" class="publication-sidebar fixed left-0 top-0 z-50 h-screen w-[min(22rem,86vw)] -translate-x-full overflow-y-auto border-r-4 border-[#10151f] bg-white p-4 pt-6 shadow-2xl transition-transform" aria-label="Publication table of contents">
   <div class="mb-5 flex items-center justify-between gap-3 border-b-2 border-[#10151f] pb-3">
@@ -3865,7 +3889,7 @@ originate, as opposed to </span></font></font><font face="Times New Roman, serif
       }, 1600);
     });
 
-    if (window.lucide) lucide.createIcons();
+    lucide.createIcons();
   }
 
   if (document.readyState === "loading") {

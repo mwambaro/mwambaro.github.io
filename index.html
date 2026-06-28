@@ -434,10 +434,11 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     const translations = {
       en: {
-        pageTitle: "Laastras | One job. 9 to 1. AI Is Here.",
+        pageTitle: "Laastras | One job. 9 to 1. AI Is Here",
         brandTagline: "Dignified Life for All",
         navPlatforms: "Platforms",
         navPhilosophy: "Philosophy",
@@ -810,30 +811,6 @@
     const pdfCards = Array.from(document.querySelectorAll(".pdf-card"));
     let currentPdf = null;
     let renderToken = 0;
-    
-    // Wait for PDF.js to load and initialize
-    function waitForPdfJs() {
-      return new Promise((resolve) => {
-        if (typeof pdfjsLib !== "undefined" && pdfjsLib.GlobalWorkerOptions) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js";
-          resolve(pdfjsLib);
-        } else {
-          // Retry every 50ms for up to 5 seconds
-          let attempts = 0;
-          const interval = setInterval(() => {
-            attempts++;
-            if (typeof pdfjsLib !== "undefined" && pdfjsLib.GlobalWorkerOptions) {
-              pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js";
-              clearInterval(interval);
-              resolve(pdfjsLib);
-            } else if (attempts > 100) {
-              clearInterval(interval);
-              resolve(null);
-            }
-          }, 50);
-        }
-      });
-    }
 
     function getPdfShareUrl(url) {
       const shareUrl = new URL(window.location.href);
