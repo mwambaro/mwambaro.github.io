@@ -18,30 +18,29 @@
 	<style type="text/css">
 		@page { size: 8.27in 11.69in; margin-left: 1in; margin-right: 1in; margin-top: 0.49in; margin-bottom: 0.49in }
 		p { line-height: 115%; text-align: left; orphans: 2; widows: 2; margin-bottom: 0.1in; direction: ltr; background: transparent }
-		h1 { color: #2f5496; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-bottom: 0in; direction: ltr; background: transparent; page-break-after: avoid }
-		h1.western { font-family: "Calibri Light", serif; font-size: 16pt }
-		h1.cjk { font-family: ; font-size: 16pt }
-		h1.ctl { font-family: ; font-size: 16pt }
-		h2 { color: #2f5496; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.03in; margin-bottom: 0in; direction: ltr; background: transparent; page-break-after: avoid }
-		h2.western { font-family: "Calibri Light", serif; font-size: 13pt }
-		h2.cjk { font-family: ; font-size: 13pt }
-		h2.ctl { font-family: ; font-size: 13pt }
-		h3 { color: #1f3763; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.03in; margin-bottom: 0in; direction: ltr; background: transparent; page-break-after: avoid }
-		h3.western { font-family: "Calibri Light", serif; font-size: 12pt }
-		h3.cjk { font-family: ; font-size: 12pt }
-		h3.ctl { font-family: ; font-size: 12pt }
-		h4 { color: #2f5496; line-height: 108%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.03in; margin-bottom: 0in; direction: ltr; background: transparent; page-break-after: avoid }
-		h4.western { font-family: "Calibri Light", serif; font-style: italic }
+		h1 { color: #2f5496; line-height: 115%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.25in; margin-bottom: 0.06in; direction: ltr; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Calibri Light", serif; font-size: 20pt }
+		h1.cjk { font-family: ; font-size: 20pt }
+		h1.ctl { font-family: ; font-size: 20pt }
+		h2 { color: #2f5496; line-height: 115%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.11in; margin-bottom: 0.06in; direction: ltr; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Calibri Light", serif; font-size: 16pt }
+		h2.cjk { font-family: ; font-size: 16pt }
+		h2.ctl { font-family: ; font-size: 16pt }
+		h3 { color: #2f5496; line-height: 115%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.11in; margin-bottom: 0.06in; direction: ltr; background: transparent; page-break-after: avoid }
+		h3.western { font-size: 14pt }
+		h3.cjk { font-family: ; font-size: 14pt }
+		h3.ctl { font-family: ; font-size: 14pt }
+		h4 { color: #2f5496; line-height: 115%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.06in; margin-bottom: 0.03in; direction: ltr; background: transparent; page-break-after: avoid }
+		h4.western { font-style: italic }
 		h4.cjk { font-family: ; font-style: italic }
 		h4.ctl { font-family: ; font-style: italic }
+		h5 { color: #2f5496; line-height: 115%; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.06in; margin-bottom: 0.03in; direction: ltr; background: transparent; page-break-after: avoid }
+		h5.cjk { font-family:  }
+		h5.ctl { font-family:  }
 		a:link { color: #0563c1; text-decoration: underline }
-		a:visited { color: #954f72; text-decoration: underline }
-		html, body {
-      		max-width: 100%;
-      		overflow-x: hidden;
-    	}
 	</style>
 <!-- Publication reader assets start -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -57,12 +56,7 @@
     line-height: 1.78 !important;
     overflow-x: hidden;
   }
-  
-  /* FIXED: Set font globally on body and components safely without using universal selectors (*) that break SVGs */
-  body, .publication-nav, .publication-sidebar { 
-    font-family: "Nunito", ui-sans-serif, system-ui, sans-serif !important; 
-  }
-  
+  body, body *:not(i) { font-family: "Nunito", ui-sans-serif, system-ui, sans-serif !important; }
   body > :not(.publication-nav):not(.publication-sidebar):not(.publication-backdrop):not(script):not(style) {
     max-width: 58rem;
     margin-left: auto !important;
@@ -88,38 +82,26 @@
     margin-right: auto !important;
   }
   table { max-width: 100% !important; width: auto !important; margin-left: auto !important; margin-right: auto !important; border-collapse: collapse; }
-  
-  /* FIXED: Ensure dimensions and rendering properties are strictly applied to icons */
-  .flat-icon, .publication-nav svg, .publication-nav i, .publication-sidebar svg { 
-  	width: 1.25rem !important; 
-  	height: 1.25rem !important; 
-  	stroke-width: 2.6 !important; 
-  	fill: none !important;             
-  	stroke: currentColor !important;   
-    display: inline-block !important;
-  }
-  .flat-icon {
-  	vertical-align: -0.22rem; 
-  }
-
+  .flat-icon { display: inline-block; width: 1.1rem; height: 1.1rem; stroke-width: 2.6; vertical-align: -0.18rem; }
+  .publication-nav svg, .publication-sidebar svg { width: 1.15rem; height: 1.15rem; stroke-width: 2.6; }
   .publication-sidebar.is-open { transform: translateX(0) !important; }
   .publication-backdrop.is-open { opacity: 1 !important; pointer-events: auto !important; }
 </style>
 <!-- Publication reader assets end -->
 </head>
-<body lang="en-BI" link="#0563c1" vlink="#954f72" dir="ltr">
+<body lang="en-BI" link="#0563c1" vlink="#800000" dir="ltr">
 
 <!-- Publication reader nav start -->
 <nav class="publication-nav fixed inset-x-0 top-0 z-50 border-b-4 border-[#10151f] bg-white/95 shadow-lg backdrop-blur" aria-label="Publication controls">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-    <button id="publicationMenuButton" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#ffc857] px-3 py-2 font-black text-[#10151f] shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Open table of contents" aria-controls="publicationSidebar" aria-expanded="false">
-      <i class="flat-icon" data-lucide="menu"></i>
+    <button id="publicationMenuButton" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#ffc857] px-3 py-2 font-black text-[#10151f] shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Open table of contents" aria-controls="publicationSidebar" aria-expanded="false">
+      <i class="flat-icon" data-lucide="menu" aria-hidden="true"></i>
     </button>
     <div class="min-w-0 flex-1 px-2 text-sm font-bold uppercase tracking-wide text-[#10151f] sm:text-base truncate">World Federal Government Constitution</div>
     <div class="flex items-center gap-2">
-      <a href="../../index.html#publications" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#f05a28] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Back to site" title="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line"></i></a>
-      <button id="copyPublicationLink" class="inline-flex items-center justify-center gap-2 border-2 border-[#10151f] bg-[#00a6a6] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Copy link" title="Copy link"><i class="flat-icon" data-lucide="link"></i></button>
-	</div>
+      <a href="../../index.html#publications" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#f05a28] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" aria-label="Back to site" title="Back to site"><i class="flat-icon" data-lucide="arrow-left-to-line"></i></a>
+      <button id="copyPublicationLink" class="inline-flex items-center gap-2 border-2 border-[#10151f] bg-[#00a6a6] px-3 py-2 font-black text-white shadow-[6px_6px_0_rgba(16,21,31,.18)]" type="button" aria-label="Copy link" title="Copy link"><i class="flat-icon" data-lucide="link"></i></button>
+    </div>
   </div>
 </nav>
 
