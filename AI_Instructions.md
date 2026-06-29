@@ -140,4 +140,27 @@ In the 'assets' root folder, there are sub-folders named after the file names of
 
 The hamburger button, once clicked, does not open the left sidebar menu leading to headings and subheadings. Plus, it does not exactly look like a hamburger button, I do not see the horizontal lines in it. The 'back to site' and 'copy link' buttons work but they should look exactly like the ones in the PDF Viewer. Fix all that.
 
+# More behavior 8
+
+In the 'assets' root folder, there are sub-folders named after the file names of the PDF publications, except for 'Laastras Pitch Deck'. These sub-folders contain the html versions of the publications. For maintenance reasons, use external artifacts such as CSS and Javascript to implement the following shared behavior for all the HTML publications in those folders:
+1. A left top corner hamburger that gives quick access to headings and subheadings in the HTML publication. This hamburger, once clicked, should open a sidebar of quick access outline on the left side of the viewport.
+2. In the top right corner, there must be two buttons 'back to site' and 'open link' that navigates back to the main site and that copies to the clipboard a shareable link to the publication, respectfully. These buttons must look exactly like the ones available in the PDF viewer in the root 'index.html' file.
+3. Remove all the per-publication CSS and Javascript code to centralize them, leaving only the text content which you will properly display as a well-organized html reading material with generally same central design. Headings and subheadings should be well placed so that a reader reads through conveniently.
+4. The material, including the embedded images, must scale to all kinds of devices, small, medium, and large.
+5. Remember to prioritize the Nunito font-family available as stylesheet at `https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap` while fine-tuning the font-size for suitable reading on all devices.
+
+Note: Leave the rest of the codebase as is.
+
+# More behavior 9
+
+As far as the HTML publications are concerned, do the following:
+
+1. Add Search Engine Optimization (SEO) features so that the HTML publications are found by Search Engines using such keywords as:
+"LaaS, Leadership, Leadership as a Service, Homocracy, Good Governance, Democracy, Universal Stakeholding, Universal Basic Services, Universal Basic Income, Future of Work, World Order, World Government".
+2. Make sure the 'copy link' button is followed by feedback text once clicked. It should show the user the text 'Link Copied' on all devices.
+3. Make sure the space between headings/subheadings is not too much or too little and consistent for all the HTML publications. This should be easy despite the length of the contents since you have already compiled the headings/subheadings in the outline via the hamburger behavior.
+
+
+
+
 
