@@ -160,6 +160,30 @@ As far as the HTML publications are concerned, do the following:
 2. Make sure the 'copy link' button is followed by feedback text once clicked. It should show the user the text 'Link Copied' on all devices.
 3. Make sure the space between headings/subheadings is not too much or too little and consistent for all the HTML publications. This should be easy despite the length of the contents since you have already compiled the headings/subheadings in the outline via the hamburger behavior.
 
+# Prompt to make base64 embedded images AMP-compatible
+
+Given the code below that gets the width and height from  a base64 image string, generate Python script code that takes a .html file, parses it to find all <img> tags whose 'src' attribute value starts with 'data:image/png;base64,', gets the string that corresponds to the image data from the 'src' attribute value by stripping the starting 'data:image/png;base64,' part, feeds the image data string to the 'get_size' method given in the code below, adds these attributes right after the 'img' tag part: `width="the width calculated" height="the height calculated" layout="responsive"`, then replace the <img/> tag with <amp-img></amp-img> which is AMP-compatible. Make sure the code given below properly returns infers the width and height in pixels, and improve it if it does not. Code:
+```
+import sys
+import base64
+from io import BytesIO
+from PIL import Image # Make sure to install Pillow library: python -m pip install Pillow
+
+if len(sys.argv) != 2:
+    print("Usage: python script.py <base64_string>")
+    sys.exit(1)
+
+def get_size(base64_str):
+
+    base64_str = sys.argv[1]  # Get the base64 string from command line argument
+    img_data = base64.b64decode(base64_str)
+
+    # Read the image directly from the byte stream
+    with Image.open(BytesIO(img_data)) as img:
+        width, height = img.size
+        # print(f"Width: {width}, Height: {height}")
+```
+
 
 
 
